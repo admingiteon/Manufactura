@@ -12,3 +12,5 @@ persist_with: cadena_suministro_default_datagroup
 
 explore: vw_cadena_suministro_pedidos_venta {}
 
+
+explore: vw_largo_plazo_trazabilidad {}
