@@ -4,50 +4,42 @@
 
 view: vw_largo_plazo_trazabilidad {
   derived_table: {
-    sql: CREATE TEMPORARY TABLE PlanDemanda As
-            SELECT 1 as id_Concepto,
-                            'PLAN DE LA DEMANDA' as Concepto,
-                            concat('00000000000',ID_de_Producto__IBP_) as SKU,
-                            CONCAT(CAST(EXTRACT(YEAR from fecha ) as string),'-', LPAD(CAST(EXTRACT(MONTH from fecha ) as string),2,'0') ) as PeriodoNum,
-                            CONCAT(CAST(EXTRACT(YEAR from fecha ) as string),'-', LPAD(CAST(EXTRACT(MONTH from fecha ) as string),2,'0') ) as Periodo,
-                            sum(Cantidad)  as Cantidad
-
-      FROM `psa-sga-dfn-qa.reporting_ecc_mx.largo_plazo_completo`
-      where ID_de_Producto__IBP_=4043587 and
-      CONCAT(CAST(EXTRACT(YEAR from fecha ) as string),'-', LPAD(CAST(EXTRACT(MONTH from fecha ) as string),2,'0') )='2023-06'
-      group by 1,2,3,4,5;
-
-      CREATE TEMPORARY TABLE PlanDemandaSimu As
-      SELECT 2 as id_Concepto,
-      'PLAN DE LA DEMANDA SIMULADO' as Concepto,
-      SKU as sku,
-      periodoproy as PeriodoNum,
-      periodoproy as Periodo,
-      sum(CantidadMes*1.16) as Cantidad
-      FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cad_sum_cap_web_vert`
-      where substring(sku,12,7)='4043587'
-      group by 1,2,3,4,5;
-
-      CREATE TEMPORARY TABLE PlanDemandaDif As
-      SELECT 3 id_Concepto,
-      'VARIACION PLAN DE LA DEMANDA' as Concepto,
-      PlanDemanda.Sku,
-      PlanDemanda.PeriodoNum,
-      PlanDemanda.Periodo,
-      PlanDemandaSimu.Cantidad-PlanDemanda.Cantidad As Cantidad
-      from PlanDemanda Left outer join PlanDemandaSimu
-      on Concat(PlanDemanda.sku,PlanDemanda.PeriodoNum)= Concat(PlanDemandaSimu.sku,PlanDemandaSimu.PeriodoNum);
-
-      select * from PlanDemanda
-      union all
-      select * from PlanDemandaSimu
-      union all
-      select * from PlanDemandaDif ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_trazabilidad`;;
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  dimension: tipomaterial {
+    type: string
+    sql: ${TABLE}.tipomaterial ;;
+  }
+
+  dimension: um {
+    type: string
+    sql: ${TABLE}.um ;;
+  }
+
+  dimension: grupoarticulo {
+    type: string
+    sql: ${TABLE}.grupoarticulo ;;
+  }
+
+  dimension: grupoarticuloexterno {
+    type: string
+    sql: ${TABLE}.grupoarticuloexterno ;;
+  }
+
+  dimension: claveidioma {
+    type: string
+    sql: ${TABLE}.claveidioma ;;
+  }
+
+  dimension: articulodescribe {
+    type: string
+    sql: ${TABLE}.articulodescribe ;;
   }
 
   dimension: id_concepto {
@@ -64,6 +56,9 @@ view: vw_largo_plazo_trazabilidad {
     type: string
     sql: ${TABLE}.SKU ;;
   }
+
+
+
 
   dimension: periodo_num {
     type: string
@@ -82,9 +77,16 @@ view: vw_largo_plazo_trazabilidad {
 
   set: detail {
     fields: [
+      tipomaterial,
+      um,
+      grupoarticulo,
+      grupoarticuloexterno,
+      claveidioma,
+      articulodescribe,
       id_concepto,
       concepto,
       sku,
+
       periodo_num,
       periodo,
       cantidad
