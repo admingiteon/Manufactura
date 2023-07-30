@@ -216,6 +216,7 @@ view: val_vw_datos_generales {
   measure: Registros {
     type: count
     drill_fields: [detail*]
+
   }
 
   measure: Total_stock_libre_utilizacion {
@@ -230,6 +231,7 @@ view: val_vw_datos_generales {
     label: "Numero SKU"
     type: count_distinct
     sql:${material};;
+    drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
   }
 
   measure: Total_centros{
