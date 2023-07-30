@@ -18,10 +18,6 @@ view: val_vw_datos_generales {
           FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales`  ;;
   }
 
-  ## measure: count {
-  ##    type: count
-  ##    drill_fields: [detail*]
-  ## }
 
   measure: count {
     type: count_distinct
@@ -214,6 +210,52 @@ view: val_vw_datos_generales {
   dimension: cantidad_tomada_tot {
     type: number
     sql: ${TABLE}.cantidad_tomada_tot ;;
+  }
+
+
+  measure: Registros {
+    type: count
+    drill_fields: [detail*]
+  }
+
+  measure: Total_stock_libre_utilizacion {
+    type: sum
+    sql: ${stock_libre_utilizacion} ;;
+    drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
+  }
+
+
+
+  measure: Total_Materiales{
+    label: "Numero SKU"
+    type: count_distinct
+    sql:${material};;
+  }
+
+  measure: Total_centros{
+    type: count_distinct
+    sql:${almacen} ;;
+    drill_fields: [almacen,material,Total_Materiales,Total_stock_libre_utilizacion]
+  }
+
+  measure: Total_Sin_inventario{
+    label: "SKU sin invenrario"
+    type: count_distinct
+    sql:${material};;
+    filters: [stock_libre_utilizacion: ">0"]
+    drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
+  }
+
+  measure: Total_inventario{
+    label: "SKU  invenrario"
+    sql:${Total_Materiales}-${Total_Sin_inventario};;
+    drill_fields: [almacen,material,Total_Materiales,Total_stock_libre_utilizacion]
+
+  }
+
+  dimension: Metaria_descripcion {
+    type: string
+    sql: CONCAT(${material}, "-" , ${material_desc})  ;;
   }
 
   set: detail {
