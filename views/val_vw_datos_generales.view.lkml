@@ -152,7 +152,7 @@ view: val_vw_datos_generales {
 
   measure: total_stock_traslado {
     type: sum
-    sql: $(${stock_traslado} ;;
+    sql: ${stock_traslado} ;;
   }
 
   dimension: stock_control_calidad {
