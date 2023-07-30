@@ -150,6 +150,11 @@ view: val_vw_datos_generales {
     sql: ${TABLE}.stock_traslado ;;
   }
 
+  measure: total_stock_traslado {
+    type: sum
+    sql: $(${stock_traslado} ;;
+  }
+
   dimension: stock_control_calidad {
     type: number
     sql: ${TABLE}.stock_control_calidad ;;
