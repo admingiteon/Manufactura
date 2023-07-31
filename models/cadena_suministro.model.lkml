@@ -26,4 +26,12 @@ explore: val_vw_ordenes_proceso {}
 explore: val_vw_pedidos_ventas {}
 explore: val_vw_recursos_capacidades {}
 explore: val_largo_plazo_completo_aruma {}
-explore: vw_largo_plazo_trazabilidad {}
+explore: vw_largo_plazo_trazabilidad {
+#  join: vw_lista_componentes {
+#    type: left_outer
+#    sql_on: ${vw_largo_plazo_trazabilidad.sku} = ${vw_lista_componentes.sku} ;;
+#    relationship: many_to_one
+#  }
+}
+
+#explore: vw_lista_componentes {}
