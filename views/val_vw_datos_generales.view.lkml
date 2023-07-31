@@ -236,6 +236,12 @@ view: val_vw_datos_generales {
 
   measure: Total_centros{
     type: count_distinct
+    sql:${centro} ;;
+    drill_fields: [almacen,material,Total_Materiales,Total_stock_libre_utilizacion]
+  }
+
+  measure: Total_almacenes{
+    type: count_distinct
     sql:${almacen} ;;
     drill_fields: [almacen,material,Total_Materiales,Total_stock_libre_utilizacion]
   }
