@@ -9,7 +9,7 @@ view: vw_largo_plazo_trazabilidad {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
+
   }
 
   dimension: tipomaterial {
@@ -50,6 +50,7 @@ view: vw_largo_plazo_trazabilidad {
   dimension: concepto {
     type: string
     sql: ${TABLE}.Concepto ;;
+    drill_fields: [concepto]
   }
 
   dimension: sku {
@@ -75,21 +76,21 @@ view: vw_largo_plazo_trazabilidad {
     sql: ${TABLE}.Cantidad ;;
   }
 
-  set: detail {
-    fields: [
-      tipomaterial,
-      um,
-      grupoarticulo,
-      grupoarticuloexterno,
-      claveidioma,
-      articulodescribe,
-      id_concepto,
-      concepto,
-      sku,
+  #set: detail {
+  #  fields: [
+   #   tipomaterial,
+  #    um,
+  #    grupoarticulo,
+  #    grupoarticuloexterno,
+  #    claveidioma,
+  #    articulodescribe,
+  #    id_concepto,
+  #    concepto,
+  #    sku,
 
-      periodo_num,
-      periodo,
-      cantidad
-    ]
-  }
+  #    periodo_num,
+  #    periodo,
+  #    cantidad
+  #  ]
+ # }
 }

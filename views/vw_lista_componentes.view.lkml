@@ -9,7 +9,7 @@ view: vw_lista_componentes {
 
   measure: count {
     type: count
-    drill_fields: [listacomponentes*]
+   # drill_fields: [listacomponentes*]
   }
 
   dimension: periodo {
