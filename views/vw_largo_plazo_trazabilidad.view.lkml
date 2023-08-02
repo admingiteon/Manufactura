@@ -50,7 +50,32 @@ view: vw_largo_plazo_trazabilidad {
   dimension: concepto {
     type: string
     sql: ${TABLE}.Concepto ;;
-    drill_fields: [concepto]
+   # drill_fields: [vw_lista_componentes.listacomponentes]
+
+
+
+
+
+    link: {
+      label: " Cadena"
+
+
+      # url: "https://grupoeon.cloud.looker.com/dashboards-next/35"
+     # url: "https://grupoeon.cloud.looker.com/dashboards-next/35?Sociedad={{ _filters['Sociedad'] | url_encode }}"
+
+
+     url:"   {% if value == 'INVENTARIO_INICIAL_(QM)' %}
+              https://corpcab.cloud.looker.com/dashboards/27?Concepto={{ value }}&Sku={{ sku._value }}
+                {% elsif value=='DEMANDA_NO_CUBIERTA' %}
+              https://corpcab.cloud.looker.com/dashboards/28
+              {% endif %}"
+
+
+      #"https://corpcab.cloud.looker.com/dashboards/27?Concepto={{ value }}"
+      icon_url: "https://cdn0.iconfinder.com/data/icons/real-estate-111/512/Real_Estate_expanded-14-512.png"
+    }
+
+
   }
 
   dimension: sku {

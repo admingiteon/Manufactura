@@ -39,11 +39,8 @@ view: vw_lista_componentes {
 
   set: listacomponentes {
     fields: [
-      periodo,
-      sku,
-      componente_nivel2,
-      texto_breve_material_nivel2,
-      cantidad
+      periodo
+
     ]
   }
 }
