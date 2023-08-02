@@ -70,6 +70,38 @@ view: val_vw_datos_generales {
     sql: ${TABLE}.grupo_articulos ;;
   }
 
+
+
+  dimension: grupo_articulos_descripcion {
+    type: string
+    sql: case when ${TABLE}.grupo_articulos = 'AM' then 'AMSA                                                        '
+      when ${TABLE}.grupo_articulos = 'A' then 'Anestesiología y Terapia Intensiva'
+      when ${TABLE}.grupo_articulos = 'T' then 'Antibióticos Intra-Hospitalarios'
+      when ${TABLE}.grupo_articulos = 'O' then 'Antibióticos de Prescripción'
+      when ${TABLE}.grupo_articulos = 'L' then 'Control de Infecciones'
+      when ${TABLE}.grupo_articulos = 'E' then 'Diálisis Peritoneal'
+      when ${TABLE}.grupo_articulos = 'G' then 'Enfermedades Crónicas'
+      when ${TABLE}.grupo_articulos = 'K' then 'Farmacéuticos OTC'
+      when ${TABLE}.grupo_articulos = 'GP' then 'GENEPISA'
+      when ${TABLE}.grupo_articulos = 'U' then 'Genéricos'
+      when ${TABLE}.grupo_articulos = 'J' then 'Hemodiálisis'
+      when ${TABLE}.grupo_articulos = 'MI' then 'Maquila Intl.'
+      when ${TABLE}.grupo_articulos = 'M' then 'Maquila Nacional'
+      when ${TABLE}.grupo_articulos = 'MP' then 'Marca Propia'
+      when ${TABLE}.grupo_articulos = 'S' then 'NEUROLOGÍA y PSIQUIATRÍA'
+      when ${TABLE}.grupo_articulos = 'F' then 'Nutrición'
+      when ${TABLE}.grupo_articulos = 'D' then 'Oftalmología'
+      when ${TABLE}.grupo_articulos = 'H' then 'Oncológicos'
+      when ${TABLE}.grupo_articulos = 'Q' then 'Pediatría'
+      when ${TABLE}.grupo_articulos = 'PMD' then 'Productos Medimix'
+      when ${TABLE}.grupo_articulos = 'SM' then 'Salucom'
+      when ${TABLE}.grupo_articulos = 'B' then 'Terapia de Infusión'
+      when ${TABLE}.grupo_articulos = 'R' then 'Terapia del dolor'
+      when ${TABLE}.grupo_articulos = 'N' then 'Transplantes'
+      when ${TABLE}.grupo_articulos = 'VDD' then 'Venta Directa Dimesa' end
+                                                             ';;
+  }
+
   dimension: grupo_articulos_externos {
     type: string
     sql: ${TABLE}.grupo_articulos_externos ;;
