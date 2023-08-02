@@ -74,7 +74,7 @@ view: val_vw_datos_generales {
 
   dimension: grupo_articulos_descripcion {
     type: string
-    sql: case when ${TABLE}.grupo_articulos = 'AM' then 'AMSA                                                        '
+    sql: case when ${TABLE}.grupo_articulos = 'AM' then 'AMSA'                                                        '
       when ${TABLE}.grupo_articulos = 'A' then 'Anestesiología y Terapia Intensiva'
       when ${TABLE}.grupo_articulos = 'T' then 'Antibióticos Intra-Hospitalarios'
       when ${TABLE}.grupo_articulos = 'O' then 'Antibióticos de Prescripción'
@@ -98,7 +98,7 @@ view: val_vw_datos_generales {
       when ${TABLE}.grupo_articulos = 'B' then 'Terapia de Infusión'
       when ${TABLE}.grupo_articulos = 'R' then 'Terapia del dolor'
       when ${TABLE}.grupo_articulos = 'N' then 'Transplantes'
-      when ${TABLE}.grupo_articulos = 'VDD' then 'Venta Directa Dimesa' end
+      when ${TABLE}.grupo_articulos = 'VDD' then 'Venta Directa Dimesa' else 'otros' end
                                                              ';;
   }
 
