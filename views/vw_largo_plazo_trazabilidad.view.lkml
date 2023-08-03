@@ -87,6 +87,7 @@ view: vw_largo_plazo_trazabilidad {
 
 
   dimension: periodo_num {
+    label: "Num Periodo"
     type: string
     sql: ${TABLE}.PeriodoNum ;;
   }
