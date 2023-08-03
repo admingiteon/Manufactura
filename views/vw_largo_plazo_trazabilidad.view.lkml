@@ -54,8 +54,6 @@ view: vw_largo_plazo_trazabilidad {
 
 
 
-
-
     link: {
       label: " Cadena"
 
@@ -76,6 +74,12 @@ view: vw_largo_plazo_trazabilidad {
     }
 
 
+  }
+
+
+  measure: sku_unicos {
+    type: count_distinct
+    sql: ${sku} ;;
   }
 
   dimension: sku {
