@@ -32,6 +32,11 @@ explore: vw_largo_plazo_trazabilidad {
     sql_on: ${vw_largo_plazo_trazabilidad.sku} = ${vw_lista_componentes.sku} ;;
     relationship: many_to_one
   }
+  join: val_vw_datos_generales  {
+    type: left_outer
+    sql_on: ${vw_largo_plazo_trazabilidad.sku} = ${val_vw_datos_generales.material} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: vw_lista_componentes {}
