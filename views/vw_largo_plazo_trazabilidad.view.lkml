@@ -42,6 +42,18 @@ view: vw_largo_plazo_trazabilidad {
     sql: ${TABLE}.articulodescribe ;;
   }
 
+  dimension: sku_describe {
+    type: string
+    sql:concat(${TABLE}.sku  ,'-',  ${TABLE}.articulodescribe) ;;
+  }
+
+
+
+
+
+
+
+
   dimension: id_concepto {
     type: number
     sql: ${TABLE}.id_Concepto ;;
