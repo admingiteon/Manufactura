@@ -47,34 +47,41 @@ view: vw_largo_plazo_trazabilidad {
     sql: ${TABLE}.id_Concepto ;;
   }
 
-  dimension: concepto {
-    type: string
-    sql: ${TABLE}.Concepto ;;
-   # drill_fields: [vw_lista_componentes.listacomponentes]
+ dimension: concepto {
+  type: string
+  sql: ${TABLE}.Concepto ;;
+
+  link: {
+    label: "Drill-Down"
+
+    # url: "https://grupoeon.cloud.looker.com/dashboards-next/35"
+    # url: "https://grupoeon.cloud.looker.com/dashboards-next/35?Sociedad={{ _filters['Sociedad'] | url_encode }}"
+
+    url:"   {% if value == 'INVENTARIO_INICIAL_(LU+TR)' %}
+    https://corpcab.cloud.looker.com/embed/dashboards/54?Concepto=5 &SKU={{ sku._value }}
+    {% elsif value=='INVENTARIO_INICIAL_(QM)' %}
+    https://corpcab.cloud.looker.com/embed/dashboards/54?Concepto=6 &SKU={{ sku._value }}
+    {% elsif value=='STOCK_SEGURIDAD' %}
+    https://corpcab.cloud.looker.com/embed/dashboards/54?Concepto=7 &SKU={{ sku._value }}
+    {% elsif value=='PLAN_DEMANDA_CUBIERTO_INVENTARIO_INICIAL' %}
+    https://corpcab.cloud.looker.com/embed/dashboards/54?Concepto=8 &SKU={{ sku._value }}
+
+    {% elsif value=='FABRICACION_CON_BASE_EN_DEMANDA_FALTANTE_E_INVENTARIO_OBJETIVO' %}
+    https://corpcab.cloud.looker.com/embed/dashboards/54?Concepto=10 &SKU={{ sku._value }}
 
 
-
-    link: {
-      label: " Cadena"
-
-
-      # url: "https://grupoeon.cloud.looker.com/dashboards-next/35"
-     # url: "https://grupoeon.cloud.looker.com/dashboards-next/35?Sociedad={{ _filters['Sociedad'] | url_encode }}"
+    {% elsif value=='DEMANDA_NO_CUBIERTA' %}
+    https://corpcab.cloud.looker.com/dashboards/28
+    {% endif %}"
 
 
-     url:"   {% if value == 'INVENTARIO_INICIAL_(QM)' %}
-              https://corpcab.cloud.looker.com/dashboards/27?Concepto={{ value }}&Sku={{ sku._value }}
-                {% elsif value=='DEMANDA_NO_CUBIERTA' %}
-              https://corpcab.cloud.looker.com/dashboards/28
-              {% endif %}"
-
-
-      #"https://corpcab.cloud.looker.com/dashboards/27?Concepto={{ value }}"
-      icon_url: "https://cdn0.iconfinder.com/data/icons/real-estate-111/512/Real_Estate_expanded-14-512.png"
-    }
-
-
+    #"https://corpcab.cloud.looker.com/dashboards/27?Concepto={{ value }}"
+    icon_url: "https://cdn0.iconfinder.com/data/icons/real-estate-111/512/Real_Estate_expanded-14-512.png"
   }
+
+
+
+}
 
 
   measure: sku_unicos {
