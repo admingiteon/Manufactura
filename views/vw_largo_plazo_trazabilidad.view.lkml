@@ -85,6 +85,13 @@ view: vw_largo_plazo_trazabilidad {
   dimension: sku {
     type: string
     sql: ${TABLE}.SKU ;;
+
+    link: {
+      label: " Informacion Sku"
+      url:"https://corpcab.cloud.looker.com/dashboards/50?Material={{ value }}"
+      icon_url: "https://cdn0.iconfinder.com/data/icons/real-estate-111/512/Real_Estate_expanded-14-512.png"
+    }
+
   }
 
 
@@ -119,8 +126,8 @@ view: vw_largo_plazo_trazabilidad {
 
 
     link: {
-      label: " Cadena"
-      url:"https://corpcab.cloud.looker.com/dashboards/50?Material={{ _filters['sku'] | url_encode }}"
+      label: " Informacion Sku"
+      url:"https://corpcab.cloud.looker.com/dashboards/50?Material={{ _filters['sku'] | url_encode }}&Grupo+Articulos={{ _filters['grupoarticulo'] | url_encode }}"
       icon_url: "https://cdn0.iconfinder.com/data/icons/real-estate-111/512/Real_Estate_expanded-14-512.png"
     }
 
