@@ -277,9 +277,18 @@ view: val_vw_datos_generales {
   }
 
   measure: Total_stock_libre_utilizacion {
+
     type: sum
     sql: ${stock_libre_utilizacion} ;;
     drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
+  }
+
+
+  measure: Total_stock {
+
+    type: sum
+    sql: ${TABLE}.stock_libre_utilizacion ;;
+
   }
 
 
