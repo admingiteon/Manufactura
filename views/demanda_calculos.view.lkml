@@ -1,7 +1,7 @@
 
 view: demanda_calculos {
   derived_table: {
-    sql: SELECT *,CONCAT('00000000000' , material) SKU FROM `psa-psa-cadena-qa.reporting_ecc_mx.demanda_calculos` LIMIT 10 ;;
+    sql: SELECT *,CONCAT('00000000000' , material) SKU FROM `psa-psa-cadena-qa.reporting_ecc_mx.demanda_calculos` ;;
   }
 
   measure: count {
@@ -69,16 +69,16 @@ view: demanda_calculos {
   set: detail {
     fields: [
         int64_field_0,
-	material,
-	grupo_articulos_externos,
-	unidad_medida,
-	fecha,
-	plazo_entrega,
-	cantidad,
-	posicion_actual,
-	cantidad_requerida,
-	fecha_inicio_produccion,
-	sku
+  material,
+  grupo_articulos_externos,
+  unidad_medida,
+  fecha,
+  plazo_entrega,
+  cantidad,
+  posicion_actual,
+  cantidad_requerida,
+  fecha_inicio_produccion,
+  sku
     ]
   }
 }

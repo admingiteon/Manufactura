@@ -16,7 +16,14 @@ explore: ejercicio1 {}
 
 explore: pe_cad_sum_dat_gen {} #Para tablero Plan de entrega corto plazo
 explore: val_vw_cad_sum_alm {} #Para validar la vista de Cadena de suministro almacenes
-explore: val_vw_datos_generales {} #Para validar la vista de Cadena de datos Generales
+explore: val_vw_datos_generales {
+
+  join: demanda_calculos {
+    type: left_outer
+    sql_on: ${val_vw_datos_generales.material} = ${demanda_calculos.sku} ;;
+    relationship: many_to_one
+  }
+} #Para validar la vista de Cadena de datos Generales
 explore: val_vw_ordenes_compra {} #Para validar la vista de Ordenes de Compra
 explore: lista_materiales_datos_generales {}
 explore: val_vw_recetas_fabricacion{} #Para validarrecetas de fabricación
