@@ -69,6 +69,9 @@ view: vw_largo_plazo_trazabilidad {
     {% elsif value=='FABRICACION_CON_BASE_EN_DEMANDA_FALTANTE_E_INVENTARIO_OBJETIVO' %}
     https://corpcab.cloud.looker.com/embed/dashboards/54?Concepto=10 &SKU={{ sku._value }}
 
+     {% elsif value=='PLAN DE LA DEMANDA CUBIERTO CON INVENTARIO INICIAL' %}
+    https://corpcab.cloud.looker.com/embed/dashboards/58?SKU={{ sku._value }}
+
 
     {% elsif value=='DEMANDA_NO_CUBIERTA' %}
     https://corpcab.cloud.looker.com/dashboards/28

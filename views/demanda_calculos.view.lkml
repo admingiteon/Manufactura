@@ -9,6 +9,13 @@ view: demanda_calculos {
     drill_fields: [detail*]
   }
 
+
+  measure: Total_cantidad{
+    type: sum
+     sql: ${cantidad};;
+  }
+
+
   dimension: int64_field_0 {
     type: number
     sql: ${TABLE}.int64_field_0 ;;
