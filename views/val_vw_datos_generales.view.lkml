@@ -286,14 +286,6 @@ view: val_vw_datos_generales {
   }
 
 
-  measure: Total_stock {
-
-    type: sum
-    sql: ${TABLE}.stock_libre_utilizacion ;;
-
-  }
-
-
 
   measure: Total_Materiales{
     label: "Numero SKU"

@@ -106,6 +106,29 @@ view: vw_largo_plazo_trazabilidad {
     sql: ${TABLE}.Cantidad ;;
   }
 
+  measure: Total_cantidad {
+    type: sum
+    sql:  ${TABLE}.Cantidad ;;
+    value_format:"#,##0.00;(#,##0.00)"
+
+  }
+
+  dimension: Detalle_sku {
+    type: string
+    sql: 'Detalle SKU' ;;
+
+
+    link: {
+      label: " Cadena"
+      url:"https://corpcab.cloud.looker.com/dashboards/50?Material={{ _filters['sku'] | url_encode }}"
+      icon_url: "https://cdn0.iconfinder.com/data/icons/real-estate-111/512/Real_Estate_expanded-14-512.png"
+    }
+
+  }
+
+
+
+
   #set: detail {
   #  fields: [
    #   tipomaterial,
