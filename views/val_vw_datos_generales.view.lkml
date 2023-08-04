@@ -51,8 +51,10 @@ view: val_vw_datos_generales {
   }
 
   dimension: material {
+    primary_key: yes
     type: string
     sql: ${TABLE}.material ;;
+
   }
 
   dimension: tipo_material {
