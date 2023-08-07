@@ -44,6 +44,45 @@ view: val_vw_datos_generales {
   }
 
 
+
+  parameter: Tipo_Stock {
+    label: "Tipo Stock"
+    type: unquoted
+
+    allowed_value: {
+      label: "stock seguridad"
+      value: "stock_seguridad"
+    }
+
+
+    allowed_value: {
+      label: "stock seguridad min"
+      value: "stock_seguridad_min"
+    }
+
+    allowed_value: {
+      label: "stock libre utilizacion"
+      value: "stock_libre_utilizacion"
+    }
+
+    allowed_value: {
+      label: "stock traslado"
+      value: "stock_traslado"
+    }
+
+    allowed_value: {
+      label: "stock control calidad"
+      value: "stock_control_calidad"
+    }
+
+    allowed_value: {
+      label: "stock bloqueado"
+      value: "stock_bloqueado"
+    }
+
+  }
+
+
   measure: count {
     type: count_distinct
     sql: ${num_reserva} ;;
@@ -278,11 +317,41 @@ view: val_vw_datos_generales {
 
   }
 
+
+  dimension: d_Tipo_stock {
+    type: string
+    hidden: yes
+    sql: "stock_libre_utilizacion" ;;
+  }
+
   measure: Total_stock_libre_utilizacion {
 
     type: sum
-    sql: ${stock_libre_utilizacion} ;;
+   # label:  "Stock"
+    label_from_parameter: Tipo_Stock
+    sql:
+    {% if Tipo_Stock._parameter_value == 'stock_libre_utilizacion' %}
+       ${stock_libre_utilizacion}
+
+    {% elsif Tipo_Stock._parameter_value == 'stock_seguridad' %}
+       ${stock_seguridad}
+
+    {% elsif Tipo_Stock._parameter_value == 'stock_seguridad_min' %}
+       ${stock_seguridad_min}
+
+    {% elsif Tipo_Stock._parameter_value == 'stock_traslado' %}
+       ${stock_traslado}
+
+    {% elsif Tipo_Stock._parameter_value == 'stock_control_calidad' %}
+       ${stock_control_calidad}
+
+    {% elsif Tipo_Stock._parameter_value == 'stock_bloqueado' %}
+       ${stock_bloqueado}
+
+
+    {% endif %};;
     drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
+
   }
 
 
@@ -297,20 +366,90 @@ view: val_vw_datos_generales {
   measure: Total_centros{
     type: count_distinct
     sql:${centro} ;;
-    drill_fields: [almacen,material,Total_Materiales,Total_stock_libre_utilizacion]
+    drill_fields: [almacen,material,Total_stock_libre_utilizacion]
   }
 
   measure: Total_almacenes{
     type: count_distinct
     sql:${almacen} ;;
-    drill_fields: [almacen,material,Total_Materiales,Total_stock_libre_utilizacion]
+    drill_fields: [almacen,material,Total_stock_libre_utilizacion]
+  }
+
+
+
+  measure: SI_stock_libre_utilizacion{
+
+    type: count_distinct
+    sql:${material};;
+    filters: [stock_libre_utilizacion: ">0"]
+    drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
+  }
+
+
+  measure: SI_stock_seguridad{
+
+    type: count_distinct
+    sql:${material};;
+    filters: [stock_seguridad: ">0"]
+    drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
+  }
+
+  measure: SI_stock_seguridad_min{
+
+    type: count_distinct
+    sql:${material};;
+    filters: [stock_seguridad_min: ">0"]
+    drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
+  }
+
+  measure: SI_stock_traslado{
+
+    type: count_distinct
+    sql:${material};;
+    filters: [stock_traslado: ">0"]
+    drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
+  }
+
+  measure: SI_stock_control_calidad{
+
+    type: count_distinct
+    sql:${material};;
+    filters: [stock_control_calidad: ">0"]
+    drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
+  }
+
+  measure: SI_stock_bloqueado{
+
+    type: count_distinct
+    sql:${material};;
+    filters: [stock_bloqueado: ">0"]
+    drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
   }
 
   measure: Total_Sin_inventario{
     label: "SKU sin invenrario"
-    type: count_distinct
-    sql:${material};;
-    filters: [stock_libre_utilizacion: ">0"]
+    type: number
+    sql:{% if Tipo_Stock._parameter_value == 'stock_libre_utilizacion' %}
+       ${SI_stock_libre_utilizacion}
+
+    {% elsif Tipo_Stock._parameter_value == 'stock_seguridad' %}
+       ${SI_stock_seguridad}
+
+    {% elsif Tipo_Stock._parameter_value == 'stock_seguridad_min' %}
+       ${SI_stock_seguridad_min}
+
+    {% elsif Tipo_Stock._parameter_value == 'stock_traslado' %}
+       ${SI_stock_traslado}
+
+    {% elsif Tipo_Stock._parameter_value == 'stock_control_calidad' %}
+       ${SI_stock_control_calidad}
+
+    {% elsif Tipo_Stock._parameter_value == 'stock_bloqueado' %}
+       ${SI_stock_bloqueado}
+
+
+    {% endif %};;
+
     drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
   }
 
