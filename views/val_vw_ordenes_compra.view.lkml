@@ -17,6 +17,59 @@ view: val_vw_ordenes_compra {
     sql: ${TABLE}.num_doc_compras ;;
   }
 
+
+  measure: Total_ordenes {
+    type: count_distinct
+    sql: ${TABLE}.num_doc_compras ;;
+  }
+
+
+
+
+
+  measure: Total_proveedores {
+    type: count_distinct
+    sql: ${TABLE}.num_cuenta_proveedor ;;
+  }
+
+  measure: Total_materiales {
+    type: count_distinct
+    sql: ${TABLE}.num_material ;;
+  }
+
+  measure: Total_cant_entrada_mercancias {
+    type: sum
+    sql: ${TABLE}.cant_entrada_mercancias ;;
+  }
+
+
+  measure: Total_cant_reparto {
+    type: sum
+    sql: ${TABLE}.cant_reparto ;;
+  }
+
+
+  measure: Diferencia_cant {
+    type: number
+    sql: ${Total_cant_reparto}-${Total_cant_entrada_mercancias} ;;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   dimension: sociedad {
     type: string
     sql: ${TABLE}.sociedad ;;
@@ -85,6 +138,42 @@ view: val_vw_ordenes_compra {
 
   dimension: fecha_entrega_pos {
     type: date
+    datatype: date
+    sql: ${TABLE}.fecha_entrega_pos ;;
+  }
+
+
+  dimension_group: fecha_creacion_orden {
+    label: "Fecha Orden"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name ,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.fecha_entrega_pos ;;
+  }
+
+
+  dimension_group: fecha_entrega {
+    label: "Fecha Entrega"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name ,
+      quarter,
+      year
+    ]
+    convert_tz: no
     datatype: date
     sql: ${TABLE}.fecha_entrega_pos ;;
   }

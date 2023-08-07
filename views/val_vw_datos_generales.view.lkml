@@ -366,13 +366,13 @@ view: val_vw_datos_generales {
   measure: Total_centros{
     type: count_distinct
     sql:${centro} ;;
-    drill_fields: [almacen,material,Total_stock_libre_utilizacion]
+    drill_fields: [centro,Total_stock_libre_utilizacion]
   }
 
   measure: Total_almacenes{
     type: count_distinct
     sql:${almacen} ;;
-    drill_fields: [almacen,material,Total_stock_libre_utilizacion]
+    drill_fields: [almacen,Total_stock_libre_utilizacion]
   }
 
 
