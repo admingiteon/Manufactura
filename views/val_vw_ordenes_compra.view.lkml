@@ -4,7 +4,7 @@
 
 view: val_vw_ordenes_compra {
   derived_table: {
-    sql: SELECT * FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_ordenes_compra`  ;;
+    sql: SELECT * FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_ordenes_compra` where sociedad in ('AMSA','DMTE','IARE','PGLO','PISA')  ;;
   }
 
   measure: count {
