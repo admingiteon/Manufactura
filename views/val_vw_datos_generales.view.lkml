@@ -16,7 +16,7 @@ view: val_vw_datos_generales {
                   '?' as unidad_medida_resb,
                   0 as cantidad_tomada_tot
           FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales`
-          where grupo_articulos in  ('AM',
+          where  grupo_articulos in  ('AM',
 'A',
 'T',
 'O',
@@ -464,6 +464,57 @@ view: val_vw_datos_generales {
     type: string
     sql: CONCAT(${material}, "-" , ${material_desc})  ;;
   }
+
+
+  measure: Total_stock_seguridad {
+
+    type: sum
+    # label:  "Stock"
+     label: "Total stock seguridad"
+    sql:${stock_seguridad} ;;
+
+  }
+
+  measure: Total_stock_seguridad_min {
+
+    type: sum
+    # label:  "Stock"
+   label: "Total stock seguridad min"
+    sql:${stock_seguridad_min} ;;
+
+  }
+
+  measure: Total_stock_traslado {
+
+    type: sum
+    # label:  "Stock"
+    label: "Total stock traslado"
+    sql:${stock_traslado} ;;
+
+  }
+
+
+  measure: Total_stock_control_calidad {
+
+    type: sum
+    # label:  "Stock"
+   label: "Total stock control calidad"
+    sql:${stock_control_calidad} ;;
+
+  }
+
+  measure: Total_stock_bloqueado {
+
+    type: sum
+    # label:  "Stock"
+    label: "Total stock bloqueado"
+    sql:${stock_bloqueado} ;;
+
+  }
+
+
+
+
 
   set: detail {
     fields: [
