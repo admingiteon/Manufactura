@@ -108,7 +108,30 @@ view: val_vw_datos_generales {
 
   dimension: grupo_articulos {
     type: string
-    sql: ${TABLE}.grupo_articulos ;;
+    sql: case when  ${TABLE}.grupo_articulos = 'AM' then 'AMSA'
+              when  ${TABLE}.grupo_articulos = 'A' then 'Anestesiología y Terapia Intensiva'
+              when  ${TABLE}.grupo_articulos = 'T' then 'Antibióticos Intra-Hospitalarios'
+              when  ${TABLE}.grupo_articulos = 'O' then 'Antibióticos de Prescripción'
+              when ${TABLE}.grupo_articulos = 'L' then 'Control de Infecciones'
+              when ${TABLE}.grupo_articulos = 'E' then 'Diálisis Peritoneal'
+              when ${TABLE}.grupo_articulos = 'G' then 'Enfermedades Crónicas'
+              when ${TABLE}.grupo_articulos = 'K' then 'Farmacéuticos OTC'
+              when ${TABLE}.grupo_articulos = 'GP' then 'GENEPISA'
+               when ${TABLE}.grupo_articulos = 'J' then 'Hemodiálisis'
+      when ${TABLE}.grupo_articulos = 'MI' then 'Maquila Intl.'
+      when ${TABLE}.grupo_articulos = 'M' then 'Maquila Nacional'
+      when ${TABLE}.grupo_articulos = 'MP' then 'Marca Propia'
+      when ${TABLE}.grupo_articulos = 'S' then 'NEUROLOGÍA y PSIQUIATRÍA'
+      when ${TABLE}.grupo_articulos = 'F' then 'Nutrición'
+      when ${TABLE}.grupo_articulos = 'D' then 'Oftalmología'
+        when ${TABLE}.grupo_articulos = 'H' then 'Oncológicos'
+      when ${TABLE}.grupo_articulos = 'Q' then 'Pediatría'
+      when ${TABLE}.grupo_articulos = 'PMD' then 'Productos Medimix'
+      when ${TABLE}.grupo_articulos = 'SM' then 'Salucom'
+      when ${TABLE}.grupo_articulos = 'B' then 'Terapia de Infusión'
+      when ${TABLE}.grupo_articulos = 'R' then 'Terapia del dolor'
+       when ${TABLE}.grupo_articulos = 'N' then 'Transplantes'
+      when ${TABLE}.grupo_articulos = 'VDD' then 'Venta Directa Dimesa' else ${TABLE}.grupo_articulos END ;;
   }
 
 
@@ -140,7 +163,7 @@ view: val_vw_datos_generales {
       when ${TABLE}.grupo_articulos = 'R' then 'Terapia del dolor'
       when ${TABLE}.grupo_articulos = 'N' then 'Transplantes'
       when ${TABLE}.grupo_articulos = 'VDD' then 'Venta Directa Dimesa' else 'otros' end
-                                                             ';;
+                                                             ;;
   }
 
   dimension: grupo_articulos_externos {
@@ -470,7 +493,7 @@ view: val_vw_datos_generales {
 
     type: sum
     # label:  "Stock"
-     label: "Total stock seguridad"
+     label: "stock seguridad"
     sql:${stock_seguridad} ;;
 
   }
@@ -479,7 +502,7 @@ view: val_vw_datos_generales {
 
     type: sum
     # label:  "Stock"
-   label: "Total stock seguridad min"
+   label: "stock seguridad min"
     sql:${stock_seguridad_min} ;;
 
   }
@@ -488,7 +511,7 @@ view: val_vw_datos_generales {
 
     type: sum
     # label:  "Stock"
-    label: "Total stock traslado"
+    label: "stock traslado"
     sql:${stock_traslado} ;;
 
   }
@@ -498,7 +521,7 @@ view: val_vw_datos_generales {
 
     type: sum
     # label:  "Stock"
-   label: "Total stock control calidad"
+   label: "stock control calidad"
     sql:${stock_control_calidad} ;;
 
   }
@@ -507,8 +530,17 @@ view: val_vw_datos_generales {
 
     type: sum
     # label:  "Stock"
-    label: "Total stock bloqueado"
+    label: "stock bloqueado"
     sql:${stock_bloqueado} ;;
+
+  }
+
+  measure: Total_stock_libre {
+
+    type: sum
+    # label:  "Stock"
+    label: "stock libre utilizacion"
+    sql:${stock_libre_utilizacion} ;;
 
   }
 
