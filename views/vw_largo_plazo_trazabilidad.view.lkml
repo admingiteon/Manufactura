@@ -50,7 +50,7 @@ view: vw_largo_plazo_trazabilidad {
       when ${TABLE}.grupoarticulo = 'R' then 'Terapia del dolor'
       when ${TABLE}.grupoarticulo = 'N' then 'Transplantes'
       when ${TABLE}.grupoarticulo = 'VDD' then 'Venta Directa Dimesa'
-      when ${TABLE}.grupoarticulo = 'U' then 'Genericos'
+      when ${TABLE}.grupoarticulo = 'U' then 'Genéricos'
       else ${TABLE}.grupoarticulo END  ;;
   }
 
