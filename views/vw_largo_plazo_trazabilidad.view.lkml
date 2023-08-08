@@ -42,14 +42,16 @@ view: vw_largo_plazo_trazabilidad {
       when ${TABLE}.grupoarticulo = 'S' then 'NEUROLOGÍA y PSIQUIATRÍA'
       when ${TABLE}.grupoarticulo = 'F' then 'Nutrición'
       when ${TABLE}.grupoarticulo = 'D' then 'Oftalmología'
-        when ${TABLE}.grupoarticulo = 'H' then 'Oncológicos'
+      when ${TABLE}.grupoarticulo = 'H' then 'Oncológicos'
       when ${TABLE}.grupoarticulo = 'Q' then 'Pediatría'
       when ${TABLE}.grupoarticulo = 'PMD' then 'Productos Medimix'
       when ${TABLE}.grupoarticulo = 'SM' then 'Salucom'
       when ${TABLE}.grupoarticulo = 'B' then 'Terapia de Infusión'
       when ${TABLE}.grupoarticulo = 'R' then 'Terapia del dolor'
-       when ${TABLE}.grupoarticulo = 'N' then 'Transplantes'
-      when ${TABLE}.grupoarticulo = 'VDD' then 'Venta Directa Dimesa' else ${TABLE}.grupoarticulo END  ;;
+      when ${TABLE}.grupoarticulo = 'N' then 'Transplantes'
+      when ${TABLE}.grupoarticulo = 'VDD' then 'Venta Directa Dimesa'
+      when ${TABLE}.grupoarticulo = 'U' then 'Genericos'
+      else ${TABLE}.grupoarticulo END  ;;
   }
 
   dimension: grupoarticuloexterno {

@@ -162,7 +162,8 @@ view: val_vw_datos_generales {
       when ${TABLE}.grupo_articulos = 'B' then 'Terapia de Infusión'
       when ${TABLE}.grupo_articulos = 'R' then 'Terapia del dolor'
       when ${TABLE}.grupo_articulos = 'N' then 'Transplantes'
-      when ${TABLE}.grupo_articulos = 'VDD' then 'Venta Directa Dimesa' else 'otros' end
+      when ${TABLE}.grupo_articulos = 'VDD'
+      when ${TABLE}.grupo_articulos = 'U' then 'Venta Directa Dimesa' else 'otros' end
                                                              ;;
   }
 
