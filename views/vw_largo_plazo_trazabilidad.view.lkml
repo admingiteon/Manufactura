@@ -4,7 +4,9 @@
 
 view: vw_largo_plazo_trazabilidad {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_trazabilidad`;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_trazabilidad`
+    where sku in ( SELECT sku FROM psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_trazabilidad
+       where id_concepto=1);;
   }
 
   measure: count {
@@ -137,7 +139,7 @@ view: vw_largo_plazo_trazabilidad {
   measure: Total_cantidad {
     type: sum
     sql:  ${TABLE}.Cantidad ;;
-    value_format:"#,##0.00;(#,##0.00)"
+    value_format:"#,##0.00;(#,##0)"
 
   }
 
