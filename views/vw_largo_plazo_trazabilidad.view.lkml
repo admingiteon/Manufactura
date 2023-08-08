@@ -44,7 +44,7 @@ view: vw_largo_plazo_trazabilidad {
 
   dimension: sku_describe {
     type: string
-    sql:concat(${TABLE}.sku  ,'-',  ${TABLE}.articulodescribe) ;;
+    sql:concat(SUBSTR(${TABLE}.sku,12,50)  ,'-',  ${TABLE}.articulodescribe) ;;
   }
 
 
