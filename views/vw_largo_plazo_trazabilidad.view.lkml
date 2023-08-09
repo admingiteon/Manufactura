@@ -97,15 +97,15 @@ view: vw_largo_plazo_trazabilidad {
     # url: "https://grupoeon.cloud.looker.com/dashboards-next/35?Sociedad={{ _filters['Sociedad'] | url_encode }}"
 
     url:"   {% if value == 'INVENTARIO_INICIAL_(LU+TR)' %}
-    https://corpcab.cloud.looker.com/embed/dashboards/54?Concepto=5 &SKU={{ sku._value }}
+    https://corpcab.cloud.looker.com/embed/dashboards/60?Concepto=5 &SKU={{ sku._value }}
     {% elsif value=='INVENTARIO_INICIAL_(QM)' %}
-    https://corpcab.cloud.looker.com/embed/dashboards/54?Concepto=6 &SKU={{ sku._value }}
+    https://corpcab.cloud.looker.com/embed/dashboards/60?Concepto=6 &SKU={{ sku._value }}
     {% elsif value=='STOCK_SEGURIDAD' %}
-    https://corpcab.cloud.looker.com/embed/dashboards/54?Concepto=7 &SKU={{ sku._value }}
+    https://corpcab.cloud.looker.com/embed/dashboards/60?Concepto=7 &SKU={{ sku._value }}
 
 
     {% elsif value=='FABRICACION_CON_BASE_EN_DEMANDA_FALTANTE_E_INVENTARIO_OBJETIVO' %}
-    https://corpcab.cloud.looker.com/embed/dashboards/54?Concepto=10 &SKU={{ sku._value }}
+    https://corpcab.cloud.looker.com/embed/dashboards/60?Concepto=10 &SKU={{ sku._value }}
 
      {% elsif value=='PLAN_DEMANDA_CUBIERTO_INVENTARIO_INICIAL' %}
     https://corpcab.cloud.looker.com/embed/dashboards/58?SKU={{ sku._value }}

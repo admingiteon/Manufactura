@@ -48,3 +48,4 @@ explore: vw_largo_plazo_trazabilidad {
 
 explore: vw_lista_componentes {}
 explore: demanda_calculos {}
+explore: vw_largo_plazo_trazabilidad_drill {}
