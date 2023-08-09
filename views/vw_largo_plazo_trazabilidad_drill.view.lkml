@@ -52,6 +52,14 @@ view: vw_largo_plazo_trazabilidad_drill {
     sql: ${TABLE}.Cantidad ;;
   }
 
+  measure: Total_cantidad {
+    label: "Cantidad"
+    type: sum
+    sql: ROUND( ${TABLE}.Cantidad,0) ;;
+    value_format:"#,##0;(#,##0)"
+
+  }
+
   set: detail {
     fields: [
       id_concepto,
