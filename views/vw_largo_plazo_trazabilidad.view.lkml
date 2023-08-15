@@ -117,13 +117,13 @@ view: vw_largo_plazo_trazabilidad {
     https://corpcab.cloud.looker.com/dashboards/28
 
       {% elsif value=='PLAN_DE_LA_DEMANDA' %}
-    https://corpcab.cloud.looker.com/embed/dashboards/61?Concepto=1 &SKU={{ sku._value }}
+    https://corpcab.cloud.looker.com/embed/dashboards/61?Concepto=1&SKU={{ sku._value }}
 
       {% elsif value=='PLAN_DEMANDA_SIMULADO' %}
-    https://corpcab.cloud.looker.com/embed/dashboards/61?Concepto=2 &SKU={{ sku._value }}
+    https://corpcab.cloud.looker.com/embed/dashboards/61?Concepto=2&SKU={{ sku._value }}
 
       {% elsif value=='VARIACION' %}
-    https://corpcab.cloud.looker.com/embed/dashboards/61?Concepto=3 &SKU={{ sku._value }}
+    https://corpcab.cloud.looker.com/embed/dashboards/61?Concepto=3&SKU={{ sku._value }}
 
 
 

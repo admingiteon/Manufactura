@@ -97,6 +97,7 @@ view: vw_largo_plazo_presupuesto {
   }
 
   dimension: id_concepto {
+    label: "Concepto"
     type: number
     sql: ${TABLE}.id_Concepto ;;
   }
@@ -109,6 +110,11 @@ view: vw_largo_plazo_presupuesto {
   dimension: sku {
     type: string
     sql: ${TABLE}.SKU ;;
+  }
+
+  dimension: sku_describe {
+    type: string
+    sql:concat(SUBSTR(${TABLE}.sku,12,50)  ,'-',  ${TABLE}.articulodescribe) ;;
   }
 
   dimension: periodo_num {
@@ -145,21 +151,28 @@ view: vw_largo_plazo_presupuesto {
   measure: Total_cantidad {
     type: sum
     sql: ${TABLE}.Cantidad ;;
+    value_format:"#,##0;(#,##0)"
   }
 
    measure: Total_importe_variable {
+    label: "importe variable"
     type: sum
     sql: ${TABLE}.importe_variable ;;
+    value_format:"#,##0;(#,##0)"
   }
 
    measure: Total_importe_estandar {
+    label: "importe estandar"
     type: sum
     sql: ${TABLE}.importe_estandar ;;
+    value_format:"#,##0;(#,##0)"
   }
 
    measure: Total_importe_absorbente {
+    label: "importe absorbente"
     type: sum
     sql: ${TABLE}.importe_absorbente ;;
+    value_format:"#,##0;(#,##0)"
   }
 
 
@@ -192,7 +205,7 @@ view: vw_largo_plazo_presupuesto {
 
       {% endif %};;
    # drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
-
+    value_format:"#,##0;(#,##0)"
   }
 
 
