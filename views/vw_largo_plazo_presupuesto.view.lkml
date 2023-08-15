@@ -1,7 +1,7 @@
 
 view: vw_largo_plazo_presupuesto {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_presupuesto` LIMIT 10 ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_presupuesto` ;;
   }
 
   measure: count {
@@ -87,20 +87,20 @@ view: vw_largo_plazo_presupuesto {
   set: detail {
     fields: [
         tipomaterial,
-	um,
-	grupoarticulo,
-	grupoarticuloexterno,
-	claveidioma,
-	articulodescribe,
-	id_concepto,
-	concepto,
-	sku,
-	periodo_num,
-	periodo,
-	cantidad,
-	importe_variable,
-	importe_estandar,
-	importe_absorbente
+  um,
+  grupoarticulo,
+  grupoarticuloexterno,
+  claveidioma,
+  articulodescribe,
+  id_concepto,
+  concepto,
+  sku,
+  periodo_num,
+  periodo,
+  cantidad,
+  importe_variable,
+  importe_estandar,
+  importe_absorbente
     ]
   }
 }
