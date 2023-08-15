@@ -76,9 +76,39 @@ view: vw_largo_plazo_presupuesto {
     sql: ${TABLE}.um ;;
   }
 
+ # dimension: grupoarticulo {
+ #   type: string
+ #   sql: ${TABLE}.grupoarticulo ;;
+ # }
+
   dimension: grupoarticulo {
     type: string
-    sql: ${TABLE}.grupoarticulo ;;
+    sql: case when  ${TABLE}.grupoarticulo = 'AM' then 'AMSA'
+              when  ${TABLE}.grupoarticulo = 'A' then 'Anestesiología y Terapia Intensiva'
+              when  ${TABLE}.grupoarticulo = 'T' then 'Antibióticos Intra-Hospitalarios'
+              when  ${TABLE}.grupoarticulo = 'O' then 'Antibióticos de Prescripción'
+              when ${TABLE}.grupoarticulo = 'L' then 'Control de Infecciones'
+              when ${TABLE}.grupoarticulo = 'E' then 'Diálisis Peritoneal'
+              when ${TABLE}.grupoarticulo = 'G' then 'Enfermedades Crónicas'
+              when ${TABLE}.grupoarticulo = 'K' then 'Farmacéuticos OTC'
+              when ${TABLE}.grupoarticulo = 'GP' then 'GENEPISA'
+               when ${TABLE}.grupoarticulo = 'J' then 'Hemodiálisis'
+      when ${TABLE}.grupoarticulo = 'MI' then 'Maquila Intl.'
+      when ${TABLE}.grupoarticulo = 'M' then 'Maquila Nacional'
+      when ${TABLE}.grupoarticulo = 'MP' then 'Marca Propia'
+      when ${TABLE}.grupoarticulo = 'S' then 'NEUROLOGÍA y PSIQUIATRÍA'
+      when ${TABLE}.grupoarticulo = 'F' then 'Nutrición'
+      when ${TABLE}.grupoarticulo = 'D' then 'Oftalmología'
+      when ${TABLE}.grupoarticulo = 'H' then 'Oncológicos'
+      when ${TABLE}.grupoarticulo = 'Q' then 'Pediatría'
+      when ${TABLE}.grupoarticulo = 'PMD' then 'Productos Medimix'
+      when ${TABLE}.grupoarticulo = 'SM' then 'Salucom'
+      when ${TABLE}.grupoarticulo = 'B' then 'Terapia de Infusión'
+      when ${TABLE}.grupoarticulo = 'R' then 'Terapia del dolor'
+      when ${TABLE}.grupoarticulo = 'N' then 'Transplantes'
+      when ${TABLE}.grupoarticulo = 'VDD' then 'Venta Directa Dimesa'
+      when ${TABLE}.grupoarticulo = 'U' then 'Genéricos'
+      else ${TABLE}.grupoarticulo END  ;;
   }
 
   dimension: grupoarticuloexterno {
