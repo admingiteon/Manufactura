@@ -1,8 +1,65 @@
 
 view: vw_largo_plazo_presupuesto {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_presupuesto` ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_presupuesto`  where  grupoarticulo in  ('AM',
+'A',
+'T',
+'O',
+'L',
+'E',
+'G',
+'K',
+'GP',
+'U',
+'J',
+'MI',
+'M',
+'MP',
+'S',
+'F',
+'D',
+'H',
+'Q',
+'PMD',
+'SM',
+'B',
+'R',
+'N',
+'VDD') ;;
   }
+
+
+  parameter: Tipo_Ptto {
+    label: "Tipo Ptro"
+    type: unquoted
+
+    allowed_value: {
+      label: "Cantidad"
+      value: "Cantidad"
+    }
+
+
+    allowed_value: {
+      label: "Importe Absorbente"
+      value: "importe_Absorbente"
+    }
+
+    allowed_value: {
+      label: "Importe Estandar"
+      value: "Importe_Estandar"
+    }
+
+    allowed_value: {
+      label: "Importe Variable"
+      value: "Importe_Variable"
+    }
+
+
+
+  }
+
+
+
 
   measure: count {
     type: count
@@ -83,6 +140,64 @@ view: vw_largo_plazo_presupuesto {
     type: number
     sql: ${TABLE}.importe_absorbente ;;
   }
+
+
+  measure: Total_cantidad {
+    type: sum
+    sql: ${TABLE}.Cantidad ;;
+  }
+
+   measure: Total_importe_variable {
+    type: sum
+    sql: ${TABLE}.importe_variable ;;
+  }
+
+   measure: Total_importe_estandar {
+    type: sum
+    sql: ${TABLE}.importe_estandar ;;
+  }
+
+   measure: Total_importe_absorbente {
+    type: sum
+    sql: ${TABLE}.importe_absorbente ;;
+  }
+
+
+  measure: Total_sku{
+    label: "cantidad SKU unicos"
+    type: count_distinct
+    sql:${sku};;
+
+  }
+
+  measure: Total_PTTO {
+
+    type: number
+    # label:  "Stock"
+    label_from_parameter: Tipo_Ptto
+    sql:
+    {% if Tipo_Ptto._parameter_value == 'Cantidad' %}
+       ${Total_cantidad}
+
+      {% elsif Tipo_Ptto._parameter_value == 'importe_Absorbente' %}
+      ${Total_importe_absorbente}
+
+      {% elsif Tipo_Ptto._parameter_value == 'Importe_Estandar' %}
+      ${Total_importe_estandar}
+
+      {% elsif Tipo_Ptto._parameter_value == 'Importe_Variable' %}
+      ${Total_importe_variable}
+
+
+
+      {% endif %};;
+   # drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
+
+  }
+
+
+
+
 
   set: detail {
     fields: [
