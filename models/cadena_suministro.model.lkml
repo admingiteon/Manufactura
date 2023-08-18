@@ -50,3 +50,11 @@ explore: vw_lista_componentes {}
 explore: demanda_calculos {}
 explore: vw_largo_plazo_trazabilidad_drill {}
 explore: vw_largo_plazo_presupuesto {}
+explore: datos_idp {
+  join: mediciones_forecast  {
+    type: left_outer
+    sql_on: ${datos_idp.id} = ${mediciones_forecast.id} ;;
+    relationship: many_to_one
+  }
+}
+explore: mediciones_forecast {}
