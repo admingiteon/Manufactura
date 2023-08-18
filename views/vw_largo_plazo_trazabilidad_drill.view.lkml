@@ -28,11 +28,13 @@ view: vw_largo_plazo_trazabilidad_drill {
   }
 
   dimension: drill01 {
+    label: "Insumo"
     type: string
     sql: ${TABLE}.drill01 ;;
   }
 
   dimension: drill01describe {
+    label: "Descripción Insumo"
     type: string
     sql: ${TABLE}.drill01describe ;;
   }
