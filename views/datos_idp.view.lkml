@@ -58,12 +58,14 @@ view: datos_idp {
 
 
   measure: Total_prediction_interval_lower_bound {
+    label: "Prediction interval lower bound"
     type: sum
     sql: ${TABLE}.prediction_interval_lower_bound ;;
     value_format: "0.00"
   }
 
   measure: Total_prediction_interval_upper_bound {
+    label: "Prediction interval upper bound"
     type: sum
     sql: ${TABLE}.prediction_interval_upper_bound ;;
     value_format: "0.00"
