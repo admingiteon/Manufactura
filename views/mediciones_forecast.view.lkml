@@ -1,7 +1,7 @@
 
 view: mediciones_forecast {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.entradas_y_salidas.mediciones_forecast` LIMIT 10 ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.entradas_y_salidas.mediciones_forecast`  ;;
   }
 
   dimension: id {
