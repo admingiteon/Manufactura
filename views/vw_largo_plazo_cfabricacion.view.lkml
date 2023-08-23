@@ -1,11 +1,18 @@
 
 view: vw_largo_plazo_cfabricacion {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_cfabricacion` LIMIT 10 ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_cfabricacion` ;;
   }
 
   measure: count {
     type: count
+    drill_fields: [detail*]
+  }
+
+  measure: Total_cantidad {
+    type: sum
+   sql: ${TABLE}.cantidad ;;
+    value_format: "0.00"
     drill_fields: [detail*]
   }
 
@@ -52,13 +59,13 @@ view: vw_largo_plazo_cfabricacion {
   set: detail {
     fields: [
         id_concepto,
-	concepto,
-	planta,
-	describeplanta,
-	sku,
-	periodo_num,
-	periodo,
-	cantidad
+  concepto,
+  planta,
+  describeplanta,
+  sku,
+  periodo_num,
+  periodo,
+  cantidad
     ]
   }
 }
