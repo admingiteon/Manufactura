@@ -66,9 +66,6 @@ explore: datos_idp {
     relationship: many_to_one
   }
 
-
-
-
-
 }
 explore: mediciones_forecast {}
+explore: vw_largo_plazo_cfabricacion {}
