@@ -68,4 +68,12 @@ explore: datos_idp {
 
 }
 explore: mediciones_forecast {}
-explore: vw_largo_plazo_cfabricacion {}
+
+explore: vw_largo_plazo_cfabricacion {
+
+  join: val_vw_datos_generales  {
+    type: left_outer
+    sql_on: ${val_vw_datos_generales.material} = ${vw_largo_plazo_cfabricacion.sku} ;;
+    relationship: many_to_one
+  }
+}

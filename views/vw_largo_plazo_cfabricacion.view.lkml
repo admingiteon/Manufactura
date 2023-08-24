@@ -21,6 +21,16 @@ view: vw_largo_plazo_cfabricacion {
     sql: ${TABLE}.id_concepto ;;
   }
 
+
+
+
+
+  dimension: sku {
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.sku ;;
+  }
+
   dimension: concepto {
     type: string
     sql: ${TABLE}.concepto ;;
@@ -36,10 +46,7 @@ view: vw_largo_plazo_cfabricacion {
     sql: ${TABLE}.describeplanta ;;
   }
 
-  dimension: sku {
-    type: string
-    sql: ${TABLE}.sku ;;
-  }
+
 
   dimension: periodo_num {
     type: string
