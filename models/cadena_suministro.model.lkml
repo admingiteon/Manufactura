@@ -63,6 +63,30 @@ explore: vw_largo_plazo_presupuesto {
 }
 
 
+explore: entradas_y_salidas_forecast_completo_v2 {
+
+  join: mediciones_forecast_v2  {
+    type: left_outer
+    #sql_on: ${entradas_y_salidas_forecast_completo_v2.id} = ${mediciones_forecast_v2.id} ;;
+    sql_on: SUBSTR(${entradas_y_salidas_forecast_completo_v2.id},1,18) = SUBSTR(${mediciones_forecast_v2.id},1,18) ;;
+
+    relationship: many_to_one
+  }
+
+  join: val_vw_datos_generales  {
+    type: left_outer
+    sql_on: ${val_vw_datos_generales.material} = SUBSTR(${entradas_y_salidas_forecast_completo_v2.id},1,18) ;;
+    relationship: many_to_one
+  }
+
+}
+
+explore: mediciones_forecast_v2 {}
+
+
+
+
+
 
 explore: datos_idp {
   join: mediciones_forecast  {
