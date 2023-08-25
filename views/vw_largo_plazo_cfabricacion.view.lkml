@@ -16,6 +16,14 @@ view: vw_largo_plazo_cfabricacion {
     drill_fields: [detail*]
   }
 
+
+  measure: Total_sku{
+    label: "cantidad SKU unicos"
+    type: count_distinct
+    sql:${sku};;
+
+  }
+
   dimension: id_concepto {
     type: number
     sql: ${TABLE}.id_concepto ;;

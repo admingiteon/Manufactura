@@ -335,6 +335,13 @@ view: val_vw_datos_generales {
   }
 
 
+  dimension: sku_describe {
+    type: string
+    sql:concat(SUBSTR(${TABLE}.material,12,50)  ,'-',  ${TABLE}.texto_breve_material) ;;
+  }
+
+
+
   measure: Registros {
     type: count
     drill_fields: [detail*]

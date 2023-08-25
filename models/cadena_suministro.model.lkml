@@ -33,6 +33,8 @@ explore: val_vw_ordenes_proceso {}
 explore: val_vw_pedidos_ventas {}
 explore: val_vw_recursos_capacidades {}
 explore: val_largo_plazo_completo_aruma {}
+
+
 explore: vw_largo_plazo_trazabilidad {
   join: vw_lista_componentes {
     type: left_outer
@@ -49,7 +51,16 @@ explore: vw_largo_plazo_trazabilidad {
 explore: vw_lista_componentes {}
 explore: demanda_calculos {}
 explore: vw_largo_plazo_trazabilidad_drill {}
-explore: vw_largo_plazo_presupuesto {}
+explore: vw_largo_plazo_presupuesto {
+
+  join: val_vw_datos_generales  {
+    type: left_outer
+    sql_on: ${val_vw_datos_generales.material} = ${vw_largo_plazo_presupuesto.sku} ;;
+    relationship: many_to_one
+  }
+
+
+}
 
 
 
