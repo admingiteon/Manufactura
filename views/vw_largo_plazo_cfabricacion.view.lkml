@@ -1,7 +1,7 @@
 
 view: vw_largo_plazo_cfabricacion {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_cfabricacion` ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_cfabricacion` where planta not like  'AG%' ;;
   }
 
   measure: count {
@@ -53,6 +53,15 @@ view: vw_largo_plazo_cfabricacion {
     type: string
     sql: ${TABLE}.describeplanta ;;
   }
+
+
+
+  dimension: planta_descrip {
+    type: string
+    sql: concat(  ${TABLE}.planta ,'-',${TABLE}.describeplanta );;
+  }
+
+
 
 
 
