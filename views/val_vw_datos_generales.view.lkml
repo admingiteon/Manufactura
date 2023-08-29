@@ -186,6 +186,7 @@ view: val_vw_datos_generales {
   dimension: centro {
     type: string
     sql: ${TABLE}.centro ;;
+    drill_fields: [sku_describe,Registros]
   }
 
   dimension: caract_plan_necesidades {
@@ -344,7 +345,7 @@ view: val_vw_datos_generales {
 
   measure: Registros {
     type: count
-    drill_fields: [detail*]
+   drill_fields: [sku_describe,centro,almacen]
 
   }
 

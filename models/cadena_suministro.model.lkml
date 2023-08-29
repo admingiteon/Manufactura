@@ -112,3 +112,6 @@ explore: vw_largo_plazo_cfabricacion {
     relationship: many_to_one
   }
 }
+
+
+explore: vw_largo_plazo_calmacenamiento {}
