@@ -1,7 +1,7 @@
 
 view: vw_largo_plazo_calmacenamiento {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_calmacenamiento` LIMIT 10 ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_calmacenamiento` ;;
   }
 
   measure: count {
@@ -52,13 +52,13 @@ view: vw_largo_plazo_calmacenamiento {
   set: detail {
     fields: [
         id_concepto,
-	concepto,
-	planta,
-	describeplanta,
-	sku,
-	periodo_num,
-	periodo,
-	cantidad
+  concepto,
+  planta,
+  describeplanta,
+  sku,
+  periodo_num,
+  periodo,
+  cantidad
     ]
   }
 }
