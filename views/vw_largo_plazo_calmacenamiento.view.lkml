@@ -49,6 +49,11 @@ view: vw_largo_plazo_calmacenamiento {
     sql: ${TABLE}.cantidad ;;
   }
 
+  measure: Total_cantidad {
+    type: sum
+    sql: ${TABLE}.cantidad ;;
+  }
+
   set: detail {
     fields: [
         id_concepto,

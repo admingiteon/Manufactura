@@ -63,6 +63,16 @@ explore: vw_largo_plazo_presupuesto {
 }
 
 
+explore: vw_largo_plazo_calmacenamiento {
+
+  join: val_vw_datos_generales  {
+    type: left_outer
+    sql_on: ${val_vw_datos_generales.material} = ${vw_largo_plazo_calmacenamiento.sku} ;;
+    relationship: many_to_one
+  }
+}
+
+
 explore: entradas_y_salidas_forecast_completo_v2 {
 
   join: mediciones_forecast_v2  {
@@ -112,6 +122,3 @@ explore: vw_largo_plazo_cfabricacion {
     relationship: many_to_one
   }
 }
-
-
-explore: vw_largo_plazo_calmacenamiento {}
