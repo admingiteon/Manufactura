@@ -1,7 +1,7 @@
 
 view: vw_largo_plazo_presupuesto {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_presupuesto`  where  grupoarticulo in  ('AM',
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_presupuesto`  where  grupoarticulo in  ('AM',
 'A',
 'T',
 'O',
@@ -33,9 +33,11 @@ view: vw_largo_plazo_presupuesto {
     label: "Tipo Ptro"
     type: unquoted
 
+
+
     allowed_value: {
-      label: "Cantidad"
-      value: "Cantidad"
+      label: "Costo"
+      value: "Costo"
     }
 
 
@@ -44,174 +46,116 @@ view: vw_largo_plazo_presupuesto {
       value: "importe_Absorbente"
     }
 
-    allowed_value: {
-      label: "Importe Estandar"
-      value: "Importe_Estandar"
-    }
-
-    allowed_value: {
-      label: "Importe Variable"
-      value: "Importe_Variable"
-    }
-
-
-
   }
 
 
+measure: count {
+  type: count
+  drill_fields: [detail*]
+}
+
+dimension: tipomaterial {
+  type: string
+  sql: ${TABLE}.tipomaterial ;;
+}
+
+dimension: um {
+  type: string
+  sql: ${TABLE}.um ;;
+}
+
+dimension: grupoarticulo {
+  type: string
+  sql: ${TABLE}.grupoarticulo ;;
+}
+
+dimension: grupoarticuloexterno {
+  type: string
+  sql: ${TABLE}.grupoarticuloexterno ;;
+}
+
+dimension: claveidioma {
+  type: string
+  sql: ${TABLE}.claveidioma ;;
+}
+
+dimension: articulodescribe {
+  type: string
+  sql: ${TABLE}.articulodescribe ;;
+}
+
+dimension: id_concepto {
+  type: number
+  sql: ${TABLE}.id_Concepto ;;
+}
+
+dimension: concepto {
+  type: string
+  sql: ${TABLE}.Concepto ;;
+}
+
+dimension: centro {
+  type: string
+  sql: ${TABLE}.centro ;;
+}
+
+dimension: sku {
+  type: string
+  sql: ${TABLE}.SKU ;;
+}
+
+dimension: periodo_num {
+  type: string
+  sql: ${TABLE}.PeriodoNum ;;
+}
+
+dimension: periodo {
+  type: string
+  sql: ${TABLE}.Periodo ;;
+}
+
+dimension: precioventa {
+  type: number
+  sql: ${TABLE}.precioventa ;;
+}
+
+dimension: costo {
+  type: number
+  sql: ${TABLE}.costo ;;
+}
+
+dimension: costo_absorbente {
+  type: number
+  sql: ${TABLE}.costo_absorbente ;;
+}
+
+dimension: cantidad {
+  type: number
+  sql: ${TABLE}.cantidad ;;
+}
 
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
+  measure: Total_importe_costo {
+    label: "importe costo"
+    type: sum
+    sql: ${TABLE}.costo ;;
+    value_format:"#,##0;(#,##0)"
   }
 
-  dimension: tipomaterial {
-    type: string
-    sql: ${TABLE}.tipomaterial ;;
+  measure: Total_importe_absorbente {
+    label: "importe costo absorbente"
+    type: sum
+    sql: ${TABLE}.costo_absorbente ;;
+    value_format:"#,##0;(#,##0)"
   }
-
-  dimension: um {
-    type: string
-    sql: ${TABLE}.um ;;
-  }
-
- # dimension: grupoarticulo {
- #   type: string
- #   sql: ${TABLE}.grupoarticulo ;;
- # }
-
-  dimension: grupoarticulo {
-    type: string
-    sql: case when  ${TABLE}.grupoarticulo = 'AM' then 'AMSA'
-              when  ${TABLE}.grupoarticulo = 'A' then 'Anestesiología y Terapia Intensiva'
-              when  ${TABLE}.grupoarticulo = 'T' then 'Antibióticos Intra-Hospitalarios'
-              when  ${TABLE}.grupoarticulo = 'O' then 'Antibióticos de Prescripción'
-              when ${TABLE}.grupoarticulo = 'L' then 'Control de Infecciones'
-              when ${TABLE}.grupoarticulo = 'E' then 'Diálisis Peritoneal'
-              when ${TABLE}.grupoarticulo = 'G' then 'Enfermedades Crónicas'
-              when ${TABLE}.grupoarticulo = 'K' then 'Farmacéuticos OTC'
-              when ${TABLE}.grupoarticulo = 'GP' then 'GENEPISA'
-               when ${TABLE}.grupoarticulo = 'J' then 'Hemodiálisis'
-      when ${TABLE}.grupoarticulo = 'MI' then 'Maquila Intl.'
-      when ${TABLE}.grupoarticulo = 'M' then 'Maquila Nacional'
-      when ${TABLE}.grupoarticulo = 'MP' then 'Marca Propia'
-      when ${TABLE}.grupoarticulo = 'S' then 'NEUROLOGÍA y PSIQUIATRÍA'
-      when ${TABLE}.grupoarticulo = 'F' then 'Nutrición'
-      when ${TABLE}.grupoarticulo = 'D' then 'Oftalmología'
-      when ${TABLE}.grupoarticulo = 'H' then 'Oncológicos'
-      when ${TABLE}.grupoarticulo = 'Q' then 'Pediatría'
-      when ${TABLE}.grupoarticulo = 'PMD' then 'Productos Medimix'
-      when ${TABLE}.grupoarticulo = 'SM' then 'Salucom'
-      when ${TABLE}.grupoarticulo = 'B' then 'Terapia de Infusión'
-      when ${TABLE}.grupoarticulo = 'R' then 'Terapia del dolor'
-      when ${TABLE}.grupoarticulo = 'N' then 'Transplantes'
-      when ${TABLE}.grupoarticulo = 'VDD' then 'Venta Directa Dimesa'
-      when ${TABLE}.grupoarticulo = 'U' then 'Genéricos'
-      else ${TABLE}.grupoarticulo END  ;;
-  }
-
-  dimension: grupoarticuloexterno {
-    type: string
-    sql: ${TABLE}.grupoarticuloexterno ;;
-  }
-
-  dimension: claveidioma {
-    type: string
-    sql: ${TABLE}.claveidioma ;;
-  }
-
-  dimension: articulodescribe {
-    type: string
-    sql: ${TABLE}.articulodescribe ;;
-  }
-
-  dimension: id_concepto {
-    label: "Concepto"
-    type: number
-    sql: ${TABLE}.id_Concepto ;;
-  }
-
-  dimension: concepto {
-    type: string
-    sql: ${TABLE}.Concepto ;;
-  }
-
-  dimension: sku {
-    type: string
-    sql: ${TABLE}.SKU ;;
-  }
-
-  dimension: sku_describe {
-    type: string
-    sql:concat(SUBSTR(${TABLE}.sku,12,50)  ,'-',  ${TABLE}.articulodescribe) ;;
-  }
-
-  dimension: periodo_num {
-    type: string
-    sql: ${TABLE}.PeriodoNum ;;
-  }
-
-  dimension: periodo {
-    type: string
-    sql: ${TABLE}.Periodo ;;
-  }
-
-  dimension: cantidad {
-    type: number
-    sql: ${TABLE}.Cantidad ;;
-  }
-
-  dimension: importe_variable {
-    type: number
-    sql: ${TABLE}.importe_variable ;;
-  }
-
-  dimension: importe_estandar {
-    type: number
-    sql: ${TABLE}.importe_estandar ;;
-  }
-
-  dimension: importe_absorbente {
-    type: number
-    sql: ${TABLE}.importe_absorbente ;;
-  }
-
 
   measure: Total_cantidad {
+    label: "importe Cantidad"
     type: sum
-    sql: ${TABLE}.Cantidad ;;
+    sql: ${TABLE}.cantidad ;;
     value_format:"#,##0;(#,##0)"
   }
 
-   measure: Total_importe_variable {
-    label: "importe variable"
-    type: sum
-    sql: ${TABLE}.importe_variable ;;
-    value_format:"#,##0;(#,##0)"
-  }
-
-   measure: Total_importe_estandar {
-    label: "importe estandar"
-    type: sum
-    sql: ${TABLE}.importe_estandar ;;
-    value_format:"#,##0;(#,##0)"
-  }
-
-   measure: Total_importe_absorbente {
-    label: "importe absorbente"
-    type: sum
-    sql: ${TABLE}.importe_absorbente ;;
-    value_format:"#,##0;(#,##0)"
-  }
-
-
-  measure: Total_sku{
-    label: "cantidad SKU unicos"
-    type: count_distinct
-    sql:${sku};;
-
-  }
 
   measure: Total_PTTO {
 
@@ -225,40 +169,36 @@ view: vw_largo_plazo_presupuesto {
       {% elsif Tipo_Ptto._parameter_value == 'importe_Absorbente' %}
       ${Total_importe_absorbente}
 
-      {% elsif Tipo_Ptto._parameter_value == 'Importe_Estandar' %}
-      ${Total_importe_estandar}
+      {% elsif Tipo_Ptto._parameter_value == 'Costo' %}
+      ${Total_importe_costo}
 
-      {% elsif Tipo_Ptto._parameter_value == 'Importe_Variable' %}
-      ${Total_importe_variable}
+
 
 
 
       {% endif %};;
-   # drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
+    # drill_fields: [almacen,material,material_desc,Total_Materiales,Total_stock_libre_utilizacion]
     value_format:"#,##0;(#,##0)"
   }
 
-
-
-
-
-  set: detail {
-    fields: [
-        tipomaterial,
-  um,
-  grupoarticulo,
-  grupoarticuloexterno,
-  claveidioma,
-  articulodescribe,
-  id_concepto,
-  concepto,
-  sku,
-  periodo_num,
-  periodo,
-  cantidad,
-  importe_variable,
-  importe_estandar,
-  importe_absorbente
-    ]
-  }
+set: detail {
+  fields: [
+    tipomaterial,
+    um,
+    grupoarticulo,
+    grupoarticuloexterno,
+    claveidioma,
+    articulodescribe,
+    id_concepto,
+    concepto,
+    centro,
+    sku,
+    periodo_num,
+    periodo,
+    precioventa,
+    costo,
+    costo_absorbente,
+    cantidad
+  ]
+}
 }
