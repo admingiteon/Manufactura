@@ -91,7 +91,29 @@ explore: entradas_y_salidas_forecast_completo_v2 {
 
 }
 
-explore: mediciones_forecast_v2 {}
+
+
+explore: forecast_completo_cp{
+
+  join: mediciones_forecast_cp  {
+    type: left_outer
+    #sql_on: ${entradas_y_salidas_forecast_completo_v2.id} = ${mediciones_forecast_v2.id} ;;
+    sql_on: ${forecast_completo_cp.id} = ${mediciones_forecast_cp.id} ;;
+
+    relationship: many_to_one
+  }
+
+  join: val_vw_datos_generales  {
+    type: left_outer
+    sql_on: ${val_vw_datos_generales.material} = SUBSTR(${forecast_completo_cp.id},1,18) ;;
+    relationship: many_to_one
+  }
+
+}
+explore: mediciones_forecast_cp {}
+
+
+
 
 
 
