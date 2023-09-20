@@ -1,7 +1,8 @@
 
 view: vw_largo_plazo_calmacenamiento {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_calmacenamiento`
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_calmacenamiento`
+
     where planta like 'PI%' OR planta like 'AM%' ;;
   }
 
