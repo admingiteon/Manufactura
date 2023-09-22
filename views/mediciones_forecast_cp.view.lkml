@@ -103,7 +103,7 @@ view: mediciones_forecast_cp {
 
 
   dimension: Rango_mean_absolute_percentage_error_orden {
-    type: string
+    type: number
     sql: case when ${TABLE}.mean_absolute_percentage_error > 0 and ${TABLE}.mean_absolute_percentage_error <= 10 then  1
               when ${TABLE}.mean_absolute_percentage_error > 10 and  ${TABLE}.mean_absolute_percentage_error <= 20 then  2
               when ${TABLE}.mean_absolute_percentage_error > 20 and  ${TABLE}.mean_absolute_percentage_error <= 30 then  3
