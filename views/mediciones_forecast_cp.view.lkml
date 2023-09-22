@@ -15,6 +15,51 @@ view: mediciones_forecast_cp {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: SKU {
+    type: string
+    sql:  SUBSTR(${id},1,18) ;;
+  }
+
+  dimension: CLIENTE {
+    type: string
+    sql:  SUBSTR(${id},20,10) ;;
+  }
+
+  dimension: CLASE_DOC {
+    type: string
+    sql:  SUBSTR(${id},31,2) ;;
+  }
+
+
+
+  dimension: POSICION {
+    label: "VALOR PISICION"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(3)] ;;
+  }
+
+  dimension: CANAL_DISTRI {
+    label: "CANAL DISTRIBUSION"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(4)] ;;
+  }
+
+  dimension: SOCIEDAD {
+    label: "SOCIEDAD"
+    type: string
+    sql:    SUBSTR(SPLIT(${id}, '_')[OFFSET(5)],1,2) ;;
+  }
+
+  dimension: MERCADO {
+    label: "MERCADO"
+    type: string
+    sql:    SUBSTR(SPLIT(${id}, '_')[OFFSET(5)],3,2) ;;
+  }
+
+
+
+
+
   dimension: mean_absolute_error {
     type: number
     sql: ${TABLE}.mean_absolute_error ;;
@@ -55,6 +100,23 @@ view: mediciones_forecast_cp {
               when ${TABLE}.mean_absolute_percentage_error > 90 then  'Rango >90'
     end  ;;
   }
+
+
+  dimension: Rango_mean_absolute_percentage_error_orden {
+    type: string
+    sql: case when ${TABLE}.mean_absolute_percentage_error > 0 and ${TABLE}.mean_absolute_percentage_error <= 10 then  1
+              when ${TABLE}.mean_absolute_percentage_error > 10 and  ${TABLE}.mean_absolute_percentage_error <= 20 then  2
+              when ${TABLE}.mean_absolute_percentage_error > 20 and  ${TABLE}.mean_absolute_percentage_error <= 30 then  3
+              when ${TABLE}.mean_absolute_percentage_error > 30 and  ${TABLE}.mean_absolute_percentage_error <= 40 then  4
+              when ${TABLE}.mean_absolute_percentage_error > 40 and  ${TABLE}.mean_absolute_percentage_error <= 50 then  5
+              when ${TABLE}.mean_absolute_percentage_error > 50 and  ${TABLE}.mean_absolute_percentage_error <= 60 then  6
+              when ${TABLE}.mean_absolute_percentage_error > 60 and  ${TABLE}.mean_absolute_percentage_error <= 70 then  7
+              when ${TABLE}.mean_absolute_percentage_error > 70 and  ${TABLE}.mean_absolute_percentage_error <= 80 then  8
+              when ${TABLE}.mean_absolute_percentage_error > 80 and  ${TABLE}.mean_absolute_percentage_error <= 90 then  9
+              when ${TABLE}.mean_absolute_percentage_error > 90 then  10 else 0
+    end  ;;
+  }
+
 
 
 

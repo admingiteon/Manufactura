@@ -9,10 +9,55 @@ view: forecast_completo_cp {
     drill_fields: [detail*]
   }
 
-  dimension: id {
+   dimension: id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
   }
+
+  dimension: SKU {
+    type: string
+    sql:  SUBSTR(${id},1,18) ;;
+  }
+
+  dimension: CLIENTE {
+    type: string
+    sql:  SUBSTR(${id},20,10) ;;
+  }
+
+  dimension: CLASE_DOC {
+    type: string
+    sql:  SUBSTR(${id},31,2) ;;
+  }
+
+
+
+  dimension: POSICION {
+    label: "VALOR PISICION"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(3)] ;;
+  }
+
+  dimension: CANAL_DISTRI {
+    label: "CANAL DISTRIBUSION"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(4)] ;;
+  }
+
+  dimension: SOCIEDAD {
+    label: "SOCIEDAD"
+    type: string
+    sql:    SUBSTR(SPLIT(${id}, '_')[OFFSET(5)],1,2) ;;
+  }
+
+  dimension: MERCADO {
+    label: "MERCADO"
+    type: string
+    sql:    SUBSTR(SPLIT(${id}, '_')[OFFSET(5)],3,2) ;;
+  }
+
+
+
 
   dimension_group: fecha {
     type: time
