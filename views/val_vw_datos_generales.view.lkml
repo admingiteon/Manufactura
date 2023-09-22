@@ -96,6 +96,12 @@ view: val_vw_datos_generales {
 
   }
 
+  dimension: sku {
+    type: string
+    sql: SUBSTR(${TABLE}.material,12,16) ;;
+
+  }
+
   dimension: tipo_material {
     type: string
     sql: ${TABLE}.tipo_material ;;

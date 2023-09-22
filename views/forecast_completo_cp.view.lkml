@@ -15,6 +15,12 @@ view: forecast_completo_cp {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: id_compuesto {
+
+    type: string
+    sql:SUBSTR( ${TABLE}.id,12,100) ;;
+  }
+
   dimension: SKU {
     type: string
     sql:  SUBSTR(${id},1,18) ;;
@@ -64,6 +70,14 @@ view: forecast_completo_cp {
     sql: ${TABLE}.fecha ;;
   }
 
+
+  dimension: Semana {
+    type: date
+    sql:  DATE_ADD(CURRENT_DATE(), INTERVAL -12 WEEK)      ;;
+  }
+
+
+
   dimension: cantidad {
     type: number
     sql: ${TABLE}.Cantidad ;;
@@ -89,17 +103,20 @@ view: forecast_completo_cp {
     label: "Prediction interval lower bound"
     type: sum
     sql: ${TABLE}.prediction_interval_lower_bound ;;
+    value_format: "0.00"
   }
 
   measure: Total_prediction_interval_upper_bound {
     label: "Prediction interval upper bound"
     type: sum
     sql: ${TABLE}.prediction_interval_upper_bound ;;
+    value_format: "0.00"
   }
 
   measure: Total_cantidad {
     type: sum
     sql: ${TABLE}.Cantidad ;;
+
   }
 
 

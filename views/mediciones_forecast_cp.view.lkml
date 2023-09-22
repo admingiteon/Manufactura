@@ -118,31 +118,59 @@ view: mediciones_forecast_cp {
   }
 
 
+  dimension: Rango_mean_absolute_percentage_error_resumen {
+    type: string
+    sql: case when ${TABLE}.mean_absolute_percentage_error >= 0 and ${TABLE}.mean_absolute_percentage_error <= 10 or ${TABLE}.mean_absolute_percentage_error is null then  'Rango 1-10'
+              when ${TABLE}.mean_absolute_percentage_error > 10 and  ${TABLE}.mean_absolute_percentage_error <= 20 then  'Rango 10-20'
+              when ${TABLE}.mean_absolute_percentage_error > 20 and  ${TABLE}.mean_absolute_percentage_error <= 30 then  'Rango 20-30'
+              when ${TABLE}.mean_absolute_percentage_error > 30 then    'Rango >30'
+
+    end  ;;
+  }
+
+
+  dimension: Rango_mean_absolute_percentage_error_orden_resumen {
+    type: number
+    sql: case when ${TABLE}.mean_absolute_percentage_error >= 0 and ${TABLE}.mean_absolute_percentage_error <= 10 or ${TABLE}.mean_absolute_percentage_error is null then  1
+              when ${TABLE}.mean_absolute_percentage_error > 10 and  ${TABLE}.mean_absolute_percentage_error <= 20 then  2
+              when ${TABLE}.mean_absolute_percentage_error > 20 and  ${TABLE}.mean_absolute_percentage_error <= 30 then  3
+              when ${TABLE}.mean_absolute_percentage_error > 30  then  4
+
+
+    end  ;;
+  }
+
+
 
 
   measure: Total_mean_absolute_error {
     type: sum
     sql: ${TABLE}.mean_absolute_error ;;
+    value_format: "0.00"
   }
 
   measure: Total_mean_squared_error {
     type: sum
     sql: ${TABLE}.mean_squared_error ;;
+    value_format: "0.00"
   }
 
   measure: Total_root_mean_squared_error {
     type: sum
     sql: ${TABLE}.root_mean_squared_error ;;
+    value_format: "0.00"
   }
 
   measure: Total_mean_absolute_percentage_error {
     type: sum
     sql: ${TABLE}.mean_absolute_percentage_error ;;
+    value_format: "0.00"
   }
 
   measure: Total_symmetric_mean_absolute_percentage_error {
     type: sum
     sql: ${TABLE}.symmetric_mean_absolute_percentage_error ;;
+    value_format: "0.00"
   }
 
   set: detail {
