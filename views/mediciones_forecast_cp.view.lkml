@@ -30,30 +30,31 @@ view: mediciones_forecast_cp {
     sql:  SUBSTR(${id},31,2) ;;
   }
 
+#material, cliente_destinatario,centro, clase_doc_ventas, valor_posicion
+#000000000004000397_0000571612_DN19_ZTEJ_4365
 
+  dimension: cliente_destinatario {
+    label: "cliente destinatario"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(1)] ;;
+  }
 
-  dimension: POSICION {
-    label: "VALOR PISICION"
+  dimension: centro {
+    label: "centro"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(2)] ;;
+  }
+
+  dimension: clase_doc_ventas {
+    label: "clase_doc_ventas"
     type: string
     sql:    SPLIT(${id}, '_')[OFFSET(3)] ;;
   }
 
-  dimension: CANAL_DISTRI {
-    label: "CANAL DISTRIBUSION"
+  dimension: valor_posicion {
+    label: "valor_posicion"
     type: string
-    sql:    SPLIT(${id}, '_')[OFFSET(4)] ;;
-  }
-
-  dimension: SOCIEDAD {
-    label: "SOCIEDAD"
-    type: string
-    sql:    SUBSTR(SPLIT(${id}, '_')[OFFSET(5)],1,2) ;;
-  }
-
-  dimension: MERCADO {
-    label: "MERCADO"
-    type: string
-    sql:    SUBSTR(SPLIT(${id}, '_')[OFFSET(5)],3,2) ;;
+     sql:    SPLIT(${id}, '_')[OFFSET(4)] ;;
   }
 
 

@@ -38,28 +38,28 @@ view: forecast_completo_cp {
 
 
 
-  dimension: POSICION {
-    label: "VALOR PISICION"
+  dimension: cliente_destinatario {
+    label: "cliente destinatario"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(1)] ;;
+  }
+
+  dimension: centro {
+    label: "centro"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(2)] ;;
+  }
+
+  dimension: clase_doc_ventas {
+    label: "clase_doc_ventas"
     type: string
     sql:    SPLIT(${id}, '_')[OFFSET(3)] ;;
   }
 
-  dimension: CANAL_DISTRI {
-    label: "CANAL DISTRIBUSION"
+  dimension: valor_posicion {
+    label: "valor_posicion"
     type: string
     sql:    SPLIT(${id}, '_')[OFFSET(4)] ;;
-  }
-
-  dimension: SOCIEDAD {
-    label: "SOCIEDAD"
-    type: string
-    sql:    SUBSTR(SPLIT(${id}, '_')[OFFSET(5)],1,2) ;;
-  }
-
-  dimension: MERCADO {
-    label: "MERCADO"
-    type: string
-    sql:    SUBSTR(SPLIT(${id}, '_')[OFFSET(5)],3,2) ;;
   }
 
 
