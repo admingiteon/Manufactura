@@ -4,7 +4,7 @@ view: res_forecast_completo_cp_ {
     sql: select substring(id,1,18) as material,fecha,tipo,sum(cantidad) cantidad
               
       fROM `psa-psa-cadena-qa.modelo_de_calculo.forecast_completo_cp_`
-      where  tipo='Forecast' and cantidad !=0
+      where  tipo='Forecast' and cantidad !=0 and    substring(id,1,18) in ( select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`)
       group by substring(id,1,18),fecha,tipo ;;
   }
 
