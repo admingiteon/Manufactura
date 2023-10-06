@@ -23,6 +23,10 @@ view: val_vw_pedidos_ventas {
     sql: ${TABLE}.fechaCreacion_registro ;;
   }
 
+
+
+
+
   dimension: clase_doc_ventas {
     type: string
     sql: ${TABLE}.clase_doc_ventas ;;
