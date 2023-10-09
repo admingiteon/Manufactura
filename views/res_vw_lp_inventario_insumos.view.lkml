@@ -1,7 +1,9 @@
 
 view: res_vw_lp_inventario_insumos {
   derived_table: {
-    sql: SELECT *,ROW_NUMBER() OVER() row_number  FROM `psa-psa-cadena-qa.quality_data.vw_lp_inventario_insumos` where  material in (select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`) ;;
+    sql: SELECT *,ROW_NUMBER() OVER() row_number  FROM `psa-psa-cadena-qa.quality_data.vw_lp_inventario_insumos`
+    where  material in (select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`)
+    ;;
   }
 
   measure: count {
