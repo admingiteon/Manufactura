@@ -89,6 +89,30 @@ view: res_vw_lp_precio_unitario {
     sql: ${TABLE}.PrecioUnitario ;;
   }
 
+  measure: Total_unidades {
+    type: sum
+    sql: ${TABLE}.Unidades ;;
+  }
+
+  measure: Total_ventas {
+    type: sum
+    sql: ${TABLE}.Ventas ;;
+  }
+
+  measure: Total_precio_unitario {
+    type: sum
+    sql: ${TABLE}.PrecioUnitario ;;
+  }
+
+
+  measure: Total_Venta_total {
+    type: number
+    sql: ${Total_precio_unitario}* ${Total_unidades} ;;
+  }
+
+
+
+
   set: detail {
     fields: [
         solicitante,

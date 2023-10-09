@@ -147,17 +147,7 @@ explore: vw_largo_plazo_cfabricacion {
 
 explore: res_vw_lp_pedidos_de_ventas {
 
-  join: res_vw_cp_forecast_completo  {
-    type: left_outer
-    sql_on: ${res_vw_lp_pedidos_de_ventas.material} = ${res_vw_cp_forecast_completo.material} ;;
-    relationship: many_to_one
-  }
 
-  join: res_vw_lp_productos_terminados  {
-    type: left_outer
-    sql_on: ${res_vw_lp_pedidos_de_ventas.material} = ${res_vw_lp_productos_terminados.material} ;;
-    relationship: many_to_one
-  }
 
    join: val_vw_datos_generales  {
     type: left_outer
@@ -165,23 +155,7 @@ explore: res_vw_lp_pedidos_de_ventas {
     relationship: many_to_one
   }
 
-  join: res_vw_lp_ibp_planeacion_demanda  {
-    type: left_outer
-    sql_on: SUBSTR(${res_vw_lp_pedidos_de_ventas.material},14,10)=${res_vw_lp_ibp_planeacion_demanda.id_de_producto__ibp_} ;;
-    relationship: many_to_one
-  }
 
-  join: res_vw_lp_precio_unitario  {
-    type: left_outer
-    sql_on: ${res_vw_lp_pedidos_de_ventas.material}=${res_vw_lp_precio_unitario.material} ;;
-    relationship: many_to_one
-  }
-
-  join: res_vw_lp_inventario_insumos  {
-    type: left_outer
-    sql_on: ${res_vw_lp_pedidos_de_ventas.material}=${res_vw_lp_inventario_insumos.material} ;;
-    relationship: many_to_one
-  }
 
 }
 
@@ -195,42 +169,26 @@ explore: res_forecast_completo_cp_ {
   }
 
 }
-explore: res_vw_cp_forecast_completo {}
+explore: res_vw_cp_forecast_completo {
+  join: val_vw_datos_generales  {
+    type: left_outer
+    sql_on: ${val_vw_datos_generales.material} = ${res_vw_cp_forecast_completo.material} ;;
+    relationship: many_to_one
+  }
+}
 explore: res_vw_lp_productos_terminados {}
 explore: res_vw_lp_precio_unitario {}
-explore: res_vw_lp_inventario_insumos {}
+
+explore: res_vw_lp_inventario_insumos {
+
+  join: val_vw_datos_generales  {
+    type: left_outer
+    sql_on: ${res_vw_lp_inventario_insumos.material} = ${val_vw_datos_generales.material} ;;
+    relationship: many_to_one
+  }
+}
 explore: res_vw_lp_ibp_planeacion_demanda {}
 explore: vw_modelo_pedidos_de_venta {}
 
 
-explore: vw_consolidado_codigos_sku {
-
-  join: vw_modelo_pedidos_de_venta  {
-   type: left_outer
-    sql_on: ${vw_consolidado_codigos_sku.material}=${vw_modelo_pedidos_de_venta.Material} ;;
-    relationship: many_to_one
-  }
-
-  join: res_vw_cp_forecast_completo  {
-    type: left_outer
-    sql_on: ${res_vw_cp_forecast_completo.material}=${res_vw_cp_forecast_completo.material} ;;
-    relationship: many_to_one
-  }
-
-  join: val_vw_datos_generales  {
-    type: left_outer
-    sql_on: ${vw_consolidado_codigos_sku.material} = ${val_vw_datos_generales.material} ;;
-    relationship: many_to_one
-  }
-
-  join: res_vw_lp_inventario_insumos  {
-    type: left_outer
-    sql_on: ${vw_consolidado_codigos_sku.material} = ${res_vw_lp_inventario_insumos.material} ;;
-    relationship: many_to_one
-  }
-
-
-
-
-
-}
+explore: vw_consolidado_codigos_sku {}

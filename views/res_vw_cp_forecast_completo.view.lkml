@@ -2,9 +2,14 @@
 view: res_vw_cp_forecast_completo {
   derived_table: {
     sql: SELECT *, ROW_NUMBER() OVER() row_number  FROM `psa-psa-cadena-qa.quality_data.vw_cp_forecast_completo`
-         where  tipo='Forecast' and cantidad !=0 and    substring(id,1,18) in ( select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`)
+         where  tipo='Forecast' and cantidad !=0
+        and    substring(id,1,18) in ( select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`)
+
     ;;
   }
+
+
+
 
   measure: count {
     type: count
@@ -75,6 +80,11 @@ view: res_vw_cp_forecast_completo {
   dimension: material {
     type: string
     sql: ${TABLE}.material ;;
+  }
+
+  dimension: sku {
+    type: string
+    sql: SUBSTR(${TABLE}.material,12,10) ;;
   }
 
   set: detail {

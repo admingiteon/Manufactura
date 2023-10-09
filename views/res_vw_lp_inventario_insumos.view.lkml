@@ -32,6 +32,11 @@ view: res_vw_lp_inventario_insumos {
     sql: ${TABLE}.material ;;
   }
 
+  dimension: sku {
+    type: string
+    sql: SUBSTR(${TABLE}.material,12,10) ;;
+  }
+
   dimension: stock_libre_utilizacion {
     type: number
     sql: ${TABLE}.stock_libre_utilizacion ;;
