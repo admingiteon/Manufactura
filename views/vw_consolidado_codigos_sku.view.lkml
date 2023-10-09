@@ -10,9 +10,14 @@ view: vw_consolidado_codigos_sku {
   }
 
   dimension: material {
-
+    primary_key: yes
     type: string
     sql: ${TABLE}.material ;;
+  }
+
+  dimension: sku {
+    type: string
+    sql: SUBSTR(${TABLE}.material,12,10) ;;
   }
 
   set: detail {

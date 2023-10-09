@@ -205,9 +205,32 @@ explore: vw_modelo_pedidos_de_venta {}
 
 explore: vw_consolidado_codigos_sku {
 
- # join: vw_modelo_pedidos_de_venta  {
-#    type: left_outer
- #   sql_on: ${vw_consolidado_codigos_sku.material}=${vw_modelo_pedidos_de_venta.sku} ;;
-#    relationship: many_to_one
-#  }
+  join: vw_modelo_pedidos_de_venta  {
+   type: left_outer
+    sql_on: ${vw_consolidado_codigos_sku.material}=${vw_modelo_pedidos_de_venta.Material} ;;
+    relationship: many_to_one
+  }
+
+  join: res_vw_cp_forecast_completo  {
+    type: left_outer
+    sql_on: ${res_vw_cp_forecast_completo.material}=${res_vw_cp_forecast_completo.material} ;;
+    relationship: many_to_one
+  }
+
+  join: val_vw_datos_generales  {
+    type: left_outer
+    sql_on: ${vw_consolidado_codigos_sku.material} = ${val_vw_datos_generales.material} ;;
+    relationship: many_to_one
+  }
+
+  join: res_vw_lp_inventario_insumos  {
+    type: left_outer
+    sql_on: ${vw_consolidado_codigos_sku.material} = ${res_vw_lp_inventario_insumos.material} ;;
+    relationship: many_to_one
+  }
+
+
+
+
+
 }

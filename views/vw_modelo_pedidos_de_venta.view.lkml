@@ -1,8 +1,12 @@
 
 view: vw_modelo_pedidos_de_venta {
   derived_table: {
-    sql: SELECT vw_Pedidos.centro as centro,
+    sql:
+     select ROW_NUMBER() OVER() row_number    ,*  from (
+    SELECT
+                        vw_Pedidos.centro as centro,
                         vw_Pedidos.material as  sku,
+                        vw_Pedidos.material,
                         vw_Pedidos.texto_breve as descibe_sku,
                         vw_Pedidos.grupo_articulos,
                         vw_Pedidos.org_ventas,
@@ -29,7 +33,9 @@ view: vw_modelo_pedidos_de_venta {
                   and motivo_rechazo IN ('1', '11', '25', '28', '30', '31', '91','')
                and  vw_Pedidos.material in ( select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`)
 
-                  group by 1,2,3,4,5,6,7,8,9 ;;
+                  group by 1,2,3,4,5,6,7,8,9,10) a
+
+      ;;
   }
 
   measure: count {
@@ -41,6 +47,19 @@ view: vw_modelo_pedidos_de_venta {
     type: string
     sql: ${TABLE}.centro ;;
   }
+
+
+  dimension: row_number {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}.row_number ;;
+  }
+
+  dimension: Material {
+    type: string
+    sql: ${TABLE}.material ;;
+  }
+
 
   dimension: sku {
     type: string
@@ -86,6 +105,31 @@ view: vw_modelo_pedidos_de_venta {
     type: date
     datatype: date
     sql: ${TABLE}.ult_fecha ;;
+  }
+
+
+  dimension_group: Fecha {
+    type: time
+
+    timeframes: [
+      raw,
+      time,
+      hour_of_day,
+      date,
+      day_of_week,
+      day_of_week_index,
+      day_of_month,
+      day_of_year,
+      week,
+      week_of_year,
+      month,
+      month_name,
+      month_num,
+      quarter,
+      year
+    ]
+    sql: cast(${TABLE}.ult_fecha AS TIMESTAMP) ;;
+    convert_tz: no
   }
 
   dimension: cantidad {

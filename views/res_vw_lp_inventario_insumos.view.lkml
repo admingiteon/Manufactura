@@ -1,12 +1,18 @@
 
 view: res_vw_lp_inventario_insumos {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.quality_data.vw_lp_inventario_insumos` ;;
+    sql: SELECT *,ROW_NUMBER() OVER() row_number  FROM `psa-psa-cadena-qa.quality_data.vw_lp_inventario_insumos` where  material in (select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`) ;;
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  dimension: row_number {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}.row_number ;;
   }
 
   dimension: sociedad {
@@ -46,6 +52,33 @@ view: res_vw_lp_inventario_insumos {
 
   dimension: insumo_stock_seguridad {
     type: number
+    sql: ${TABLE}.insumo_stock_seguridad ;;
+  }
+
+
+  measure: Total_stock_libre_utilizacion {
+    label: "stock_libre_utilizacion"
+    type: sum
+    sql: ${TABLE}.stock_libre_utilizacion ;;
+  }
+
+  measure: Total_stock_seguridad {
+    label: "stock_seguridad"
+    type: sum
+    sql: ${TABLE}.stock_seguridad ;;
+  }
+
+
+
+  measure: Total_insumo_stock_libre_utilizacion {
+    label: "insumo_stock_libre_utilizacion"
+    type: sum
+    sql: ${TABLE}.insumo_stock_libre_utilizacion ;;
+  }
+
+  measure: Total_insumo_stock_seguridad {
+    label: "insumo_stock_seguridad"
+    type: sum
     sql: ${TABLE}.insumo_stock_seguridad ;;
   }
 

@@ -18,6 +18,11 @@ view: res_forecast_completo_cp_ {
     sql: ${TABLE}.material ;;
   }
 
+  dimension: sku {
+    type: string
+    sql: SUBSTR(${TABLE}.material,12,10) ;;
+  }
+
   dimension_group: fecha {
     type: time
     sql: ${TABLE}.fecha ;;
