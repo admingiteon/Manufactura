@@ -186,6 +186,8 @@ explore: res_vw_lp_inventario_insumos {
     sql_on: ${res_vw_lp_inventario_insumos.material} = ${val_vw_datos_generales.material} ;;
     relationship: many_to_one
   }
+
+
 }
 explore: res_vw_lp_ibp_planeacion_demanda {}
 explore: vw_modelo_pedidos_de_venta {}

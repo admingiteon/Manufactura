@@ -1,8 +1,9 @@
 
 view: res_vw_lp_inventario_insumos {
   derived_table: {
-    sql: SELECT *,ROW_NUMBER() OVER() row_number  FROM `psa-psa-cadena-qa.quality_data.vw_lp_inventario_insumos`
-    where  material in (select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`)
+    sql: SELECT i.*,ROW_NUMBER() OVER() row_number,m.texto_breve_material Insumo_material_Descripcion  FROM `psa-psa-cadena-qa.quality_data.vw_lp_inventario_insumos` i
+    left join `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales`  m on i.Insumo_material = m.material
+    where  i.material in (select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`)
     ;;
   }
 
@@ -32,6 +33,16 @@ view: res_vw_lp_inventario_insumos {
     sql: ${TABLE}.material ;;
   }
 
+  dimension: insumo_material {
+    type: string
+    sql: SUBSTR(${TABLE}.Insumo_material,12,10) ;;
+  }
+
+  dimension: Insumo_material_Descripcion {
+    type: string
+    sql: ${TABLE}.Insumo_material_Descripcion ;;
+  }
+
   dimension: sku {
     type: string
     sql: SUBSTR(${TABLE}.material,12,10) ;;
@@ -47,10 +58,7 @@ view: res_vw_lp_inventario_insumos {
     sql: ${TABLE}.stock_seguridad ;;
   }
 
-  dimension: insumo_material {
-    type: string
-    sql: ${TABLE}.Insumo_material ;;
-  }
+
 
   dimension: insumo_stock_libre_utilizacion {
     type: number

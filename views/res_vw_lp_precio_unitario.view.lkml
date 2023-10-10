@@ -19,6 +19,11 @@ view: res_vw_lp_precio_unitario {
     sql: ${TABLE}.MATERIAL ;;
   }
 
+  dimension: sku {
+    type: string
+    sql: SUBSTR(${TABLE}.material,12,10) ;;
+  }
+
   dimension: anio {
     type: string
     sql: ${TABLE}.ANIO ;;
@@ -92,23 +97,35 @@ view: res_vw_lp_precio_unitario {
   measure: Total_unidades {
     type: sum
     sql: ${TABLE}.Unidades ;;
+    value_format: "#,##0.00"
   }
 
   measure: Total_ventas {
     type: sum
     sql: ${TABLE}.Ventas ;;
+    value_format: "#,##0.00"
   }
 
   measure: Total_precio_unitario {
     type: sum
     sql: ${TABLE}.PrecioUnitario ;;
+    value_format: "#,##0.00"
   }
 
 
   measure: Total_Venta_total {
     type: number
     sql: ${Total_precio_unitario}* ${Total_unidades} ;;
+    value_format: "#,##0.00"
   }
+
+
+  measure: Total_Venta_total_pro{
+    type: number
+    sql: ${Total_Venta_total}/ ${Total_unidades} ;;
+    value_format: "#,##0.00"
+  }
+
 
 
 
