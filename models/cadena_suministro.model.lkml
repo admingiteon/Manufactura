@@ -191,6 +191,6 @@ explore: res_vw_lp_inventario_insumos {
 }
 explore: res_vw_lp_ibp_planeacion_demanda {}
 explore: vw_modelo_pedidos_de_venta {}
-
+explore: res_vw_cadena_suministro_datos_generales {}
 
 explore: vw_consolidado_codigos_sku {}

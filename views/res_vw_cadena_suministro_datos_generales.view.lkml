@@ -1,13 +1,13 @@
 
 view: res_vw_cadena_suministro_datos_generales {
   derived_table: {
-    sql: select  
+    sql: select
               material,
               precio_estandar,
               precio_medio_variable,
               precio_absorbente ,
               indicador_control_precios /*s=standar, v=medio variable, a=absorbente ---No aplica--*/
-           
+
       from psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales ;;
   }
 
@@ -19,6 +19,11 @@ view: res_vw_cadena_suministro_datos_generales {
   dimension: material {
     type: string
     sql: ${TABLE}.material ;;
+  }
+
+  dimension: sku {
+    type: string
+    sql: SUBSTR(${TABLE}.material,12,10) ;;
   }
 
   dimension: precio_estandar {
@@ -36,6 +41,26 @@ view: res_vw_cadena_suministro_datos_generales {
     sql: ${TABLE}.precio_absorbente ;;
   }
 
+
+  measure: Total_precio_estandar {
+    label: "Precio Estandar"
+    type: sum
+    sql: ${TABLE}.precio_estandar ;;
+  }
+
+  measure: Total_precio_medio_variable {
+    label: "Precio Medio Variable"
+    type: sum
+    sql: ${TABLE}.precio_medio_variable ;;
+  }
+
+  measure: Total_precio_absorbente {
+    label: "Precio Absorbente"
+    type: sum
+    sql: ${TABLE}.precio_absorbente ;;
+  }
+
+
   dimension: indicador_control_precios {
     type: string
     sql: ${TABLE}.indicador_control_precios ;;
@@ -44,10 +69,10 @@ view: res_vw_cadena_suministro_datos_generales {
   set: detail {
     fields: [
         material,
-	precio_estandar,
-	precio_medio_variable,
-	precio_absorbente,
-	indicador_control_precios
+  precio_estandar,
+  precio_medio_variable,
+  precio_absorbente,
+  indicador_control_precios
     ]
   }
 }
