@@ -103,20 +103,20 @@ view: res_vw_lp_precio_unitario {
   measure: Total_ventas {
     type: sum
     sql: ${TABLE}.Ventas ;;
-    value_format: "#,##0.00"
+    value_format: "$#,##0.00"
   }
 
   measure: Total_precio_unitario {
     type: sum
     sql: ${TABLE}.PrecioUnitario ;;
-    value_format: "#,##0.00"
+     value_format:"$#.00;($#.00)"
   }
 
 
   measure: precio_ponderado {
     type: number
     sql: ${Total_ventas}/${Total_unidades} ;;
-    value_format: "#,##0.00"
+    value_format: "$#,##0.00"
   }
 
 
