@@ -1,7 +1,7 @@
 
 view: res_vw_lp_precio_unitario {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.quality_data.vw_lp_precio_unitario`  ;;
+    sql: SELECT *  FROM `psa-psa-cadena-qa.quality_data.vw_lp_precio_unitario`  ;;
   }
 
   measure: count {
@@ -113,18 +113,15 @@ view: res_vw_lp_precio_unitario {
   }
 
 
-  measure: Total_Venta_total {
+  measure: precio_ponderado {
     type: number
-    sql: ${Total_precio_unitario}* ${Total_unidades} ;;
+    sql: ${Total_ventas}/${Total_unidades} ;;
     value_format: "#,##0.00"
   }
 
 
-  measure: Total_Venta_total_pro{
-    type: number
-    sql: ${Total_Venta_total}/ ${Total_unidades} ;;
-    value_format: "#,##0.00"
-  }
+
+
 
 
 
