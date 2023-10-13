@@ -40,6 +40,11 @@ view: vw_largo_plazo_presupuesto {
       value: "Costo"
     }
 
+    allowed_value: {
+      label: "Cantidad"
+      value: "Cantidad"
+    }
+
 
     allowed_value: {
       label: "Importe Absorbente"
@@ -133,6 +138,10 @@ dimension: cantidad {
   type: number
   sql: ${TABLE}.cantidad ;;
 }
+
+
+
+
 
 
   measure: Total_importe_costo {
