@@ -67,6 +67,7 @@ view: res_vw_cadena_suministro_datos_generales {
     sql:case when ${TABLE}.precio_absorbente > 0 then ${TABLE}.precio_absorbente
              when ${TABLE}.precio_absorbente <= 0 and  ${TABLE}.precio_estandar > 0  then ${TABLE}.precio_estandar
              when ${TABLE}.precio_absorbente <= 0 and  ${TABLE}.precio_estandar <= 0  and  ${TABLE}.precio_medio_variable > 0  then ${TABLE}.precio_estandar else 0 end;;
+    value_format:"$#.00;($#.00)"
   }
 
 
