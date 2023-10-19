@@ -84,6 +84,16 @@ view: res_vw_lp_inventario_insumos {
   }
 
 
+  measure: Total_stock {
+    label: "Total_stock"
+    type: number
+    sql: ${Total_stock_seguridad}+${Total_stock_libre_utilizacion} ;;
+  }
+
+
+
+
+
 
   measure: Total_insumo_stock_libre_utilizacion {
     label: "insumo_stock_libre_utilizacion"
@@ -96,6 +106,14 @@ view: res_vw_lp_inventario_insumos {
     type: sum
     sql: ${TABLE}.insumo_stock_seguridad ;;
   }
+
+
+  measure: Total_insumos {
+    label: "Total_insumos"
+    type: number
+    sql: ${Total_insumo_stock_libre_utilizacion}+${Total_insumo_stock_seguridad} ;;
+  }
+
 
   set: detail {
     fields: [
