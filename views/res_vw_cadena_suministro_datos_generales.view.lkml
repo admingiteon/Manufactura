@@ -65,8 +65,8 @@ view: res_vw_cadena_suministro_datos_generales {
     label: "Costo Absorbente"
     type: sum
     sql:case when ${TABLE}.precio_absorbente > 0 then ${TABLE}.precio_absorbente
-             when ${TABLE}.precio_absorbente < 0 and  ${TABLE}.precio_estandar > 0  then ${TABLE}.precio_estandar
-             when ${TABLE}.precio_absorbente < 0 and  ${TABLE}.precio_estandar < 0  and  ${TABLE}.precio_medio_variable > 0  then ${TABLE}.precio_estandar;;
+             when ${TABLE}.precio_absorbente <= 0 and  ${TABLE}.precio_estandar > 0  then ${TABLE}.precio_estandar
+             when ${TABLE}.precio_absorbente <= 0 and  ${TABLE}.precio_estandar <= 0  and  ${TABLE}.precio_medio_variable > 0  then ${TABLE}.precio_estandar end;;
   }
 
 
