@@ -50,19 +50,19 @@ view: res_vw_cadena_suministro_datos_generales {
 
 
   measure: Total_precio_estandar {
-    label: "Precio Estandar"
+    label: "Costo Estandar"
     type: sum
     sql: ${TABLE}.precio_estandar ;;
   }
 
   measure: Total_precio_medio_variable {
-    label: "Precio Medio Variable"
+    label: "Costo Medio Variable"
     type: sum
     sql: ${TABLE}.precio_medio_variable ;;
   }
 
   measure: Total_precio_absorbente {
-    label: "Precio Absorbente"
+    label: "Costo Absorbente"
     type: sum
     sql: ${TABLE}.precio_absorbente ;;
   }
