@@ -6,6 +6,7 @@ view: res_vw_cadena_suministro_datos_generales {
               precio_estandar,
               precio_medio_variable,
               precio_absorbente ,
+              centro,
               indicador_control_precios /*s=standar, v=medio variable, a=absorbente ---No aplica--*/
 
       from psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales ;;
@@ -20,6 +21,12 @@ view: res_vw_cadena_suministro_datos_generales {
     type: string
     sql: ${TABLE}.material ;;
   }
+
+  dimension: centro {
+    type: string
+    sql: ${TABLE}.centro ;;
+  }
+
 
   dimension: sku {
     type: string
