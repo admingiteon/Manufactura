@@ -147,31 +147,31 @@ view: mediciones_forecast_cp {
   measure: Total_mean_absolute_error {
     type: sum
     sql: ${TABLE}.mean_absolute_error ;;
-    value_format: "0.00"
+   value_format: "#,##0.00"
   }
 
   measure: Total_mean_squared_error {
     type: sum
     sql: ${TABLE}.mean_squared_error ;;
-    value_format: "0.00"
+    value_format: "#,##0.00"
   }
 
   measure: Total_root_mean_squared_error {
     type: sum
     sql: ${TABLE}.root_mean_squared_error ;;
-    value_format: "0.00"
+    value_format: "#,##0.00"
   }
 
   measure: Total_mean_absolute_percentage_error {
     type: sum
     sql: ${TABLE}.mean_absolute_percentage_error ;;
-    value_format: "0.00"
+   value_format: "#,##0.00"
   }
 
   measure: Total_symmetric_mean_absolute_percentage_error {
     type: sum
     sql: ${TABLE}.symmetric_mean_absolute_percentage_error ;;
-    value_format: "0.00"
+    value_format: "#,##0.00"
   }
 
   set: detail {
