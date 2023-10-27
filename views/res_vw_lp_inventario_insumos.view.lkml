@@ -73,13 +73,13 @@ view: res_vw_lp_inventario_insumos {
 
   measure: Total_stock_libre_utilizacion {
     label: "stock_libre_utilizacion"
-    type: sum
+    type: max
     sql: ${TABLE}.stock_libre_utilizacion ;;
   }
 
   measure: Total_stock_seguridad {
     label: "stock_seguridad"
-    type: sum
+    type: max
     sql: ${TABLE}.stock_seguridad ;;
   }
 
