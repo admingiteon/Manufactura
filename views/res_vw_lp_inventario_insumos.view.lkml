@@ -145,6 +145,17 @@ on M.material=i.sku ;;
     sql: ${TABLE}.insumo_stock_seguridad ;;
   }
 
+  dimension: Stock_QA {
+    type: number
+    sql: ${TABLE}.cantidad_calidad ;;
+  }
+
+  measure: Total_Stock_QA {
+    label: "Stock_QA"
+    type: max
+    sql: ${TABLE}.cantidad_calidad ;;
+  }
+
 
   measure: Total_stock_libre_utilizacion {
     label: "stock_libre_utilizacion"
