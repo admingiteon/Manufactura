@@ -194,3 +194,4 @@ explore: vw_modelo_pedidos_de_venta {}
 explore: res_vw_cadena_suministro_datos_generales {}
 
 explore: vw_consolidado_codigos_sku {}
+explore: res_forecast_completo_cp {}

@@ -115,7 +115,7 @@ view: res_vw_lp_precio_unitario {
 
   measure: precio_ponderado {
     type: number
-    sql: ${Total_ventas}/${Total_unidades} ;;
+    sql: ${Total_ventas}/nullif(${Total_unidades},0) ;;
     value_format: "$#,##0.00"
   }
 
