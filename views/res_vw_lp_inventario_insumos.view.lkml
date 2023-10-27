@@ -152,20 +152,20 @@ on M.material=i.sku ;;
 
   measure: Total_Stock_QA {
     label: "Stock_QA"
-    type: max
+    type: sum
     sql: ${TABLE}.cantidad_calidad ;;
   }
 
 
   measure: Total_stock_libre_utilizacion {
     label: "stock_libre_utilizacion"
-    type: max
+    type: sum
     sql: ${TABLE}.cantidad ;;
   }
 
   measure: Total_stock_seguridad {
     label: "stock_seguridad"
-    type: max
+    type: sum
     sql: ${TABLE}.stock_seguridad ;;
   }
 
