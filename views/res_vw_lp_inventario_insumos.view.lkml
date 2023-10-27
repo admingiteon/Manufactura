@@ -1,10 +1,88 @@
 
 view: res_vw_lp_inventario_insumos {
   derived_table: {
-    sql: SELECT i.*,ROW_NUMBER() OVER() row_number,m.texto_breve_material Insumo_material_Descripcion  FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_lp_inventario_insumos` i
-    left join (select material,texto_breve_material from `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales` group by material,texto_breve_material)  m on i.Insumo_material = m.material
-    where  i.material in (select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`)
-    ;;
+   # sql: SELECT i.*,ROW_NUMBER() OVER() row_number,m.texto_breve_material Insumo_material_Descripcion  FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_lp_inventario_insumos` i
+  #  left join (select material,texto_breve_material from `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales` group by material,texto_breve_material)  m on i.Insumo_material = m.material
+  #  where  i.material in (select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`)
+
+    sql: with
+
+primer_periodo
+as (
+
+select
+min(fechas.fecha)
+as Fecha
+FROM
+psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Inventario_LU_1
+ as fechas
+),
+
+Inventario_inicial
+as (
+SELECT
+primer_periodo.fecha
+As periodo,
+    substring(Inventarios.id,20,4)
+as centro,
+    substring(Inventarios.id,1,18)
+as sku,
+    sum(Inventarios.posicion_actual
+) as
+cantidad,
+     sum(Inventarios.stock_control_calidad)
+as cantidad_calidad,
+    max(
+Inventarios.stock_seguridad)
+as stock_seguridad
+FROM
+   primer_periodo,
+      psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Inventario_LU_1
+ as  Inventarios
+
+where
+  Inventarios.fecha=primer_periodo.fecha
+
+group
+by 1,2,3
+),
+
+material
+as (SELECT
+material, texto_breve_material
+FROM
+(
+SELECT
+*, ROW_NUMBER
+( )
+
+  OVER (
+ PARTITION BY
+material)
+as RN
+FROM
+ psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales)
+D WHERE
+RN = 1)
+
+Select
+i.*
+,i.sku material
+,M.texto_breve_material
+
+ from inventario_inicial
+i
+
+ left join
+material M
+on M.material=i.sku ;;
+
+
+
+
+
+
+
   }
 
   measure: count {
@@ -18,10 +96,7 @@ view: res_vw_lp_inventario_insumos {
     sql: ${TABLE}.row_number ;;
   }
 
-  dimension: sociedad {
-    type: string
-    sql: ${TABLE}.sociedad ;;
-  }
+
 
   dimension: centro {
     type: string
@@ -50,7 +125,7 @@ view: res_vw_lp_inventario_insumos {
 
   dimension: stock_libre_utilizacion {
     type: number
-    sql: ${TABLE}.stock_libre_utilizacion ;;
+    sql: ${TABLE}.cantidad ;;
   }
 
   dimension: stock_seguridad {
@@ -74,7 +149,7 @@ view: res_vw_lp_inventario_insumos {
   measure: Total_stock_libre_utilizacion {
     label: "stock_libre_utilizacion"
     type: max
-    sql: ${TABLE}.stock_libre_utilizacion ;;
+    sql: ${TABLE}.cantidad ;;
   }
 
   measure: Total_stock_seguridad {
@@ -117,7 +192,7 @@ view: res_vw_lp_inventario_insumos {
 
   set: detail {
     fields: [
-        sociedad,
+
   centro,
   material,
   stock_libre_utilizacion,
