@@ -24,7 +24,7 @@ view: res_tb_sku_componentes {
 
   dimension: componente_n1 {
     type: string
-    sql: ${TABLE}.ComponenteN1 ;;
+    sql:   sql: SUBSTR(${TABLE}.ComponenteN1,12,10) ;;
   }
 
   dimension: componente_e1 {
