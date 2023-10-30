@@ -1,7 +1,7 @@
 
 view: res_tb_sku_componentes {
   derived_table: {
-    sql: SELECT * FROM psa-psa-cadena-qa.reporting_ecc_mx.tb_sku_componentes WHERE SKU = '000000000004000171' ;;
+    sql: SELECT * FROM psa-psa-cadena-qa.reporting_ecc_mx.tb_sku_componentes ;;
   }
 
   measure: count {
