@@ -183,13 +183,13 @@ on M.material=i.sku ;;
 
   measure: Total_insumo_stock_libre_utilizacion {
     label: "insumo_stock_libre_utilizacion"
-    type: sum
+    type: max
     sql: ${TABLE}.insumo_stock_libre_utilizacion ;;
   }
 
   measure: Total_insumo_stock_seguridad {
     label: "insumo_stock_seguridad"
-    type: sum
+    type: max
     sql: ${TABLE}.insumo_stock_seguridad ;;
   }
 
