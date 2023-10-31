@@ -51,19 +51,19 @@ view: res_vw_cadena_suministro_datos_generales {
 
   measure: Total_precio_estandar {
     label: "Costo Estandar"
-    type: sum
+    type: max
     sql: ${TABLE}.precio_estandar ;;
   }
 
   measure: Total_precio_medio_variable {
     label: "Costo Medio Variable"
-    type: sum
+    type: max
     sql: ${TABLE}.precio_medio_variable ;;
   }
 
   measure: Total_precio_absorbente {
     label: "Costo Absorbente"
-    type: sum
+    type: max
     sql:case when ${TABLE}.precio_absorbente > 0 then ${TABLE}.precio_absorbente
              when ${TABLE}.precio_absorbente <= 0 and  ${TABLE}.precio_estandar > 0  then ${TABLE}.precio_estandar
              when ${TABLE}.precio_absorbente <= 0 and  ${TABLE}.precio_estandar <= 0  and  ${TABLE}.precio_medio_variable > 0  then ${TABLE}.precio_estandar else 0 end;;
