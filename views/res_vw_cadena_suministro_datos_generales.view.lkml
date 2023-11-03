@@ -19,7 +19,7 @@ view: res_vw_cadena_suministro_datos_generales {
                   WHERE sociedad in ('AMSA','PISA') group by 1,2,3)
 
                 select m.*,s.sociedad from materiales m
-                left join sociedades s on s.centro=m.centro
+                left join sociedades s on s.centro=m.centro  where s.centro is not null
 
       ;;
   }
