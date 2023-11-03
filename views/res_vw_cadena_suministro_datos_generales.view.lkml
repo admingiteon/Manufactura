@@ -1,15 +1,26 @@
 
 view: res_vw_cadena_suministro_datos_generales {
   derived_table: {
-    sql: select
+    sql: with materiales as (
+              select
               material,
               precio_estandar,
               precio_medio_variable,
               precio_absorbente ,
               centro,
               indicador_control_precios /*s=standar, v=medio variable, a=absorbente ---No aplica--*/
+      from psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales),
 
-      from psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales ;;
+      sociedades as (
+                  SELECT sociedad,
+                         num_almacen
+                  FROM psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_almacenes
+                  WHERE sociedad in ('AMSA','PISA') group by 1,2)
+
+                select m.*,s.sociedad from materiales m
+                left join sociedades s on s.num_almacen=m.centro
+
+      ;;
   }
 
   measure: count {
@@ -26,6 +37,12 @@ view: res_vw_cadena_suministro_datos_generales {
     type: string
     sql: ${TABLE}.centro ;;
   }
+
+  dimension: sociedad {
+    type: string
+    sql: ${TABLE}.sociedad ;;
+  }
+
 
 
   dimension: sku {
