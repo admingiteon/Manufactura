@@ -197,3 +197,4 @@ explore: vw_consolidado_codigos_sku {}
 explore: res_forecast_completo_cp {}
 explore: res_tb_sku_componentes {}
 explore: res_tb_sku_componentes_uni {}
+explore: res_tb_sku_componentes_vertical {}
