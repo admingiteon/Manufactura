@@ -1,7 +1,7 @@
 
 view: salida_modelo_de_calculo_fabricacion_cp {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.fabricacion_cp` ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.CP_PT_Fabricacion_1` ;;
   }
 
   measure: count {
@@ -47,12 +47,12 @@ view: salida_modelo_de_calculo_fabricacion_cp {
   set: detail {
     fields: [
         id,
-	documento,
-	material,
-	centro,
-	cliente,
-	fecha_inicio_produccion_time,
-	cantidad_fabricar
+  documento,
+  material,
+  centro,
+  cliente,
+  fecha_inicio_produccion_time,
+  cantidad_fabricar
     ]
   }
 }
