@@ -51,7 +51,7 @@ view: salida_cp_pt_inventario_lu_1 {
 
   measure: Total_stock_seguridad {
     label: "stock seguridad"
-    type: sum
+    type: min
     sql: ${TABLE}.posicion_actual ;;
   }
 
