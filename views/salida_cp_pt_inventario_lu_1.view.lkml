@@ -43,6 +43,19 @@ view: salida_cp_pt_inventario_lu_1 {
     sql: ${TABLE}.Cantidad ;;
   }
 
+  dimension: stock_seguridad {
+    type: number
+    sql: ${TABLE}.stock_seguridad ;;
+  }
+
+
+  measure: Total_stock_seguridad {
+    label: "stock seguridad"
+    type: sum
+    sql: ${TABLE}.posicion_actual ;;
+  }
+
+
 
   measure: Total_posicion_actual {
     label: "Inventario Inicial"
