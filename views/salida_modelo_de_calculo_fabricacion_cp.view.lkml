@@ -21,7 +21,7 @@ view: salida_modelo_de_calculo_fabricacion_cp {
 
   dimension: material {
     type: string
-    sql: ${TABLE}.material ;;
+    sql: sql: SUBSTR(${TABLE}.id,1,18) ;;
   }
 
   dimension: centro {
