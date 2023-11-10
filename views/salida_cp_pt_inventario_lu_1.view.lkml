@@ -46,7 +46,7 @@ view: salida_cp_pt_inventario_lu_1 {
 
   measure: Total_posicion_actual {
     label: "Inventario Inicial"
-    type: sum
+    type: min
     sql: ${TABLE}.posicion_actual ;;
   }
 
