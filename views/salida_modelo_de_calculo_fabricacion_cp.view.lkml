@@ -26,7 +26,7 @@ view: salida_modelo_de_calculo_fabricacion_cp {
 
   dimension: centro {
     type: string
-    sql: ${TABLE}.centro ;;
+     sql: SUBSTR(${TABLE}.id,20,10) ;;
   }
 
   dimension: cliente {
