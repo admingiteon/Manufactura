@@ -43,6 +43,24 @@ view: salida_cp_pt_inventario_lu_1 {
     sql: ${TABLE}.Cantidad ;;
   }
 
+
+  measure: Total_posicion_actual {
+    label: "Inventario Inicial"
+    type: sum
+    sql: ${TABLE}.posicion_actual ;;
+  }
+
+  measure: Total_Cantidad_requerida {
+    type: sum
+    sql: ${TABLE}.cantidad_requerida ;;
+  }
+
+  measure: Total_Cantidad {
+    label: "Ventas"
+    type: sum
+    sql: ${TABLE}.Cantidad ;;
+  }
+
   dimension: material {
     type: string
     sql: ${TABLE}.material ;;
