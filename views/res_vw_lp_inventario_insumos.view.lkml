@@ -30,8 +30,7 @@ as sku,
     sum(Inventarios.posicion_actual
 ) as
 cantidad,
-     sum(Inventarios.stock_control_calidad)
-as cantidad_calidad,
+
     max(
 Inventarios.stock_seguridad)
 as stock_seguridad
@@ -145,16 +144,6 @@ on M.material=i.sku ;;
     sql: ${TABLE}.insumo_stock_seguridad ;;
   }
 
-  dimension: Stock_QA {
-    type: number
-    sql: ${TABLE}.cantidad_calidad ;;
-  }
-
-  measure: Total_Stock_QA {
-    label: "Stock_QA"
-    type: max
-    sql: ${TABLE}.cantidad_calidad ;;
-  }
 
 
   measure: Total_stock_libre_utilizacion {
