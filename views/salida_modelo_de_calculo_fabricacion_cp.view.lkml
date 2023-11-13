@@ -39,9 +39,9 @@ view: salida_modelo_de_calculo_fabricacion_cp {
     sql: ${TABLE}.fecha_inicio_produccion ;;
   }
 
-  dimension: cantidad_fabricar {
+  dimension: cantidad_requerida {
     type: number
-    sql: ${TABLE}.cantidad_fabricar ;;
+    sql: ${TABLE}.cantidad_requerida ;;
   }
 
   set: detail {
@@ -52,7 +52,7 @@ view: salida_modelo_de_calculo_fabricacion_cp {
   centro,
   cliente,
   fecha_inicio_produccion_time,
-  cantidad_fabricar
+  cantidad_requerida
     ]
   }
 }
