@@ -49,6 +49,20 @@ view: salida_cp_pt_inventario_lu_1 {
   }
 
 
+  dimension: Inventario_Objetivo_Proporcional {
+    type: number
+    sql: ${TABLE}.Inventario_Objetivo_Proporcional ;;
+  }
+
+
+
+  measure: Total_Inventario_Objetivo_Proporcional {
+    label: "Inventario Objetivo Proporcional"
+    type: min
+    sql: ${TABLE}.Inventario_Objetivo_Proporcional ;;
+  }
+
+
   measure: Total_stock_seguridad {
     label: "stock seguridad"
     type: min
