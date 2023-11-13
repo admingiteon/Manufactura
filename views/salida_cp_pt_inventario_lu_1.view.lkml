@@ -49,17 +49,29 @@ view: salida_cp_pt_inventario_lu_1 {
   }
 
 
-  dimension: Inventario_Objetivo_Proporcional {
+  dimension: punto_pedido {
     type: number
-    sql: ${TABLE}.Inventario_Objetivo_Proporcional ;;
+    sql: ${TABLE}.punto_pedido ;;
+  }
+
+  dimension: tamano_lote_fabricacion {
+    type: number
+    sql: ${TABLE}.tamano_lote_fabricacion ;;
+  }
+
+
+  measure: Total_tamano_lote_fabricacion {
+    label: "Tamaño lote Fabricaciòn"
+    type: min
+    sql: ${TABLE}.tamano_lote_fabricacion ;;
   }
 
 
 
-  measure: Total_Inventario_Objetivo_Proporcional {
-    label: "Inventario Objetivo Proporcional"
+  measure: Total_punto_pedido {
+    label: "Punto Pedido"
     type: min
-    sql: ${TABLE}.Inventario_Objetivo_Proporcional ;;
+    sql: ${TABLE}.punto_pedido ;;
   }
 
 
