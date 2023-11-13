@@ -66,7 +66,11 @@ view: salida_cp_pt_inventario_lu_1 {
     sql: ${TABLE}.tamano_lote_fabricacion ;;
   }
 
-
+  measure: Total_cantidad_requerida {
+    label: "Fabricación"
+    type: sum
+    sql: ${TABLE}.cantidad_requerida ;;
+  }
 
   measure: Total_punto_pedido {
     label: "Punto Pedido"
