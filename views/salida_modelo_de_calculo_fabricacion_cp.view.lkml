@@ -36,7 +36,7 @@ view: salida_modelo_de_calculo_fabricacion_cp {
 
   dimension_group: fecha_inicio_produccion {
     type: time
-    sql: ${TABLE}.fecha_inicio_produccion ;;
+    sql: ${TABLE}.fecha ;;
   }
 
   dimension: cantidad_requerida {
