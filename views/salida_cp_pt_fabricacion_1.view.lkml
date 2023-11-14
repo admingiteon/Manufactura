@@ -54,14 +54,14 @@ view: salida_cp_pt_fabricacion_1 {
     label: "Cantidad requerida"
     type: sum
     sql: ${TABLE}.cantidad_requerida ;;
-    value_format: "#,##0.00"
+    value_format: "#,##0"
   }
 
   measure: Total_cantidad_producible {
     label: "Cantidad Producible"
     type: sum
     sql: ${TABLE}.cantidad_producible ;;
-    value_format: "#,##0.00"
+    value_format: "#,##0"
   }
 
   dimension: _producible {
