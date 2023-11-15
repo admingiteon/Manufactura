@@ -147,6 +147,56 @@ dimension: centro {
   sql: ${TABLE}.centro ;;
 }
 
+
+
+  dimension: planta {
+    type: string
+    sql: case when ${TABLE}.centro='DA11' then 'Centro de Distribución'
+when ${TABLE}.centro='DR08' then 'Centro de Distribución'
+when ${TABLE}.centro='PI15' then 'Planta'
+when ${TABLE}.centro='PI11' then 'Planta'
+when ${TABLE}.centro='DR13' then 'Centro de Distribución'
+when ${TABLE}.centro='DN01' then 'Centro de Distribución'
+when ${TABLE}.centro='PI06' then 'Planta'
+when ${TABLE}.centro='DR21' then 'Centro de Distribución'
+when ${TABLE}.centro='DR17' then 'Centro de Distribución'
+when ${TABLE}.centro='PI12' then 'Planta'
+when ${TABLE}.centro='DR10' then 'Centro de Distribución'
+when ${TABLE}.centro='DN11' then 'Centro de Distribución'
+when ${TABLE}.centro='DR16' then 'Centro de Distribución'
+when ${TABLE}.centro='DR15' then 'Centro de Distribución'
+when ${TABLE}.centro='PI14' then 'Planta'
+when ${TABLE}.centro='AI01' then 'Centro de Distribución'
+when ${TABLE}.centro='PI08' then 'Planta'
+when ${TABLE}.centro='PI10' then 'Planta'
+when ${TABLE}.centro='PT01' then 'Centro de Distribución'
+when ${TABLE}.centro='DA09' then 'Centro de Distribución'
+when ${TABLE}.centro='DA03' then 'Centro de Distribución'
+when ${TABLE}.centro='DA28' then 'Centro de Distribución'
+when ${TABLE}.centro='DA19' then 'Centro de Distribución'
+when ${TABLE}.centro='AM01' then 'Centro de Distribución'
+when ${TABLE}.centro='DA08' then 'Centro de Distribución'
+when ${TABLE}.centro='DA13' then 'Centro de Distribución'
+when ${TABLE}.centro='DA01' then 'Centro de Distribución'
+when ${TABLE}.centro='DA02' then 'Centro de Distribución'
+when ${TABLE}.centro='DN05' then 'Centro de Distribución'
+when ${TABLE}.centro='DN18' then 'Centro de Distribución'
+when ${TABLE}.centro='DN19' then 'Centro de Distribución'
+when ${TABLE}.centro='DA20' then 'Centro de Distribución'
+when ${TABLE}.centro='DR01' then 'Centro de Distribución'
+when ${TABLE}.centro='PI19' then 'Planta'
+when ${TABLE}.centro='PI13' then 'Planta'
+when ${TABLE}.centro='DN08' then 'Centro de Distribución'
+when ${TABLE}.centro='DA21' then 'Centro de Distribución'
+when ${TABLE}.centro='DA22' then 'Centro de Distribución'
+when ${TABLE}.centro='DE01' then 'Centro de Distribución'
+when ${TABLE}.centro='PI05' then 'Planta'
+when ${TABLE}.centro='DR20' then 'Centro de Distribución'
+when ${TABLE}.centro='PI01' then 'Planta'
+when ${TABLE}.centro='PG20' then 'Centro de Distribución' end
+ ;;
+  }
+
 dimension: sku {
   type: string
   sql: ${TABLE}.SKU ;;
