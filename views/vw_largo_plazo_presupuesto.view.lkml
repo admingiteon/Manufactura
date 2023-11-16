@@ -67,7 +67,7 @@ view: vw_largo_plazo_presupuesto {
 'PI05',
 'DR20',
 'PI01',
-'PG20',
+'PG20'
 );;
   }
 
@@ -193,8 +193,7 @@ when ${TABLE}.centro='DE01' then 'Centro de Distribución'
 when ${TABLE}.centro='PI05' then 'Planta'
 when ${TABLE}.centro='DR20' then 'Centro de Distribución'
 when ${TABLE}.centro='PI01' then 'Planta'
-when ${TABLE}.centro='PG20' then 'Centro de Distribución' end
- ;;
+when ${TABLE}.centro='PG20' then 'Centro de Distribución' END ;;
   }
 
 dimension: sku {
@@ -214,7 +213,7 @@ dimension: periodo {
 
 dimension: precioventa {
   type: number
-  sql: ${TABLE}.precioventa ;;
+  sql: ${TABLE} END.precioventa ;;
 }
 
 dimension: costo {
