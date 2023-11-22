@@ -54,7 +54,7 @@ explore: vw_largo_plazo_trazabilidad_drill {}
 explore: vw_largo_plazo_presupuesto {
 
   join: val_vw_datos_generales  {
-    type: left_outer
+   type: left_outer
     sql_on: ${val_vw_datos_generales.material} = ${vw_largo_plazo_presupuesto.sku} ;;
     relationship: many_to_one
   }

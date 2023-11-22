@@ -283,7 +283,7 @@ dimension: cantidad {
 
   measure: Total_cantidad {
     label: "importe Cantidad"
-    type: sum
+    type: max
     sql: ${TABLE}.cantidad ;;
     value_format:"#,##0;(#,##0)"
   }
