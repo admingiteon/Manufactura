@@ -1,5 +1,6 @@
 
 view: vw_largo_plazo_cfabricacion {
+
   derived_table: {
     sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_cfabricacion` where planta not like  'AG%' or planta not in (
 'AS01',
@@ -18,7 +19,7 @@ view: vw_largo_plazo_cfabricacion {
   }
 
   measure: Total_cantidad {
-    type: sum
+    type: max
    sql: ${TABLE}.cantidad ;;
     value_format: "0.00"
     drill_fields: [detail*]
