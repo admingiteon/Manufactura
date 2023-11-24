@@ -21,7 +21,7 @@ view: vw_largo_plazo_cfabricacion {
   measure: Total_cantidad {
     type: max
    sql: ${TABLE}.cantidad ;;
-    value_format: "0.00"
+    value_format: "#,##0"
     drill_fields: [detail*]
   }
 
