@@ -184,7 +184,8 @@ view: vw_largo_plazo_trazabilidad {
   measure: Total_cantidad {
     label: "Cantidad"
     type: max
-    sql: ROUND( ${TABLE}.Cantidad,0) ;;
+    sql:  ${TABLE}.Cantidad ;;
+
     value_format:"#,##0;(#,##0)"
 
   }
