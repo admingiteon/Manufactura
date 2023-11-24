@@ -2,7 +2,11 @@
 view: vw_largo_plazo_cfabricacion {
 
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_cfabricacion` where  planta not in (
+    sql:
+
+
+    select * from (
+    SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_cfabricacion` where  planta not in (
 'AS01',
 'BA01',
 'BI00',
@@ -10,7 +14,7 @@ view: vw_largo_plazo_cfabricacion {
 'CM13',
 'MA01',
 'PY01'
-) ;;
+)) a where a.planta not like ('AG%') ;;
   }
 
   measure: count {
