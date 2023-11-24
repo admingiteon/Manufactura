@@ -53,6 +53,12 @@ view: vw_largo_plazo_cfabricacion {
     sql: ${TABLE}.concepto ;;
   }
 
+
+  dimension: Grupo_linea {
+    type: string
+    sql: ${TABLE}.gpolinea ;;
+  }
+
   dimension: planta {
     type: string
     sql: ${TABLE}.planta ;;
