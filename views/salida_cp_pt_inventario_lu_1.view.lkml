@@ -2,7 +2,7 @@
 view: salida_cp_pt_inventario_lu_1 {
   derived_table: {
     sql: SELECT *,
-      substring(id,1,18) as material
+
       FROM `psa-psa-cadena-qa.modelo_de_calculo.CP_PT_Inventario_LU_1` ;;
   }
 

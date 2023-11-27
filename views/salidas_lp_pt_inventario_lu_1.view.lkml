@@ -94,6 +94,7 @@ view: salidas_lp_pt_inventario_lu_1 {
   }
 
   dimension_group: fecha_inicio_produccion {
+    label: "fecha inicio produccion"
     type: time
     sql: ${TABLE}.fecha_inicio_produccion ;;
   }
