@@ -40,18 +40,21 @@ view: salidas_lp_pt_inventario_lu_1 {
     label: "Inventario Inicial"
     type: min
     sql: ${TABLE}.posicion_actual ;;
+    value_format: "#,##0"
   }
 
   measure: Total_cantidad_requerida {
     label: "Fabricación"
     type: sum
     sql: ${TABLE}.cantidad_requerida ;;
+    value_format: "#,##0"
   }
 
   measure: Total_tamano_lote_fabricacion {
     label: "Tamaño lote Fabricaciòn"
     type: min
     sql: ${TABLE}.tamano_lote_fabricacion ;;
+    value_format: "#,##0"
   }
 
 
