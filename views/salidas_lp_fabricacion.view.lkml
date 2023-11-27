@@ -1,7 +1,7 @@
 
 view: salidas_lp_fabricacion {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.fabricacion limit 1000 ;;
+    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.fabricacion  ;;
   }
 
   measure: count {
@@ -39,14 +39,21 @@ view: salidas_lp_fabricacion {
     sql: ${TABLE}.cantidad_fabricar ;;
   }
 
+
+
+
+
+
+
+
   set: detail {
     fields: [
         id,
-	documento,
-	material,
-	centro,
-	fecha_inicio_produccion_time,
-	cantidad_fabricar
+  documento,
+  material,
+  centro,
+  fecha_inicio_produccion_time,
+  cantidad_fabricar
     ]
   }
 }

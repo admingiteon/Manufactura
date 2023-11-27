@@ -1,7 +1,7 @@
 
 view: salidas_lp_insumo_inventario_1 {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Inventario_1 limit 1000 ;;
+    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Inventario_1  ;;
   }
 
   measure: count {
@@ -34,13 +34,68 @@ view: salidas_lp_insumo_inventario_1 {
     sql: ${TABLE}.posicion_actual ;;
   }
 
+  dimension: Material {
+    type: string
+    sql: SUBSTR(${TABLE}.id,1,18) ;;
+  }
+
+  dimension: Centro {
+    type: string
+    sql: SUBSTR(${TABLE}.id,20,10) ;;
+  }
+
+
+  measure: Total_tamano_lote_fabricacion {
+    label: "Tamaño lote Fabricaciòn"
+    type: min
+    sql: ${TABLE}.tamano_lote_fabricacion ;;
+  }
+
+  measure: Total_cantidad_requerida {
+    label: "Fabricación"
+    type: sum
+    sql: ${TABLE}.cantidad_requerida ;;
+  }
+
+  measure: Total_punto_pedido {
+    label: "Punto Pedido"
+    type: min
+    sql: ${TABLE}.punto_pedido ;;
+  }
+
+
+  measure: Total_stock_seguridad {
+    label: "stock seguridad"
+    type: min
+    sql: ${TABLE}.stock_seguridad ;;
+  }
+
+
+
+  measure: Total_posicion_actual {
+    label: "Inventario Inicial"
+    type: min
+    sql: ${TABLE}.posicion_actual ;;
+  }
+
+  measure: Total_Cantidad_requerida {
+    type: sum
+    sql: ${TABLE}.cantidad_requerida ;;
+  }
+
+  measure: Total_Cantidad {
+    label: "Ventas"
+    type: sum
+    sql: ${TABLE}.Cantidad ;;
+  }
+
   set: detail {
     fields: [
         componente,
-	id,
-	fecha_inicio_produccion_time,
-	fecha_orden_de_compra_time,
-	posicion_actual
+  id,
+  fecha_inicio_produccion_time,
+  fecha_orden_de_compra_time,
+  posicion_actual
     ]
   }
 }

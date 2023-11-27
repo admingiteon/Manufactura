@@ -1,7 +1,7 @@
 
 view: salidas_lp_insumo_compras_1 {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Compras_1 limit 1000 ;;
+    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Compras_1  ;;
   }
 
   measure: count {
@@ -34,13 +34,24 @@ view: salidas_lp_insumo_compras_1 {
     sql: ${TABLE}.cantidad_requerida ;;
   }
 
+  dimension: Centro {
+    type: string
+    sql: SUBSTR(${TABLE}.id,20,10) ;;
+  }
+
+  dimension: Material {
+    type: string
+    sql: SUBSTR(${TABLE}.id,1,18) ;;
+  }
+
+
   set: detail {
     fields: [
         componente,
-	id,
-	fecha_inicio_produccion_time,
-	fecha_orden_de_compra_time,
-	cantidad_requerida
+  id,
+  fecha_inicio_produccion_time,
+  fecha_orden_de_compra_time,
+  cantidad_requerida
     ]
   }
 }
