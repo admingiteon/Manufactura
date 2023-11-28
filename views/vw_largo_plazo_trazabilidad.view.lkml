@@ -5,7 +5,7 @@
 view: vw_largo_plazo_trazabilidad {
   derived_table: {
     sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_trazabilidad` where sku in
-    (SELECT sku FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_trazabilidad` where id_concepto=1) and
+    (SELECT sku FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_trazabilidad` where id_concepto=1)
 
 --    `psa-psa-cadena-qa.reporting_ecc_mx.vw_largo_plazo_trazabilidad`
  --   where sku in ( SELECT sku FROM psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_trazabilidad where id_concepto=1)
