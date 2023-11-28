@@ -79,7 +79,10 @@ view: vw_largo_plazo_trazabilidad {
 
 
 
-
+  dimension: centro {
+    type: string
+    sql: ${TABLE}.centro ;;
+  }
 
 
 
