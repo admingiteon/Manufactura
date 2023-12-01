@@ -9,6 +9,12 @@ view: salida_cp_pt_comprados_inventario_lu_1 {
     drill_fields: [detail*]
   }
 
+  measure: Total_cantidad_a_comprar {
+    label: "Cantidad a comprar"
+    type: sum
+     sql: ${TABLE}.cantidad_a_comprar ;;
+  }
+
   dimension_group: fecha {
     type: time
     sql: ${TABLE}.fecha ;;
@@ -82,19 +88,19 @@ view: salida_cp_pt_comprados_inventario_lu_1 {
   set: detail {
     fields: [
         fecha_time,
-	id,
-	cliente,
-	centro,
-	centro_fabricacion,
-	material,
-	cantidad,
-	posicion_actual,
-	inventario_objetivo_proporcional,
-	tipo_producto,
-	cantidad_a_comprar,
-	stock_seguridad,
-	tamano_lote_fabricacion,
-	fecha_orden_de_compra_time
+  id,
+  cliente,
+  centro,
+  centro_fabricacion,
+  material,
+  cantidad,
+  posicion_actual,
+  inventario_objetivo_proporcional,
+  tipo_producto,
+  cantidad_a_comprar,
+  stock_seguridad,
+  tamano_lote_fabricacion,
+  fecha_orden_de_compra_time
     ]
   }
 }
