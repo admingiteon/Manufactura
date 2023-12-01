@@ -1,7 +1,7 @@
 
 view: salida_cp_pt_comprados_inventario_lu_1 {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.CP_PT_Comprados_Inventario_LU_1 limit 1000 ;;
+    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.CP_PT_Comprados_Inventario_LU_1  where cantidad_a_comprar!=0  ;;
   }
 
   measure: count {
@@ -13,6 +13,7 @@ view: salida_cp_pt_comprados_inventario_lu_1 {
     label: "Cantidad a comprar"
     type: sum
      sql: ${TABLE}.cantidad_a_comprar ;;
+
   }
 
   dimension_group: fecha {
