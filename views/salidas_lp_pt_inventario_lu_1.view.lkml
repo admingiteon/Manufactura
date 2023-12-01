@@ -29,6 +29,11 @@ view: salidas_lp_pt_inventario_lu_1 {
     sql: SUBSTR(${TABLE}.id,1,18) ;;
   }
 
+  dimension: Tipo_Producto {
+    type: string
+     sql: ${TABLE}.tipo_producto ;;
+  }
+
   measure: ventas {
     type: sum
     sql: ${TABLE}.Cantidad ;;
