@@ -21,6 +21,11 @@ view: salida_cp_pt_inventario_lu_1 {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: Tipo_Producto {
+    type: string
+    sql: ${TABLE}.tipo_producto ;;
+  }
+
 
   dimension: Centro {
     type: string
