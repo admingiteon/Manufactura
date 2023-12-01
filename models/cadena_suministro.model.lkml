@@ -205,6 +205,7 @@ explore: salida_cp_insumo_inventario_1 {}
 explore: salida_cp_pt_inventario_lu_1 {}
 explore: salida_modelo_de_calculo_fabricacion_cp {}
 explore: salida_cp_pt_fabricacion_1 {}
+explore: salida_cp_pt_comprados_inventario_lu_1 {}
 
 explore: salidas_lp_fabricacion {}
 explore: salidas_lp_insumo_compras_1 {}
