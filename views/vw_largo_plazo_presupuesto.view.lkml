@@ -495,7 +495,7 @@ view: vw_largo_plazo_presupuesto {
                   when r09.precioventa=0 and r10.costo_absorbente<0 then 0
                   when r09.precioventa>0 and r10.costo_absorbente=0 then 100.00
                   when r09.precioventa<0 and r10.costo_absorbente=0 then -100.00
-                  else  (1-(r10.costo_absorbente/r09.precioventa ))
+                  else (r10.costo_absorbente/r09.precioventa) *100 -- (1-(r10.costo_absorbente/r09.precioventa ))
                end as margenporciento,
              0,
              0
@@ -700,7 +700,8 @@ from (
       select * except(cantidad), margenporciento   as cantidad from vw_tablero_largo_plazo_presupuesto_renglon_16 union all
       select * except(cantidad), cantidad          as cantidad from vw_tablero_largo_plazo_presupuesto_renglon_17 union all ----Como obtener el costo de insumoes, pendiente---
       select * except(cantidad), cantidad          as cantidad from vw_tablero_largo_plazo_presupuesto_renglon_18             ----ver con Mara pendiente---
-       ) As renglones where SKU='000000000004000072'
+       ) As renglones
+      --where SKU='000000000004000072'
 
 
 
