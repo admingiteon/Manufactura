@@ -617,7 +617,7 @@ view: vw_largo_plazo_presupuesto {
                   when r05.precioventa=0 and r15.metaunitaria<0 then 0
                   when r05.precioventa>0 and r15.metaunitaria=0 then 100.00
                   when r05.precioventa<0 and r15.metaunitaria=0 then -100.00
-                  else  (1-(r15.metaunitaria/r05.precioventa ))
+                  else  (r15.metaunitaria/r05.precioventa ) *100 --(1-(r15.metaunitaria/r05.precioventa ))
                end as margenporciento,
              0,
              0
