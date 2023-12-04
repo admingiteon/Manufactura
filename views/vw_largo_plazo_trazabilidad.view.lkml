@@ -94,7 +94,7 @@ view: vw_largo_plazo_trazabilidad {
 
  dimension: concepto {
   type: string
-  sql:case when  ${TABLE}.Concepto in  ('%','% DEMANDA NO CUBIERTA','% COBERTURA DE LA DEMANDA (INVENTARIO EN LU)') then ${TABLE}.Concepto else concat(${TABLE}.Concepto,' $') end ;;
+  sql:${TABLE}.Concepto ;;
 
   link: {
     label: "Drill-Down"
