@@ -3,7 +3,7 @@ view: vw_largo_plazo_presupuesto {
   derived_table: {
     sql:
 
-    with
+      with
 
 
 
@@ -769,6 +769,8 @@ from (
 'PI01',
 'PG20'
 )
+
+      --where SKU='000000000004000072'
 
       --where SKU='000000000004000072'
 
