@@ -212,3 +212,5 @@ explore: salidas_lp_insumo_compras_1 {}
 explore: salidas_lp_insumo_inventario_1 {}
 explore: salidas_lp_pt_fabricacion_1 {}
 explore: salidas_lp_pt_inventario_lu_1 {}
+
+explore: alm_lp_pt_almacenamiento {}
