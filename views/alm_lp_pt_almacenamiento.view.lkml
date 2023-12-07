@@ -27,7 +27,7 @@ view: alm_lp_pt_almacenamiento {
     type: sum
     sql: ${TABLE}.valor ;;
     drill_fields: [detail*]
-    value_format: "0.00"
+    value_format: "#,##0"
   }
 
   dimension: idconcepto {
