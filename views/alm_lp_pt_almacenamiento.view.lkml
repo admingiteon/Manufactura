@@ -14,7 +14,7 @@ view: alm_lp_pt_almacenamiento {
       select centro,fecha,nombre,ocupacion_final valor,'OCUPACION FINAL, EN PALLETS' concepto ,5 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
 
-      select centro,fecha,nombre,ocupacion_final/NULLIF(capacidad_total_ubicacion,0) valor,'USO DE CAPACIDAD DE ALMACENAJE (#)' concepto,6 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select centro,fecha,nombre,ocupacion_final/NULLIF(capacidad_total_ubicacion,0) * 100 valor,'USO DE CAPACIDAD DE ALMACENAJE (%)' concepto,6 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
       select centro,fecha,nombre,case when  ocupacion_final > capacidad_total_ubicacion then capacidad_total_ubicacion /NULLIF(ocupacion_final,0) else 0 end valor,'FALTANTE DE CAPACIDAD DE ALMACENAJE (#)' concepto,7 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
