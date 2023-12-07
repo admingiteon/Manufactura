@@ -37,7 +37,7 @@ view: alm_lp_pt_almacenamiento {
 
   dimension: centro {
     type: string
-    sql: ${TABLE}.centro ;;
+    sql: concat(${TABLE}.centro,'-',${TABLE}.nombre) ;;
   }
 
   dimension_group: fecha {
