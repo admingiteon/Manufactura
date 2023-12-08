@@ -69,12 +69,12 @@ view: alm_lp_pt_almacenamiento {
 
   dimension: planta {
     type: string
-    sql: ${TABLE}.valor ;;
+    sql: ${TABLE}.planta ;;
   }
 
   dimension: grupo_art {
     type: string
-    sql: ${TABLE}.valor ;;
+    sql: ${TABLE}.grupo_art ;;
   }
 
 
