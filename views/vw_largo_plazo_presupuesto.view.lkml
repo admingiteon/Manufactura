@@ -180,7 +180,7 @@ dimension: id_concepto {
 
 dimension: concepto {
   type: string
-  sql: case when  ${TABLE}.Concepto in  ('%','% DEMANDA NO CUBIERTA','% COBERTURA DE LA DEMANDA (INVENTARIO EN LU)') then ${TABLE}.Concepto else concat(${TABLE}.Concepto,' $') end ;;
+  sql: case when  ${TABLE}.Concepto in  ('%','% DEMANDA NO CUBIERTA','% COBERTURA DE LA DEMANDA (INVENTARIO EN LU)') then ${TABLE}.Concepto else concat(${TABLE}.Concepto,' ($)') end ;;
 }
 
 dimension: centro {
