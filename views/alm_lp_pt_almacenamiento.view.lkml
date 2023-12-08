@@ -7,9 +7,9 @@ view: alm_lp_pt_almacenamiento {
       union all
       select planta,grupo_art, centro,fecha,nombre,ocupacion_inicial valor,'OCUPACION INICIAL' concepto,2 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
        union all
-      select planta,grupo_art, centro,fecha,nombre,0 valor,'ENTRADAS' concepto,3 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre,entradas valor,'ENTRADAS' concepto,3 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
-      select planta,grupo_art, centro,fecha,nombre,0 valor,'SALIDAS' concepto,4 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre,salidas valor,'SALIDAS' concepto,4 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
       select planta,grupo_art, centro,fecha,nombre,ocupacion_final valor,'OCUPACION FINAL, EN PALLETS' concepto ,5 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
