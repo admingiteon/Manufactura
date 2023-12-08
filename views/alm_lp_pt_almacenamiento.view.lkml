@@ -31,7 +31,7 @@ view: alm_lp_pt_almacenamiento {
   }
 
   measure: total {
-    type: sum
+    type: max
     sql: ${TABLE}.valor ;;
     drill_fields: [detail*]
     value_format: "#,##0.00"
