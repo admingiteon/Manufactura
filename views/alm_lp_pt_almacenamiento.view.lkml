@@ -72,10 +72,38 @@ view: alm_lp_pt_almacenamiento {
     sql: ${TABLE}.planta ;;
   }
 
+
+
   dimension: grupo_art {
     type: string
-    sql: ${TABLE}.grupo_art ;;
+    sql: case when  ${TABLE}.grupo_art = 'AM' then 'AMSA'
+              when  ${TABLE}.grupo_art = 'A' then 'Anestesiología y Terapia Intensiva'
+              when  ${TABLE}.grupo_art = 'T' then 'Antibióticos Intra-Hospitalarios'
+              when  ${TABLE}.grupo_art = 'O' then 'Antibióticos de Prescripción'
+              when ${TABLE}.grupo_art = 'L' then 'Control de Infecciones'
+              when ${TABLE}.grupo_art = 'E' then 'Diálisis Peritoneal'
+              when ${TABLE}.grupo_art = 'G' then 'Enfermedades Crónicas'
+              when ${TABLE}.grupo_art = 'K' then 'Farmacéuticos OTC'
+              when ${TABLE}.grupo_art = 'GP' then 'GENEPISA'
+               when ${TABLE}.grupo_art = 'J' then 'Hemodiálisis'
+      when ${TABLE}.grupo_art = 'MI' then 'Maquila Intl.'
+      when ${TABLE}.grupo_art = 'M' then 'Maquila Nacional'
+      when ${TABLE}.grupo_art = 'MP' then 'Marca Propia'
+      when ${TABLE}.grupo_art = 'S' then 'NEUROLOGÍA y PSIQUIATRÍA'
+      when ${TABLE}.grupo_art = 'F' then 'Nutrición'
+      when ${TABLE}.grupo_art = 'D' then 'Oftalmología'
+      when ${TABLE}.grupo_art = 'H' then 'Oncológicos'
+      when ${TABLE}.grupo_art = 'Q' then 'Pediatría'
+      when ${TABLE}.grupo_art = 'PMD' then 'Productos Medimix'
+      when ${TABLE}.grupo_art = 'SM' then 'Salucom'
+      when ${TABLE}.grupo_art = 'B' then 'Terapia de Infusión'
+      when ${TABLE}.grupo_art = 'R' then 'Terapia del dolor'
+      when ${TABLE}.grupo_art = 'N' then 'Transplantes'
+      when ${TABLE}.grupo_art = 'VDD' then 'Venta Directa Dimesa'
+      when ${TABLE}.grupo_art = 'U' then 'Genéricos'
+      else ${TABLE}.grupo_art END  ;;
   }
+
 
 
 
