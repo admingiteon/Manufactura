@@ -214,3 +214,4 @@ explore: salidas_lp_pt_fabricacion_1 {}
 explore: salidas_lp_pt_inventario_lu_1 {}
 
 explore: alm_lp_pt_almacenamiento {}
+explore: salida_lp_Forecast_Completo_LP {}

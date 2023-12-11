@@ -6,7 +6,7 @@ view: vw_largo_plazo_cfabricacion {
 
 
     select * from (
-    SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_cfabricacion` where  planta not in (
+    SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Fabricacion_1` where  planta not in (
 'AS01',
 'BA01',
 'BI00',
@@ -60,7 +60,7 @@ view: vw_largo_plazo_cfabricacion {
 
   dimension: Grupo_linea {
     type: string
-    sql: ${TABLE}.gpolinea ;;
+    sql: ${TABLE}.puesto_trabajo ;;
   }
 
   dimension: planta {
@@ -77,22 +77,21 @@ view: vw_largo_plazo_cfabricacion {
 
   dimension: planta_descrip {
     type: string
-    sql: concat(  ${TABLE}.planta ,'-',${TABLE}.describeplanta );;
+    sql: concat(  ${TABLE}.planta );;
   }
 
 
 
 
-
-  dimension: periodo_num {
-    type: string
-    sql: ${TABLE}.PeriodoNum ;;
+  dimension_group: periodo {
+    type: time
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.fecha ;;
   }
 
-  dimension: periodo {
-    type: string
-    sql: ${TABLE}.periodo ;;
-  }
+
 
   dimension: cantidad {
     type: number
@@ -106,8 +105,7 @@ view: vw_largo_plazo_cfabricacion {
   planta,
   describeplanta,
   sku,
-  periodo_num,
-  periodo,
+
   cantidad
     ]
   }
