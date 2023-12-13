@@ -1,7 +1,7 @@
 
 view: salida_cp_pt_fabricacion_1 {
   derived_table: {
-    sql: select *, substring(id,1,18) as material from psa-psa-cadena-qa.modelo_de_calculo.CP_PT_Fabricacion_1 ;;
+    sql: select * from `psa-psa-cadena-qa.modelo_de_calculo.CP_PT_Fabricacion_Final` ;;
   }
 
   measure: count {
@@ -22,6 +22,21 @@ view: salida_cp_pt_fabricacion_1 {
   dimension: material {
     type: string
     sql: ${TABLE}.material ;;
+  }
+
+  dimension: centro_suministrador {
+    type: string
+    sql: ${TABLE}.centro_suministrador ;;
+  }
+
+  dimension: tipo {
+    type: string
+    sql: ${TABLE}.tipo ;;
+  }
+
+  dimension: producible  {
+    type: number
+    sql: ${TABLE}.producible ;;
   }
 
   dimension: Centro {
