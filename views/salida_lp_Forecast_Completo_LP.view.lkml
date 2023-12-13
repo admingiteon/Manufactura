@@ -1,7 +1,7 @@
 
 view: salida_lp_Forecast_Completo_LP {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.salida_lp_Forecast_Completo_LP` ;;
+    sql: SELECT *  FROM `psa-psa-cadena-qa.modelo_de_calculo.Forecast_Completo_LP` ;;
   }
 
   measure: count {
@@ -31,6 +31,12 @@ view: salida_lp_Forecast_Completo_LP {
 
   dimension: cantidad {
     type: number
+    sql: ${TABLE}.Cantidad ;;
+  }
+
+
+  measure: Total_cantidad {
+    type: sum
     sql: ${TABLE}.Cantidad ;;
   }
 

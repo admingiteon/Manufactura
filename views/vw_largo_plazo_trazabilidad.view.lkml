@@ -183,6 +183,7 @@ view: vw_largo_plazo_trazabilidad {
   dimension: cantidad {
     type: number
     sql: ${TABLE}.Cantidad ;;
+    value_format:"#,##0;(#,##0)"
   }
 
   measure: Total_cantidad {
