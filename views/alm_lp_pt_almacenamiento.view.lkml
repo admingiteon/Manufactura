@@ -52,7 +52,7 @@ view: alm_lp_pt_almacenamiento {
 
   measure: total_ENTRADAS {
     label: "ENTRADAS"
-    type: max
+    type: sum
     sql: ${TABLE}.valor ;;
     filters: [idconcepto: "3"]
     drill_fields: [detail*]
@@ -61,7 +61,7 @@ view: alm_lp_pt_almacenamiento {
 
   measure: total_SALIDAS {
     label: "SALIDAS"
-    type: max
+    type: sum
     sql: ${TABLE}.valor ;;
     filters: [idconcepto: "4"]
     drill_fields: [detail*]
