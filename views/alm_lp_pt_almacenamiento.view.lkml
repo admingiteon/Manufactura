@@ -70,7 +70,7 @@ view: alm_lp_pt_almacenamiento {
 
   measure: total_OCUPACION_FINAL_EN_PALLETS {
     label: "OCUPACION FINAL, EN PALLETS"
-    type: max
+    type: min
     sql: ${TABLE}.valor ;;
     filters: [idconcepto: "5"]
     drill_fields: [detail*]
