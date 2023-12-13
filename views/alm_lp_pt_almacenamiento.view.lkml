@@ -5,7 +5,7 @@ view: alm_lp_pt_almacenamiento {
 
       select planta,grupo_art, centro,fecha,nombre,capacidad_total_ubicacion valor,'CAPACIDAD DE ALMACENAJE' concepto,1 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
-      select planta,grupo_art, centro,fecha,nombre, max(ocupacion_inicial) valor,'OCUPACION INICIAL' concepto,2 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento group by planta,grupo_art, centro,fecha,nombre
+      select planta,grupo_art, centro,fecha,nombre, ocupacion_inicial valor,'OCUPACION INICIAL' concepto,2 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
        union all
       select planta,grupo_art, centro,fecha,nombre,entradas valor,'ENTRADAS' concepto,3 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
@@ -28,6 +28,89 @@ view: alm_lp_pt_almacenamiento {
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+
+
+  measure: total_CAPACIDAD_DE_ALMACENAJE {
+    label: "CAPACIDAD DE ALMACENAJE"
+    type: max
+    sql: ${TABLE}.valor ;;
+    filters: [idconcepto: "1"]
+    drill_fields: [detail*]
+    value_format: "#,##0.00"
+  }
+
+  measure: total_OCUPACION_INICIAL {
+    label: "OCUPACION INICIAL"
+    type: max
+    sql: ${TABLE}.valor ;;
+    filters: [idconcepto: "2"]
+    drill_fields: [detail*]
+    value_format: "#,##0.00"
+  }
+
+  measure: total_ENTRADAS {
+    label: "ENTRADAS"
+    type: max
+    sql: ${TABLE}.valor ;;
+    filters: [idconcepto: "3"]
+    drill_fields: [detail*]
+    value_format: "#,##0.00"
+  }
+
+  measure: total_SALIDAS {
+    label: "SALIDAS"
+    type: max
+    sql: ${TABLE}.valor ;;
+    filters: [idconcepto: "4"]
+    drill_fields: [detail*]
+    value_format: "#,##0.00"
+  }
+
+  measure: total_OCUPACION_FINAL_EN_PALLETS {
+    label: "OCUPACION FINAL, EN PALLETS"
+    type: max
+    sql: ${TABLE}.valor ;;
+    filters: [idconcepto: "5"]
+    drill_fields: [detail*]
+    value_format: "#,##0.00"
+  }
+
+  measure: total_USO_DE_CAPACIDAD_DE_ALMACENAJE_POR {
+    label: "USO DE CAPACIDAD DE ALMACENAJE (%)"
+    type: max
+    sql: ${TABLE}.valor ;;
+    filters: [idconcepto: "6"]
+    drill_fields: [detail*]
+    value_format: "#,##0.00"
+  }
+
+  measure: total_FALTANTE_DE_CAPACIDAD_DE_ALMACENAJE_NUM {
+    label: "FALTANTE DE CAPACIDAD DE ALMACENAJE (#)"
+    type: max
+    sql: ${TABLE}.valor ;;
+    filters: [idconcepto: "7"]
+    drill_fields: [detail*]
+    value_format: "#,##0.00"
+  }
+
+  measure: total_FALTANTE_DE_CAPACIDAD_DE_ALMACENAJE_POR {
+    label: "FALTANTE DE CAPACIDAD DE ALMACENAJE (%)"
+    type: max
+    sql: ${TABLE}.valor ;;
+    filters: [idconcepto: "8"]
+    drill_fields: [detail*]
+    value_format: "#,##0.00"
+  }
+
+  measure: total_TOTAL_DE_PALLETS_MOVIDOS {
+    label: "TOTAL DE PALLETS MOVIDOS"
+    type: sum
+    sql: ${TABLE}.valor ;;
+    filters: [idconcepto: "9"]
+    drill_fields: [detail*]
+    value_format: "#,##0.00"
   }
 
   measure: total {
