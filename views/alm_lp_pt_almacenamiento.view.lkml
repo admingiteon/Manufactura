@@ -115,7 +115,7 @@ view: alm_lp_pt_almacenamiento {
 
   measure: total {
     type: number
-    sql: case when idconcepto in (1,2) then Max(${TABLE}.valor)
+    sql: case when idconcepto in (1,2,6) then Max(${TABLE}.valor)
               when idconcepto in (5) then min(${TABLE}.valor)  else  sum(${TABLE}.valor) end ;;
     drill_fields: [detail*]
     value_format: "#,##0.00"
