@@ -3,23 +3,23 @@ view: alm_lp_pt_almacenamiento {
   derived_table: {
     sql:
 
-      select planta,grupo_art, centro,fecha,nombre,capacidad_total_ubicacion valor,'CAPACIDAD DE ALMACENAJE' concepto,1 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre,capacidad_total_ubicacion valor,'CAPACIDAD DE ALMACENAJE' concepto,1 idconcepto,capacidad_total_ubicacion,ocupacion_inicial from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
-      select planta,grupo_art, centro,fecha,nombre, ocupacion_inicial valor,'OCUPACION INICIAL' concepto,2 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre, ocupacion_inicial valor,'OCUPACION INICIAL' concepto,2 idconcepto,capacidad_total_ubicacion,ocupacion_inicial from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
        union all
-      select planta,grupo_art, centro,fecha,nombre,entradas valor,'ENTRADAS' concepto,3 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre,entradas valor,'ENTRADAS' concepto,3 idconcepto,capacidad_total_ubicacion,ocupacion_inicial from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
-      select planta,grupo_art, centro,fecha,nombre,salidas valor,'SALIDAS' concepto,4 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre,salidas valor,'SALIDAS' concepto,4 idconcepto,capacidad_total_ubicacion,ocupacion_inicial from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
-      select planta,grupo_art, centro,fecha,nombre,ocupacion_final valor,'OCUPACION FINAL, EN PALLETS' concepto ,5 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre,ocupacion_final valor,'OCUPACION FINAL, EN PALLETS' concepto ,5 idconcepto,capacidad_total_ubicacion,ocupacion_inicial from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
-      select planta,grupo_art, centro,fecha,nombre,ocupacion_final/NULLIF(capacidad_total_ubicacion,0) * 100 valor,'USO DE CAPACIDAD DE ALMACENAJE (%)' concepto,6 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre,ocupacion_final/NULLIF(capacidad_total_ubicacion,0) * 100 valor,'USO DE CAPACIDAD DE ALMACENAJE (%)' concepto,6 idconcepto,capacidad_total_ubicacion,ocupacion_inicial from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
-      select planta,grupo_art, centro,fecha,nombre,  capacidad_total_ubicacion-ocupacion_inicial  valor,'FALTANTE DE CAPACIDAD DE ALMACENAJE (#)' concepto,7 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre, 0  valor,'FALTANTE DE CAPACIDAD DE ALMACENAJE (#)' concepto,7 idconcepto,capacidad_total_ubicacion,ocupacion_inicial from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
-      select planta,grupo_art, centro,fecha,nombre, 100-(ocupacion_final/NULLIF(capacidad_total_ubicacion,0) * 100) valor,'FALTANTE DE CAPACIDAD DE ALMACENAJE (%)' concepto,8 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre, 100-(ocupacion_final/NULLIF(capacidad_total_ubicacion,0) * 100) valor,'FALTANTE DE CAPACIDAD DE ALMACENAJE (%)' concepto,8 idconcepto,capacidad_total_ubicacion,ocupacion_inicial from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
        union all
-      select planta,grupo_art, centro,fecha,nombre,total_pallets valor,'TOTAL DE PALLETS MOVIDOS' concepto,9 idconcepto from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre,total_pallets valor,'TOTAL DE PALLETS MOVIDOS' concepto,9 idconcepto,capacidad_total_ubicacion,ocupacion_inicial from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
 
 
       ;;
@@ -115,7 +115,11 @@ view: alm_lp_pt_almacenamiento {
 
   measure: total {
     type: number
-    sql: case when idconcepto in (1,2,6,7) then Max(${TABLE}.valor)
+    sql: case when idconcepto in (1,2,6) then Max(${TABLE}.valor)
+              when idconcepto in (7) then Max(${TABLE}.capacidad_total_ubicacion)-Max(${TABLE}.ocupacion_inicial)
+
+
+
               when idconcepto in (5) then min(${TABLE}.valor)  else  sum(${TABLE}.valor) end ;;
     drill_fields: [detail*]
     value_format: "#,##0.00"
