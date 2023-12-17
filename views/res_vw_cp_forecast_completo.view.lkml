@@ -1,7 +1,9 @@
 
 view: res_vw_cp_forecast_completo {
   derived_table: {
-    sql: SELECT *, ROW_NUMBER() OVER() row_number  FROM `psa-psa-cadena-qa.quality_data.vw_cp_forecast_completo`
+    sql: SELECT *, ROW_NUMBER() OVER() row_number
+    --FROM `psa-psa-cadena-qa.quality_data.vw_cp_forecast_completo`
+         FROM  `psa-psa-cadena-qa.modelo_de_calculo.Forecast_Completo_CP`
          where  tipo='Forecast' and cantidad !=0
         and    substring(id,1,18) in ( select material from `psa-psa-cadena-qa.reporting_ecc_mx.vw_consolidado_codigos_sku`)
 
