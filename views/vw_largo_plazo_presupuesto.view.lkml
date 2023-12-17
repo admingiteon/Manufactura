@@ -293,8 +293,8 @@ dimension: cantidad {
 
   measure: Total_cantidad {
     label: "importe Cantidad"
-    type: max
-    sql: ${TABLE}.cantidad ;;
+    type: number
+    sql: case when ${id_concepto} in (1,2) then sum(${TABLE}.cantidad) else max(${TABLE}.cantidad) end ;;
     value_format:"#,##0;(#,##0)"
   }
 
