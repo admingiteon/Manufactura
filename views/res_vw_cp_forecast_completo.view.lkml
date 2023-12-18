@@ -1,7 +1,7 @@
 
 view: res_vw_cp_forecast_completo {
   derived_table: {
-    sql: SELECT *, ROW_NUMBER() OVER() row_number
+    sql: SELECT *, ROW_NUMBER() OVER() row_number,id material
     --FROM `psa-psa-cadena-qa.quality_data.vw_cp_forecast_completo`
          FROM  `psa-psa-cadena-qa.modelo_de_calculo.Forecast_Completo_CP`
          where  tipo='Forecast' and cantidad !=0
