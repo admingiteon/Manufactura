@@ -86,7 +86,7 @@ view: res_vw_cp_forecast_completo {
 
   dimension: sku {
     type: string
-    sql: SUBSTR(${TABLE}.material,12,10) ;;
+    sql: SUBSTR(${TABLE}.material,12,8) ;;
   }
 
   set: detail {
