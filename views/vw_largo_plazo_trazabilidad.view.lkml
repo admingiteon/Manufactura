@@ -92,6 +92,14 @@ view: vw_largo_plazo_trazabilidad {
     sql: ${TABLE}.id_Concepto ;;
   }
 
+
+  dimension: orden_concepto {
+    type: number
+    sql: ${TABLE}.orden_concepto ;;
+  }
+
+
+
  dimension: concepto {
   type: string
   sql:${TABLE}.Concepto ;;
