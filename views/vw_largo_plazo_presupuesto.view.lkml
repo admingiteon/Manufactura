@@ -73,7 +73,7 @@ view: vw_largo_plazo_presupuesto {
 'DR20',
 'PI01',
 'PG20'
-) and orden_concepto not in (5,6,7,8,15,16)
+) and id_concepto not in (5,6,7,8,15,16)
 
 
 
@@ -300,7 +300,7 @@ dimension: cantidad {
   measure: Total_cantidad {
     label: "importe Cantidad"
     type: number
-    sql: case when ${id_concepto} in (1,2) then sum(${TABLE}.cantidad) else max(${TABLE}.cantidad) end ;;
+    sql: case when ${id_concepto} in (1,2,9,13,17,18) then sum(${TABLE}.cantidad) else max(${TABLE}.cantidad) end ;;
     value_format:"#,##0;(#,##0)"
   }
 
