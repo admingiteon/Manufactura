@@ -73,7 +73,7 @@ view: vw_largo_plazo_presupuesto {
 'DR20',
 'PI01',
 'PG20'
-)
+) and orden_concepto not in (5,6,7,8,15,16)
 
 
 
@@ -176,6 +176,12 @@ dimension: articulodescribe {
 dimension: id_concepto {
   type: number
   sql: ${TABLE}.id_Concepto ;;
+}
+
+
+dimension: orden_concepto {
+    type: number
+    sql: ${TABLE}.orden_concepto ;;
 }
 
 dimension: concepto {
