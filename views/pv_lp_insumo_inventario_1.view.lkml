@@ -1,12 +1,47 @@
 
 view: pv_lp_insumo_inventario_1 {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Inventario_1` LIMIT 10 ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Inventario_1`  ;;
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: Total_cantidad {
+    type: sum
+    sql: ${TABLE}.Cantidad ;;
+  }
+
+  dimension: sku {
+    type: string
+    sql: SUBSTR(${TABLE}.material,12,8) ;;
+  }
+
+
+  dimension_group: Fecha_creacion {
+    type: time
+
+    timeframes: [
+      raw,
+      time,
+      hour_of_day,
+      date,
+      day_of_week,
+      day_of_week_index,
+      day_of_month,
+      day_of_year,
+      week,
+      week_of_year,
+      month,
+      month_name,
+      month_num,
+      quarter,
+      year
+    ]
+    sql: cast(${TABLE}.fecha AS TIMESTAMP) ;;
+    convert_tz: no
   }
 
   dimension_group: fecha {
@@ -102,23 +137,23 @@ view: pv_lp_insumo_inventario_1 {
   set: detail {
     fields: [
         fecha_time,
-	fecha_inicio_produccion_time,
-	componente,
-	texto_breve_material,
-	unidad_medida,
-	cantidadrequerida,
-	id,
-	id_componente,
-	centro_fabricacion,
-	prioridad,
-	cantidad_componente,
-	lote,
-	valor_redondeo,
-	plazo_entrega,
-	tiempo_tratamiento_entrada_mercancias,
-	posicion_actual,
-	cantidad_requerida,
-	fecha_orden_de_compra_time
+  fecha_inicio_produccion_time,
+  componente,
+  texto_breve_material,
+  unidad_medida,
+  cantidadrequerida,
+  id,
+  id_componente,
+  centro_fabricacion,
+  prioridad,
+  cantidad_componente,
+  lote,
+  valor_redondeo,
+  plazo_entrega,
+  tiempo_tratamiento_entrada_mercancias,
+  posicion_actual,
+  cantidad_requerida,
+  fecha_orden_de_compra_time
     ]
   }
 }
