@@ -9,14 +9,20 @@ view: pv_forecast_completo_lp {
     drill_fields: [detail*]
   }
 
-  measure: Total_cantidad {
-    type: sum
-   sql: ${TABLE}.Cantidad ;;
-  }
 
   dimension: id {
     type: string
     sql: ${TABLE}.id ;;
+  }
+
+  measure: Total_cantidad {
+    type: sum
+    sql: ${TABLE}.Cantidad ;;
+  }
+
+  dimension: sku {
+    type: string
+    sql: SUBSTR(${TABLE}.material,12,8) ;;
   }
 
 

@@ -1,12 +1,47 @@
 
 view: pv_lp_pt_comprados_inventario_lu_1 {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Comprados_Inventario_LU_1` LIMIT 10 ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Comprados_Inventario_LU_1`  ;;
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: Total_cantidad {
+    type: sum
+    sql: ${TABLE}.Cantidad ;;
+  }
+
+  dimension: sku {
+    type: string
+    sql: SUBSTR(${TABLE}.material,12,8) ;;
+  }
+
+
+  dimension_group: Fecha_creacion {
+    type: time
+
+    timeframes: [
+      raw,
+      time,
+      hour_of_day,
+      date,
+      day_of_week,
+      day_of_week_index,
+      day_of_month,
+      day_of_year,
+      week,
+      week_of_year,
+      month,
+      month_name,
+      month_num,
+      quarter,
+      year
+    ]
+    sql: cast(${TABLE}.fecha AS TIMESTAMP) ;;
+    convert_tz: no
   }
 
   dimension: sociedad {
@@ -102,23 +137,23 @@ view: pv_lp_pt_comprados_inventario_lu_1 {
   set: detail {
     fields: [
         sociedad,
-	id,
-	material,
-	cantidad,
-	centro,
-	centro_fabricacion,
-	prioridad,
-	inventario_objetivo_proporcional,
-	fecha_time,
-	plazo_entrega,
-	stock_seguridad,
-	stock_control_calidad,
-	posicion_actual,
-	tipo_producto,
-	cantidad_requerida,
-	cantidad_final,
-	tamano_lote_fabricacion,
-	fecha_orden_de_compra_time
+  id,
+  material,
+  cantidad,
+  centro,
+  centro_fabricacion,
+  prioridad,
+  inventario_objetivo_proporcional,
+  fecha_time,
+  plazo_entrega,
+  stock_seguridad,
+  stock_control_calidad,
+  posicion_actual,
+  tipo_producto,
+  cantidad_requerida,
+  cantidad_final,
+  tamano_lote_fabricacion,
+  fecha_orden_de_compra_time
     ]
   }
 }
