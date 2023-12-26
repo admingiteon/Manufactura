@@ -222,3 +222,5 @@ explore: pv_forecast_completo_lp {}
 explore: pv_lp_insumo_inventario_1 {}
 explore: pv_lp_pt_comprados_inventario_lu_1 {}
 explore: pv_lp_pt_fabricados_inventario_lu_1 {}
+
+explore: tb_corto_plazo_trazabilidad {}
