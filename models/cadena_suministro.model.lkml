@@ -216,3 +216,9 @@ explore: salidas_lp_pt_inventario_lu_1 {}
 explore: alm_lp_pt_almacenamiento {}
 explore: alm_cp_pt_almacenamiento {}
 explore: salida_lp_Forecast_Completo_LP {}
+
+
+explore: pv_forecast_completo_lp {}
+explore: pv_lp_insumo_inventario_1 {}
+explore: pv_lp_pt_comprados_inventario_lu_1 {}
+explore: pv_lp_pt_fabricados_inventario_lu_1 {}
