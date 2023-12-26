@@ -25,6 +25,17 @@ view: pv_forecast_completo_lp {
     sql: SUBSTR(${TABLE}.id,12,7) ;;
   }
 
+  dimension: centro {
+    type: string
+    sql: SUBSTR(${TABLE}.id,20,4) ;;
+  }
+
+  dimension: mercado {
+    type: string
+    sql: SUBSTR(${TABLE}.id,25,50) ;;
+  }
+
+
 
   dimension_group: Fecha_creacion {
     type: time

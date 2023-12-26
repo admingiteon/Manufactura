@@ -20,6 +20,13 @@ view: pv_lp_insumo_inventario_1 {
   }
 
 
+  dimension: centro {
+    type: string
+    sql: SUBSTR(${TABLE}.id,20,4) ;;
+  }
+
+
+
   dimension_group: Fecha_creacion {
     type: time
 
