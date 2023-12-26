@@ -16,7 +16,7 @@ view: pv_lp_insumo_inventario_1 {
 
   dimension: sku {
     type: string
-    sql: SUBSTR(${TABLE}.material,12,8) ;;
+    sql: SUBSTR(${TABLE}.id,12,7) ;;
   }
 
 

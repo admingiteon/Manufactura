@@ -22,7 +22,7 @@ view: pv_forecast_completo_lp {
 
   dimension: sku {
     type: string
-    sql: SUBSTR(${TABLE}.material,12,8) ;;
+    sql: SUBSTR(${TABLE}.id,12,7) ;;
   }
 
 
