@@ -86,16 +86,12 @@ view: vw_largo_plazo_cfabricacion {
     sql: concat(  ${TABLE}.planta );;
   }
 
-
-
-
-  dimension_group: periodo {
-    type: time
-    timeframes: [raw, date, week, month, quarter, year]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.fecha ;;
+  dimension: periodo {
+    type: string
+    sql: ${TABLE}.periodo ;;
   }
+
+
 
 
 
