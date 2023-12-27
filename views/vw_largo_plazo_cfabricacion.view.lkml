@@ -68,6 +68,12 @@ view: vw_largo_plazo_cfabricacion {
     sql: ${TABLE}.planta ;;
   }
 
+  dimension: centro {
+    type: string
+    sql: ${TABLE}.centro ;;
+  }
+
+
   dimension: describeplanta {
     type: string
     sql: ${TABLE}.describeplanta ;;
