@@ -6,7 +6,7 @@ view: vw_largo_plazo_cfabricacion {
 
 
     select * from (
-    SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Fabricacion_1` where  planta not in (
+    SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_cfabricacion` where  planta not in (
 'AS01',
 'BA01',
 'BI00',
