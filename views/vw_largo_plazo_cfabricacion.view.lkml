@@ -26,7 +26,31 @@ view: vw_largo_plazo_cfabricacion {
     type: max
    sql: ${TABLE}.cantidad ;;
     value_format: "#,##0.00"
-    drill_fields: [detail*]
+
+    html:
+    {% if   id_concepto._value  ==4 or id_concepto._value  ==8 or id_concepto._value  ==9  %}
+    {% assign indicator = "black,%" | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,$" | split: ',' %}
+    {% endif %}
+
+    <font color="{{indicator[0]}}">
+
+    {% if value == 99999.12345 %} &infin
+
+    {% else %}
+
+
+    {{indicator[1]}}
+
+
+
+    {% endif %}
+
+     {{rendered_value}}
+
+    </font> ;;
+
   }
 
 
