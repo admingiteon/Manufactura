@@ -38,14 +38,9 @@ view: vw_largo_plazo_cfabricacion {
 
     {% if value == 99999.12345 %} &infin
 
-    {{rendered_value}}
+    {% else %}{{rendered_value}}
 
-
-    {{indicator[1]}}
-
- {% else %}
-
-    {% endif %}
+    {% endif %} {{indicator[1]}}
 
     </font> ;;
 

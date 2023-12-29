@@ -83,9 +83,24 @@ select  1 id_concepto,
   measure: total_cantidad {
     type: sum
     sql: ${TABLE}.cantidad ;;
-
-
     value_format: "#,##0.00"
+
+    html:
+    {% if   id_concepto._value  ==4 or id_concepto._value  ==8 or id_concepto._value  ==9  %}
+    {% assign indicator = "black,%" | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,Pza" | split: ',' %}
+    {% endif %}
+
+    <font color="{{indicator[0]}}">
+
+    {% if value == 99999.12345 %} &infin
+
+    {% else %}{{rendered_value}}
+
+    {% endif %} {{indicator[1]}}
+
+    </font> ;;
 
   }
 
