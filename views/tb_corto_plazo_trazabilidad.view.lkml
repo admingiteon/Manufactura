@@ -1,7 +1,81 @@
 
 view: tb_corto_plazo_trazabilidad {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_trazabilidad  ;;
+    sql:
+
+
+select * from psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_trazabilidad
+union all
+select  1 id_concepto,
+        1 orden_concepto,
+        'PRONÓSTICO DE PEDIDOS' concepto,
+        Centro,
+        SKU,
+        Describe_sku,
+        grupo_articulos,
+         org_ventas,
+        mercado,
+        cliente,
+        clientes_rs,
+        '2022-12-25' dSemana,
+        nPedido,
+        0 cantidad,
+        0 demanda,
+        0 inventaini,
+        0 stockdeseguridad
+ from psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_trazabilidad  where concepto  not in ('1','2') group by
+ Centro,
+        SKU,
+        Describe_sku,
+        grupo_articulos,
+          Centro,
+        SKU,
+        Describe_sku,
+        grupo_articulos,
+        org_ventas,
+        mercado,
+        cliente,
+        clientes_rs,
+        nPedido
+
+ union all
+
+ select  2 id_concepto,
+         2 orden_concepto,
+        'PEDIDOS ABIERTOS' concepto,
+        Centro,
+        SKU,
+        Describe_sku,
+        grupo_articulos,
+         org_ventas,
+        mercado,
+        cliente,
+        clientes_rs,
+        '2022-12-25' dSemana,
+        nPedido,
+        0 cantidad,
+        0 demanda,
+        0 inventaini,
+        0 stockdeseguridad
+ from psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_trazabilidad  where concepto  not in ('1','2') group by
+ Centro,
+        SKU,
+        Describe_sku,
+        grupo_articulos,
+          Centro,
+        SKU,
+        Describe_sku,
+        grupo_articulos,
+        org_ventas,
+        mercado,
+        cliente,
+        clientes_rs,
+        nPedido
+
+
+
+
+    ;;
   }
 
   measure: count {
@@ -11,7 +85,7 @@ view: tb_corto_plazo_trazabilidad {
 
   measure: total_cantidad {
     type: sum
-    sql: ${TABLE}.cantidad ;;
+    sql: case when orden_concepto=2 then sum${TABLE}.cantidad ;;
 
 
     value_format: "#,##0.00"
