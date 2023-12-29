@@ -77,6 +77,12 @@ view: tb_corto_plazo_trazabilidad {
     sql: ${TABLE}.cantidad ;;
   }
 
+
+  measure: Total_cantidad {
+    type: sum
+    sql: ${TABLE}.cantidad ;;
+  }
+
   dimension: demanda {
     type: number
     sql: ${TABLE}.demanda ;;

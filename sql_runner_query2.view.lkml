@@ -1,5 +1,5 @@
 
-view: tb_corto_plazo_trazabilidad {
+view: sql_runner_query2 {
   derived_table: {
     sql: select * from psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_trazabilidad limit 1000 ;;
   }
@@ -97,23 +97,23 @@ view: tb_corto_plazo_trazabilidad {
 
   set: detail {
     fields: [
-      id_concepto,
-      orden_concepto,
-      concepto,
-      centro,
-      sku,
-      describe_sku,
-      grupo_articulos,
-      org_ventas,
-      mercado,
-      cliente,
-      clientes_rs,
-      d_semana,
-      n_pedido,
-      cantidad,
-      demanda,
-      inventaini,
-      stockdeseguridad
+        id_concepto,
+	orden_concepto,
+	concepto,
+	centro,
+	sku,
+	describe_sku,
+	grupo_articulos,
+	org_ventas,
+	mercado,
+	cliente,
+	clientes_rs,
+	d_semana,
+	n_pedido,
+	cantidad,
+	demanda,
+	inventaini,
+	stockdeseguridad
     ]
   }
 }
