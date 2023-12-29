@@ -1,7 +1,7 @@
 
 view: tb_corto_plazo_trazabilidad {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_trazabilidad limit 1000 ;;
+    sql: select * from psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_trazabilidad  ;;
   }
 
   measure: count {
