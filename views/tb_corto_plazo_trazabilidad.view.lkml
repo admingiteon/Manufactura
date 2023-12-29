@@ -9,6 +9,11 @@ view: tb_corto_plazo_trazabilidad {
     drill_fields: [detail*]
   }
 
+  measure: total_cantidad {
+    type: sum
+    sql: ${TABLE}.cantidad ;;
+  }
+
   dimension: id_concepto {
     type: number
     sql: ${TABLE}.id_concepto ;;

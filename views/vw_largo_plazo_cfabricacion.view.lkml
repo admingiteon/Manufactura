@@ -31,23 +31,23 @@ view: vw_largo_plazo_cfabricacion {
     {% if   id_concepto._value  ==4 or id_concepto._value  ==8 or id_concepto._value  ==9  %}
     {% assign indicator = "black,%" | split: ',' %}
     {% else %}
-    {% assign indicator = "black,$" | split: ',' %}
+    {% assign indicator = "black,Pza" | split: ',' %}
     {% endif %}
 
     <font color="{{indicator[0]}}">
 
     {% if value == 99999.12345 %} &infin
 
-    {% else %}
+    {{rendered_value}}
 
 
     {{indicator[1]}}
 
-
+ {% else %}
 
     {% endif %}
 
-     {{rendered_value}}
+
 
     </font> ;;
 
