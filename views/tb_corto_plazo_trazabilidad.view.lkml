@@ -15,9 +15,9 @@ select  1 id_concepto,
         grupo_articulos,
          org_ventas,
         mercado,
-        cliente,
-        clientes_rs,
-        '2022-12-25' dSemana,
+        '' cliente,
+        '' clientes_rs,
+        '2023-11-04' dSemana,
         nPedido,
         0 cantidad,
         0 demanda,
@@ -34,8 +34,6 @@ select  1 id_concepto,
         grupo_articulos,
         org_ventas,
         mercado,
-        cliente,
-        clientes_rs,
         nPedido
 
  union all
@@ -49,9 +47,9 @@ select  1 id_concepto,
         grupo_articulos,
          org_ventas,
         mercado,
-        cliente,
-        clientes_rs,
-        '2022-12-25' dSemana,
+        '' cliente,
+        '' clientes_rs,
+        '2023-11-04' dSemana,
         nPedido,
         0 cantidad,
         0 demanda,
@@ -62,15 +60,14 @@ select  1 id_concepto,
         SKU,
         Describe_sku,
         grupo_articulos,
-          Centro,
+        Centro,
         SKU,
         Describe_sku,
         grupo_articulos,
         org_ventas,
         mercado,
-        cliente,
-        clientes_rs,
         nPedido
+
 
 
 
@@ -85,7 +82,7 @@ select  1 id_concepto,
 
   measure: total_cantidad {
     type: sum
-    sql: case when orden_concepto=2 then sum${TABLE}.cantidad ;;
+    sql: ${TABLE}.cantidad ;;
 
 
     value_format: "#,##0.00"
@@ -156,34 +153,10 @@ select  1 id_concepto,
 
   dimension: d_semana {
     type: string
-    datatype: date
     sql: ${TABLE}.dSemana ;;
   }
 
 
-  dimension_group: Fecha {
-    type: time
-
-    timeframes: [
-      raw,
-      time,
-      hour_of_day,
-      date,
-      day_of_week,
-      day_of_week_index,
-      day_of_month,
-      day_of_year,
-      week,
-      week_of_year,
-      month,
-      month_name,
-      month_num,
-      quarter,
-      year
-    ]
-    sql: cast(${TABLE}.dSemana AS TIMESTAMP) ;;
-    convert_tz: no
-  }
 
   dimension: n_pedido {
     type: string
