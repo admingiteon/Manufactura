@@ -86,7 +86,7 @@ select  1 id_concepto,
     value_format: "#,##0.00"
 
     html:
-    {% if   id_concepto._value  ==4 or id_concepto._value  ==8 or id_concepto._value  ==9  %}
+    {% if   id_concepto._value  ==13   %}
     {% assign indicator = "black,%" | split: ',' %}
     {% else %}
     {% assign indicator = "black,Pza" | split: ',' %}
