@@ -47,8 +47,6 @@ view: vw_largo_plazo_cfabricacion {
 
     {% endif %}
 
-
-
     </font> ;;
 
   }

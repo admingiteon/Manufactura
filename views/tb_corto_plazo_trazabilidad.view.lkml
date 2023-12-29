@@ -12,6 +12,12 @@ view: tb_corto_plazo_trazabilidad {
   measure: total_cantidad {
     type: sum
     sql: ${TABLE}.cantidad ;;
+
+
+    value_format: "#,##0.00"
+
+
+
   }
 
   dimension: id_concepto {
@@ -70,9 +76,34 @@ view: tb_corto_plazo_trazabilidad {
   }
 
   dimension: d_semana {
-    type: date
+    type: string
     datatype: date
     sql: ${TABLE}.dSemana ;;
+  }
+
+
+  dimension_group: Fecha {
+    type: time
+
+    timeframes: [
+      raw,
+      time,
+      hour_of_day,
+      date,
+      day_of_week,
+      day_of_week_index,
+      day_of_month,
+      day_of_year,
+      week,
+      week_of_year,
+      month,
+      month_name,
+      month_num,
+      quarter,
+      year
+    ]
+    sql: cast(${TABLE}.dSemana AS TIMESTAMP) ;;
+    convert_tz: no
   }
 
   dimension: n_pedido {
