@@ -1,9 +1,7 @@
 
 view: tb_corto_plazo_trazabilidad {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_trazabilidad`  ;;
-
-
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_trazabilidad` LIMIT 10 ;;
   }
 
   measure: count {
@@ -16,6 +14,11 @@ view: tb_corto_plazo_trazabilidad {
     sql: ${TABLE}.id_concepto ;;
   }
 
+  dimension: orden_concepto {
+    type: number
+    sql: ${TABLE}.orden_concepto ;;
+  }
+
   dimension: concepto {
     type: string
     sql: ${TABLE}.concepto ;;
@@ -23,17 +26,17 @@ view: tb_corto_plazo_trazabilidad {
 
   dimension: centro {
     type: string
-    sql: ${TABLE}.centro ;;
+    sql: ${TABLE}.Centro ;;
   }
 
   dimension: sku {
     type: string
-    sql: ${TABLE}.sku ;;
+    sql: ${TABLE}.SKU ;;
   }
 
   dimension: describe_sku {
     type: string
-    sql: ${TABLE}.describe_sku ;;
+    sql: ${TABLE}.Describe_sku ;;
   }
 
   dimension: grupo_articulos {
@@ -95,21 +98,22 @@ view: tb_corto_plazo_trazabilidad {
   set: detail {
     fields: [
         id_concepto,
-  concepto,
-  centro,
-  sku,
-  describe_sku,
-  grupo_articulos,
-  org_ventas,
-  mercado,
-  cliente,
-  clientes_rs,
-  d_semana,
-  n_pedido,
-  cantidad,
-  demanda,
-  inventaini,
-  stockdeseguridad
+	orden_concepto,
+	concepto,
+	centro,
+	sku,
+	describe_sku,
+	grupo_articulos,
+	org_ventas,
+	mercado,
+	cliente,
+	clientes_rs,
+	d_semana,
+	n_pedido,
+	cantidad,
+	demanda,
+	inventaini,
+	stockdeseguridad
     ]
   }
 }
