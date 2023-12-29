@@ -16,9 +16,14 @@ view: tb_corto_plazo_trazabilidad {
 
     value_format: "#,##0.00"
 
-
-
   }
+
+
+  dimension: sku_describe {
+    type: string
+    sql:concat(SUBSTR(${TABLE}.sku,12,50)  ,'-',  ${TABLE}.describe_sku) ;;
+  }
+
 
   dimension: id_concepto {
     type: number
