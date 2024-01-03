@@ -11,7 +11,7 @@ view: tb_corto_plazo_fabricacion {
 
   measure: Total_cantidad {
     type: sum
-    sql: ${TABLE}.Cantidad ;;
+    sql: nullIF(${TABLE}.Cantidad,0) ;;
 
 
     value_format: "#,##0"

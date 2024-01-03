@@ -224,5 +224,24 @@ explore: pv_lp_pt_comprados_inventario_lu_1 {}
 explore: pv_lp_pt_fabricados_inventario_lu_1 {}
 
 explore: tb_corto_plazo_trazabilidad {}
-
 explore: tb_corto_plazo_fabricacion {}
+
+explore: arima_medicion_lp {}
+
+
+explore: arima_forecast_completo_lp_2 {
+
+  join: arima_medicion_lp  {
+    type: left_outer
+    #sql_on: ${entradas_y_salidas_forecast_completo_v2.id} = ${mediciones_forecast_v2.id} ;;
+    sql_on: ${arima_forecast_completo_lp_2.id} = ${arima_medicion_lp.id} ;;
+
+    relationship: many_to_one
+  }
+
+  join: val_vw_datos_generales  {
+    type: left_outer
+    sql_on: ${val_vw_datos_generales.material} = SUBSTR(${arima_forecast_completo_lp_2.id},1,18) ;;
+    relationship: many_to_one
+  }
+}
