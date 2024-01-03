@@ -1,7 +1,7 @@
 
 view: tb_corto_plazo_fabricacion {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_fabricacion ;;
+    sql: select * from `psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_fabricacion` ;;
   }
 
   measure: count {
@@ -9,44 +9,19 @@ view: tb_corto_plazo_fabricacion {
     drill_fields: [detail*]
   }
 
-  dimension: sociedad {
-    type: string
-    sql: ${TABLE}.sociedad ;;
-  }
-
-  dimension_group: fecha {
-    type: time
-    sql: ${TABLE}.fecha ;;
-  }
-
-  dimension: material {
-    type: string
-    sql: ${TABLE}.material ;;
-  }
-
-  dimension: componente {
-    type: string
-    sql: ${TABLE}.Componente ;;
-  }
-
-  dimension: prioridad {
+  dimension: id_concepto {
     type: number
-    sql: ${TABLE}.Prioridad ;;
+    sql: ${TABLE}.id_Concepto ;;
   }
 
-  dimension: cliente {
-    type: string
-    sql: ${TABLE}.cliente ;;
+  dimension: orden_concepto {
+    type: number
+    sql: ${TABLE}.orden_concepto ;;
   }
 
-  dimension: id {
+  dimension: concepto {
     type: string
-    sql: ${TABLE}.id ;;
-  }
-
-  dimension: centro_suministrador {
-    type: string
-    sql: ${TABLE}.centro_suministrador ;;
+    sql: ${TABLE}.Concepto ;;
   }
 
   dimension: centro {
@@ -54,107 +29,103 @@ view: tb_corto_plazo_fabricacion {
     sql: ${TABLE}.centro ;;
   }
 
-  dimension: num_material {
+  dimension: sku {
     type: string
-    sql: ${TABLE}.num_material ;;
+    sql: ${TABLE}.sku ;;
   }
 
-  dimension: cantidad_requerida {
-    type: number
-    sql: ${TABLE}.cantidad_requerida ;;
-  }
-
-  dimension: velocidad_fabricacion {
-    type: number
-    sql: ${TABLE}.velocidad_fabricacion ;;
-  }
-
-  dimension: puesto_trabajo {
+  dimension: describe_sku {
     type: string
-    sql: ${TABLE}.puesto_trabajo ;;
+    sql: ${TABLE}.describe_sku ;;
   }
 
-  dimension: texto_breve_operacion {
+  dimension: grupo_articulos {
     type: string
-    sql: ${TABLE}.texto_breve_operacion ;;
+    sql: ${TABLE}.grupo_articulos ;;
   }
 
-  dimension: planta {
+  dimension: org_ventas {
     type: string
-    sql: ${TABLE}.planta ;;
+    sql: ${TABLE}.org_ventas ;;
   }
 
-  dimension: horas_requeridas {
-    type: number
-    sql: ${TABLE}.horas_requeridas ;;
-  }
-
-  dimension: horas {
-    type: number
-    sql: ${TABLE}.horas ;;
-  }
-
-  dimension: semana_del_ao {
-    type: number
-    sql: ${TABLE}.`semana_del_año` ;;
-  }
-
-  dimension: horas_disponibles_semanal {
-    type: number
-    sql: ${TABLE}.horas_disponibles_semanal ;;
-  }
-
-  dimension: material_fecha {
+  dimension: mercado {
     type: string
-    sql: ${TABLE}.material_fecha ;;
+    sql: ${TABLE}.mercado ;;
   }
 
-  dimension: cantidad_producible {
-    type: number
-    sql: ${TABLE}.cantidad_producible ;;
-  }
-
-  dimension: horas_restantes {
-    type: number
-    sql: ${TABLE}.horas_restantes ;;
-  }
-
-  dimension: producible {
-    type: number
-    sql: ${TABLE}.producible ;;
-  }
-
-  dimension: tipo {
+  dimension: cliente {
     type: string
-    sql: ${TABLE}.tipo ;;
+    sql: ${TABLE}.cliente ;;
+  }
+
+  dimension: clientes_rs {
+    type: string
+    sql: ${TABLE}.clientes_rs ;;
+  }
+
+  dimension: d_semana {
+    type: date
+    datatype: date
+    sql: ${TABLE}.dSemana ;;
+  }
+
+  dimension: n_pedido {
+    type: string
+    sql: ${TABLE}.nPedido ;;
+  }
+
+  dimension: cantidad {
+    type: number
+    sql: ${TABLE}.Cantidad ;;
+  }
+
+  dimension: demanda {
+    type: number
+    sql: ${TABLE}.demanda ;;
+  }
+
+  dimension: saldofinal {
+    type: number
+    sql: ${TABLE}.saldofinal ;;
+  }
+
+  dimension: stockdeseguridad {
+    type: number
+    sql: ${TABLE}.stockdeseguridad ;;
+  }
+
+  dimension: sku_componente_id {
+    type: string
+    sql: ${TABLE}.sku_Componente_id ;;
+  }
+
+  dimension: sku_componente_cantidad {
+    type: number
+    sql: ${TABLE}.sku_componente_cantidad ;;
   }
 
   set: detail {
     fields: [
-        sociedad,
-  fecha_time,
-  material,
-  componente,
-  prioridad,
-  cliente,
-  id,
-  centro_suministrador,
+        id_concepto,
+  orden_concepto,
+  concepto,
   centro,
-  num_material,
-  cantidad_requerida,
-  velocidad_fabricacion,
-  puesto_trabajo,
-  texto_breve_operacion,
-  planta,
-  horas_requeridas,
-  horas,
-  semana_del_ao,
-  horas_disponibles_semanal,
-  material_fecha,
-  cantidad_producible,
-  horas_restantes,
-  producible,
-  tipo
+  sku,
+  describe_sku,
+  grupo_articulos,
+  org_ventas,
+  mercado,
+  cliente,
+  clientes_rs,
+  d_semana,
+  n_pedido,
+  cantidad,
+  demanda,
+  saldofinal,
+  stockdeseguridad,
+  sku_componente_id,
+  sku_componente_cantidad
     ]
   }
 }
