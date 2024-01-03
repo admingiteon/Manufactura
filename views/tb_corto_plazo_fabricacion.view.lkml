@@ -9,6 +9,16 @@ view: tb_corto_plazo_fabricacion {
     drill_fields: [detail*]
   }
 
+  measure: Total_cantidad {
+    type: sum
+    sql: ${TABLE}.Cantidad ;;
+  }
+
+  measure: Total_sku_componente_cantidad {
+    type: sum
+    sql: ${TABLE}.sku_componente_cantidad ;;
+  }
+
   dimension: id_concepto {
     type: number
     sql: ${TABLE}.id_Concepto ;;
@@ -65,8 +75,8 @@ view: tb_corto_plazo_fabricacion {
   }
 
   dimension: d_semana {
-    type: date
-    datatype: date
+    type: string
+
     sql: ${TABLE}.dSemana ;;
   }
 
