@@ -14,9 +14,43 @@ view: arima_forecast_completo_lp_2 {
     sql: ${TABLE}.id ;;
   }
 
-  dimension: fecha {
-    type: date
-    datatype: date
+
+
+  dimension: Sku {
+    label: "Sku"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(0)] ;;
+  }
+
+
+  dimension: centro {
+    label: "centro"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(1)] ;;
+  }
+
+
+  dimension: Mercado {
+    label: "Mercado"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(2)] ;;
+  }
+
+
+  dimension: Cliente {
+    label: "cliente"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(3)] ;;
+  }
+
+  measure: Total_cantidad {
+    type: sum
+    sql: ${TABLE}.Cantidad ;;
+  }
+
+
+  dimension_group: fecha {
+    type: time
     sql: ${TABLE}.fecha ;;
   }
 
@@ -43,11 +77,11 @@ view: arima_forecast_completo_lp_2 {
   set: detail {
     fields: [
         id,
-	fecha,
-	cantidad,
-	tipo,
-	prediction_interval_lower_bound,
-	prediction_interval_upper_bound
+
+  cantidad,
+  tipo,
+  prediction_interval_lower_bound,
+  prediction_interval_upper_bound
     ]
   }
 }

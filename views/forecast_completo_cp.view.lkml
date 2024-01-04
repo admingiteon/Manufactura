@@ -50,17 +50,12 @@ view: forecast_completo_cp {
     sql:    SPLIT(${id}, '_')[OFFSET(2)] ;;
   }
 
-  dimension: clase_doc_ventas {
-    label: "clase_doc_ventas"
+  dimension: Cliente {
+    label: "Cliente"
     type: string
     sql:    SPLIT(${id}, '_')[OFFSET(3)] ;;
   }
 
-  dimension: valor_posicion {
-    label: "valor_posicion"
-    type: string
-    sql:    SPLIT(${id}, '_')[OFFSET(4)] ;;
-  }
 
 
 
