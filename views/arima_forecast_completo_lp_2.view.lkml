@@ -10,6 +10,7 @@ view: arima_forecast_completo_lp_2 {
   }
 
   dimension: id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
   }
