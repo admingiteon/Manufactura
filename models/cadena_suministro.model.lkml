@@ -245,3 +245,5 @@ explore: arima_forecast_completo_lp_2 {
     relationship: many_to_one
   }
 }
+
+explore: tb_corto_plazo_plansuministro {}
