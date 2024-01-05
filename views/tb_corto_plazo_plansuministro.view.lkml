@@ -60,8 +60,8 @@ view: tb_corto_plazo_plansuministro {
   }
 
   dimension: d_semana {
-    type: date
-    datatype: date
+    type: string
+
     sql: ${TABLE}.dSemana ;;
   }
 
@@ -75,6 +75,11 @@ view: tb_corto_plazo_plansuministro {
     sql: ${TABLE}.Cantidad ;;
   }
 
+  measure: Total_cantidad {
+    type: sum
+    sql: ${TABLE}.Cantidad ;;
+  }
+
   dimension: demanda {
     type: number
     sql: ${TABLE}.demanda ;;
@@ -84,6 +89,12 @@ view: tb_corto_plazo_plansuministro {
     type: number
     sql: ${TABLE}.saldofinal ;;
   }
+
+  measure: total_saldofinal {
+    type: sum
+    sql: ${TABLE}.saldofinal ;;
+  }
+
 
   dimension: stockdeseguridad {
     type: number
