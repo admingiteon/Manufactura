@@ -75,6 +75,18 @@ view: arima_forecast_completo_lp_2 {
     sql: ${TABLE}.prediction_interval_upper_bound ;;
   }
 
+
+  measure: total_prediction_interval_lower_bound {
+    type: sum
+    sql: ${TABLE}.prediction_interval_lower_bound ;;
+  }
+
+  measure: Total_prediction_interval_upper_bound {
+    type: sum
+    sql: ${TABLE}.prediction_interval_upper_bound ;;
+  }
+
+
   set: detail {
     fields: [
         id,
