@@ -11,7 +11,7 @@ view: tb_corto_plazo_planentregas {
 
   measure: Total_Cantidad {
     type: number
-    sql: case when  ${TABLE}.id_concepto = 4 then max(${TABLE}.cantidad) else sum(${TABLE}.cantidad) end ;;
+    sql: case when  ${TABLE}.id_concepto = 4 then avg(${TABLE}.cantidad) else sum(${TABLE}.cantidad) end ;;
     drill_fields: [detail*]
 
     value_format: "#,##0"
