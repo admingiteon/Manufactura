@@ -1,7 +1,7 @@
 
 view: tb_corto_plazo_planentregas {
   derived_table: {
-    sql: select * from `psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_planentregas` limit 1000 ;;
+    sql: select * from `psa-psa-cadena-qa.reporting_ecc_mx.tb_corto_plazo_planentregas`  ;;
   }
 
   measure: count {
@@ -13,6 +13,28 @@ view: tb_corto_plazo_planentregas {
     type: number
     sql: case when  ${TABLE}.id_concepto = 4 then max(${TABLE}.cantidad) else sum(${TABLE}.cantidad) end ;;
     drill_fields: [detail*]
+
+    value_format: "#,##0"
+
+    html:
+    {% if   id_concepto._value  == 4   %}
+    {% assign indicator = "black,%" | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,U" | split: ',' %}
+    {% endif %}
+
+      <font color="{{indicator[0]}}">
+
+      {% if value == 99999.12345 %} &infin
+
+      {% else %}{{rendered_value}}
+
+      {% endif %} {{indicator[1]}}
+
+      </font> ;;
+
+
+
   }
 
 
@@ -45,6 +67,12 @@ view: tb_corto_plazo_planentregas {
     type: string
     sql: ${TABLE}.Describe_sku ;;
   }
+
+  dimension: Sku_descripcion {
+    type: string
+    sql: concat(${TABLE}.Describe_sku,'-',${TABLE}.Describe_sku) ;;
+  }
+
 
   dimension: grupo_articulos {
     type: string
