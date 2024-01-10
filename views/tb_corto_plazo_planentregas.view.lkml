@@ -10,8 +10,8 @@ view: tb_corto_plazo_planentregas {
   }
 
   measure: Total_Cantidad {
-    type: sum
-    sql: ${TABLE}.cantidad ;;
+    type: number
+    sql: case when  ${TABLE}.id_concepto = 4 then max(${TABLE}.cantidad) else sum(${TABLE}.cantidad) end ;;
     drill_fields: [detail*]
   }
 
@@ -72,8 +72,8 @@ view: tb_corto_plazo_planentregas {
   }
 
   dimension: d_semana {
-    type: date
-    datatype: date
+    type: string
+
     sql: ${TABLE}.dSemana ;;
   }
 
