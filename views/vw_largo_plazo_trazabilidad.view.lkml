@@ -202,6 +202,26 @@ view: vw_largo_plazo_trazabilidad {
 
     value_format:"#,##0;(#,##0)"
 
+    html:
+    {% if   orden_concepto._value  ==4 or   orden_concepto._value  ==15 or  orden_concepto._value  ==17 %}
+    {% assign indicator = "black,%" | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,U." | split: ',' %}
+    {% endif %}
+
+    <font color="{{indicator[0]}}">
+
+    {% if value == 99999.12345 %} &infin
+
+    {% else %}{{rendered_value}}
+
+    {% endif %} {{indicator[1]}}
+
+    </font> ;;
+
+
+
+
   }
 
   dimension: Detalle_sku {
