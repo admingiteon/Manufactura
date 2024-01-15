@@ -122,6 +122,23 @@ view: alm_cp_pt_almacenamiento {
                end ;;
     drill_fields: [detail*]
     value_format: "#,##0.00"
+
+    html:
+    {% if   idconcepto._value  ==6 or  idconcepto._value  ==8   %}
+    {% assign indicator = "black,%" | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,PLT" | split: ',' %}
+    {% endif %}
+
+    <font color="{{indicator[0]}}">
+
+    {% if value == 99999.12345 %} &infin
+
+    {% else %}{{rendered_value}}
+
+    {% endif %} {{indicator[1]}}
+
+    </font> ;;
   }
 
   dimension: idconcepto {
