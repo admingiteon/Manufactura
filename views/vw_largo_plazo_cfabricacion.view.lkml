@@ -30,7 +30,7 @@ view: vw_largo_plazo_cfabricacion {
     html:
     {% if   id_concepto._value  ==4 or id_concepto._value  ==8 or id_concepto._value  ==9  %}
     {% assign indicator = "black,%" | split: ',' %}
-    {% elsif   id_concepto._value  ==1 or id_concepto._value  ==10  %}
+    {% elsif   id_concepto._value  ==1 or id_concepto._value  ==10  or id_concepto._value  ==101  %}
     {% assign indicator = "black,HRS" | split: ',' %}
     {% else %}
     {% assign indicator = "black,U." | split: ',' %}
