@@ -186,7 +186,7 @@ dimension: orden_concepto {
 
 dimension: concepto {
   type: string
-  sql: case when  ${TABLE}.Concepto in  ('%','% DEMANDA NO CUBIERTA','% COBERTURA DE LA DEMANDA (INVENTARIO EN LU)') then ${TABLE}.Concepto else concat(${TABLE}.Concepto,' ($)') end ;;
+  sql: case when  ${TABLE}.Concepto in  ('%','% DEMANDA NO CUBIERTA','% COBERTURA DE LA DEMANDA (INVENTARIO EN LU)') then ${TABLE}.Concepto else ${TABLE}.Concepto end ;;
 }
 
 dimension: centro {
@@ -302,6 +302,27 @@ dimension: cantidad {
     type: number
     sql: case when ${id_concepto} in (1,2,9,10,11,13,17,18) then sum(${TABLE}.cantidad) else max(${TABLE}.cantidad) end ;;
     value_format:"#,##0;(#,##0)"
+
+
+    html:
+    {% if   id_concepto._value  ==4 or id_concepto._value  ==8 or id_concepto._value  ==10  %}
+    {% assign indicator = "black,%" | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,$." | split: ',' %}
+    {% endif %}
+
+    <font color="{{indicator[0]}}">
+
+    {% if value == 99999.12345 %} &infin
+
+    {% else %}{{rendered_value}}
+
+    {% endif %} {{indicator[1]}}
+
+    </font> ;;
+
+
+
   }
 
 
