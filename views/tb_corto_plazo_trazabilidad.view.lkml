@@ -89,7 +89,7 @@ select  1 id_concepto,
     {% if   id_concepto._value  ==13   %}
     {% assign indicator = "black,%" | split: ',' %}
     {% else %}
-    {% assign indicator = "black,Pza" | split: ',' %}
+    {% assign indicator = "black,U." | split: ',' %}
     {% endif %}
 
     <font color="{{indicator[0]}}">
