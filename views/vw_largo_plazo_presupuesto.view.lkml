@@ -305,7 +305,7 @@ dimension: cantidad {
 
 
     html:
-    {% if   id_concepto._value  ==4 or id_concepto._value  ==8 or id_concepto._value  ==10  %}
+    {% if   id_concepto._value  ==4 or id_concepto._value  ==12 or id_concepto._value  ==14  %}
     {% assign indicator = "black,%" | split: ',' %}
     {% else %}
     {% assign indicator = "black,$." | split: ',' %}
