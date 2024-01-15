@@ -164,7 +164,7 @@ view: vw_largo_plazo_trazabilidad {
 
   dimension: sku {
     type: string
-    sql: ${TABLE}.SKU ;;
+     sql: SUBSTR(${TABLE}.sku,12,50) ;;
 
     link: {
       label: " Informacion Sku"
@@ -197,8 +197,8 @@ view: vw_largo_plazo_trazabilidad {
   measure: Total_cantidad {
     label: "Cantidad"
     type: number
-    sql: case when ${orden_concepto} in (1,2,3,5,6,8,9,10,11,12,13,14,16,18) then sum(${TABLE}.Cantidad)
-              when ${orden_concepto} in (4,7,15,17) then max(${TABLE}.Cantidad)else  max(${TABLE}.Cantidad) end ;;
+    sql: case when ${orden_concepto} in (1,2,3,5,6,7,8,9,10,11,12,13,14,16,18) then sum(${TABLE}.Cantidad)
+              when ${orden_concepto} in (4,15,17) then max(${TABLE}.Cantidad)else  max(${TABLE}.Cantidad) end ;;
 
     value_format:"#,##0;(#,##0)"
 
