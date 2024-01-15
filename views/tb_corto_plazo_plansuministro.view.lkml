@@ -78,6 +78,29 @@ view: tb_corto_plazo_plansuministro {
   measure: Total_cantidad {
     type: sum
     sql: ${TABLE}.Cantidad ;;
+
+    html:
+    {% if   id_concepto._value  >0  %}
+    {% assign indicator = "black,U." | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,U" | split: ',' %}
+    {% endif %}
+
+    <font color="{{indicator[0]}}">
+
+
+    {% if value == 99999.12345 %} &infin
+    {% else %}{{rendered_value}}
+    {% endif %} {{indicator[1]}}
+
+
+
+    </font> ;;
+
+
+
+
+
   }
 
   dimension: demanda {
