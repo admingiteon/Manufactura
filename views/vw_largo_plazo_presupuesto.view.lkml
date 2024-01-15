@@ -308,16 +308,25 @@ dimension: cantidad {
     {% if   id_concepto._value  ==4 or id_concepto._value  ==12 or id_concepto._value  ==14  %}
     {% assign indicator = "black,%" | split: ',' %}
     {% else %}
-    {% assign indicator = "black,$." | split: ',' %}
+    {% assign indicator = "black,$" | split: ',' %}
     {% endif %}
 
     <font color="{{indicator[0]}}">
 
-    {% if value == 99999.12345 %} &infin
+    {% if   id_concepto._value  ==4 or id_concepto._value  ==12 or id_concepto._value  ==14  %}
 
-    {% else %}{{rendered_value}}
+        {% if value == 99999.12345 %} &infin
+        {% else %}{{rendered_value}}
+        {% endif %} {{indicator[1]}}
 
-    {% endif %} {{indicator[1]}}
+    {% else %}
+
+        {% if value == 99999.12345 %} &infin
+        {% else %} {{indicator[1]}}
+        {% endif %} {{rendered_value}}
+
+     {% endif %}
+
 
     </font> ;;
 
