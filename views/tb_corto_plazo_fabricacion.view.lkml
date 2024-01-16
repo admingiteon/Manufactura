@@ -84,7 +84,7 @@ view: tb_corto_plazo_fabricacion {
 
   dimension: sku {
     type: string
-    sql: ${TABLE}.sku ;;
+    sql: SUBSTR(${TABLE}.sku,12,50) ;;
   }
 
   dimension: describe_sku {
