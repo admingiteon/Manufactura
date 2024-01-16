@@ -126,7 +126,7 @@ view: tb_corto_plazo_plansuministro {
 
   dimension: material {
     type: string
-    sql: ${TABLE}.material ;;
+    sql: SUBSTR(${TABLE}.material,12,50) ;;
   }
 
   dimension: describe_sku {
