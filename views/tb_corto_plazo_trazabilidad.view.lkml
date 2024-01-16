@@ -107,7 +107,7 @@ select  1 id_concepto,
 
   dimension: sku_describe {
     type: string
-    sql:concat(SUBSTR(${TABLE}.sku,12,50)  ,'-',  ${TABLE}.describe_sku) ;;
+    sql:concat(SUBSTR(${TABLE}.SKU,12,50),'-',  ${TABLE}.describe_sku) ;;
   }
 
 
@@ -133,7 +133,7 @@ select  1 id_concepto,
 
   dimension: sku {
     type: string
-    sql: concat(SUBSTR(${TABLE}.sku,12,50);;
+    sql:SUBSTR(${TABLE}.SKU,12,50);;
   }
 
   dimension: describe_sku {
