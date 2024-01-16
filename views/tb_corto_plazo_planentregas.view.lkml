@@ -60,7 +60,7 @@ view: tb_corto_plazo_planentregas {
 
   dimension: sku {
     type: string
-    sql: ${TABLE}.SKU ;;
+    sql: SUBSTR(${TABLE}.sku,12,50) ;;
   }
 
   dimension: describe_sku {
