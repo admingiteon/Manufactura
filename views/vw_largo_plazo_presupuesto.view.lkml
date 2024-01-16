@@ -245,7 +245,8 @@ when ${TABLE}.centro='PG20' then 'Centro de Distribución' END ;;
 
 dimension: sku {
   type: string
-  sql: ${TABLE}.SKU ;;
+
+  sql: SUBSTR(${TABLE}.SKU,12,50) ;;
 }
 
 dimension: periodo_num {
