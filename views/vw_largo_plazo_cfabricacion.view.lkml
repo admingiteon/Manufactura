@@ -68,7 +68,7 @@ view: vw_largo_plazo_cfabricacion {
   dimension: sku {
     primary_key: yes
     type: string
-    sql: ${TABLE}.sku ;;
+    sql: SUBSTR(${TABLE}.sku,12,50) ;;
   }
 
   dimension: concepto {
