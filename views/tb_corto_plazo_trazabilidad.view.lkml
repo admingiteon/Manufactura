@@ -133,7 +133,7 @@ select  1 id_concepto,
 
   dimension: sku {
     type: string
-    sql: ${TABLE}.SKU ;;
+    sql: concat(SUBSTR(${TABLE}.sku,12,50);;
   }
 
   dimension: describe_sku {
