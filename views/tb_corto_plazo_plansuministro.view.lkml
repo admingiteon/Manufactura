@@ -31,7 +31,7 @@ view: tb_corto_plazo_plansuministro {
 
   dimension: sku {
     type: string
-    sql: ${TABLE}.sku ;;
+    sql: SUBSTR(${TABLE}.sku,12,50) ;;
   }
 
   dimension: grupo_articulos {
