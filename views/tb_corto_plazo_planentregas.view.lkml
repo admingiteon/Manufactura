@@ -70,7 +70,7 @@ view: tb_corto_plazo_planentregas {
 
   dimension: Sku_descripcion {
     type: string
-    sql: concat(${TABLE}.SKU,'-',${TABLE}.Describe_sku) ;;
+    sql: concat(SUBSTR(${TABLE}.sku,12,50),'-',${TABLE}.Describe_sku) ;;
   }
 
 
