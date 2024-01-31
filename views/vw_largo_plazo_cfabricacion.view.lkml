@@ -23,8 +23,8 @@ view: vw_largo_plazo_cfabricacion {
   }
 
   measure: Total_cantidad {
-    type: max
-   sql: ${TABLE}.cantidad ;;
+    type: number
+   sql: case when ${id_concepto} in (1,4,5,8,9,101) then max(${TABLE}.cantidad) else sum(${TABLE}.cantidad) end  ;;
     value_format: "#,##0.00"
 
     html:
