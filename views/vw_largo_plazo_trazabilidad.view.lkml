@@ -194,11 +194,36 @@ view: vw_largo_plazo_trazabilidad {
     value_format:"#,##0;(#,##0)"
   }
 
+
+
+  measure: pd {
+    type: number
+    sql: case when ${orden_concepto}=1 then ${TABLE}.Cantidad else 0 end ;;
+  }
+
+
+  measure: pds {
+    type: sum
+    sql: case when ${orden_concepto}=2 then ${TABLE}.Cantidad else 0 end ;;
+  }
+
+
+  measure: pdspor {
+    type: number
+    sql: ${pd}/nullif(${pds},0) ;;
+  }
+
+
+
+
+
+
   measure: Total_cantidad {
     label: "Cantidad"
     type: number
     sql: case when ${orden_concepto} in (1,2,3,5,6,7,8,9,10,11,12,13,14,16,18) then sum(${TABLE}.Cantidad)
-              when ${orden_concepto} in (4,15,17) then max(${TABLE}.Cantidad)else  max(${TABLE}.Cantidad) end ;;
+              when ${orden_concepto} in (4) then sum(${pd})
+              when ${orden_concepto} in (15,17) then max(${TABLE}.Cantidad)else  max(${TABLE}.Cantidad) end ;;
 
     value_format:"#,##0;(#,##0)"
 

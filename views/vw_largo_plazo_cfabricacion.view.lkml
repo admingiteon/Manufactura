@@ -61,6 +61,14 @@ view: vw_largo_plazo_cfabricacion {
     sql: ${TABLE}.id_concepto ;;
   }
 
+  dimension:  orden_concepto {
+    type: number
+    sql: ${TABLE}. orden_concepto ;;
+  }
+
+
+
+
 
 
 
