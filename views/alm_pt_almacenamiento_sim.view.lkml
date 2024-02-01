@@ -10,7 +10,7 @@ view: alm_pt_almacenamiento_sim {
        union all
       select planta,grupo_art, centro,fecha,nombre,entradas valor,'ENTRADAS' concepto,3 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from psa-psa-cadena-qa.modelo_de_calculo_sm.LP_PT_Almacenamiento where escenario_id=(select max(escenario_id)  from psa-psa-cadena-qa.modelo_de_calculo_sm.LP_PT_Almacenamiento)
       union all
-      select planta,grupo_art, centro,fecha,nombre,salidas valor,'SALIDAS' concepto,4 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from psa-psa-cadena-qa.modelo_de_calculo_sm.LP_PT_Almacenamiento where  escenario_id=506 select max(escenario_id)  from psa-psa-cadena-qa.modelo_de_calculo_sm.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre,salidas valor,'SALIDAS' concepto,4 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from psa-psa-cadena-qa.modelo_de_calculo_sm.LP_PT_Almacenamiento where  escenario_id=(select max(escenario_id)  from psa-psa-cadena-qa.modelo_de_calculo_sm.LP_PT_Almacenamiento)
       union all
       select planta,grupo_art, centro,fecha,nombre,ocupacion_final valor,'OCUPACION FINAL, EN PALLETS' concepto ,5 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
