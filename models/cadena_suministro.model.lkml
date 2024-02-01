@@ -248,3 +248,4 @@ explore: arima_forecast_completo_lp_2 {
 
 explore: tb_corto_plazo_plansuministro {}
 explore: tb_corto_plazo_planentregas {}
+explore: alm_pt_almacenamiento_sim {}
