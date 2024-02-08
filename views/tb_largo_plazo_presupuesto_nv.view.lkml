@@ -5,7 +5,10 @@ view: tb_largo_plazo_presupuesto_nv {
      left join (SELECT material
                              ,CONCAT(SUBSTR(material,12,50), "-" , texto_breve_material)   AS sku_describe
                         FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales`
-                       group by texto_breve_material,material) m on m.material=t.SKU;;
+
+                       group by texto_breve_material,material) m on m.material=t.SKU
+                        where  id_concepto not in (5,6,7,8)
+                      ;;
   }
 
   measure: count {
