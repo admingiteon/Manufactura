@@ -1,7 +1,7 @@
 
 view: tb_largo_plazo_presupuesto_nv {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_presupuesto_nv` LIMIT 10 ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_presupuesto_nv` ;;
   }
 
   measure: count {
