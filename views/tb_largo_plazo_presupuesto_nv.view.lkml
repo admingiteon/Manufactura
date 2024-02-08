@@ -61,6 +61,13 @@ view: tb_largo_plazo_presupuesto_nv {
 
   }
 
+  measure: Total_importe_costo {
+    label: "importe costo"
+    type: sum
+    sql: ${TABLE}.costo ;;
+    value_format:"#,##0;(#,##0)"
+  }
+
   dimension: escenario_id {
     type: number
     sql: ${TABLE}.Escenario_id ;;
