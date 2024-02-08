@@ -1,7 +1,7 @@
 
 view: tb_largo_plazo_trazabilidad_nv {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_trazabilidad_nv` LIMIT 10 ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_trazabilidad_nv` ;;
   }
 
   measure: count {
@@ -92,21 +92,21 @@ view: tb_largo_plazo_trazabilidad_nv {
   set: detail {
     fields: [
         tipomaterial,
-	um,
-	grupoarticulo,
-	grupoarticuloexterno,
-	claveidioma,
-	articulodescribe,
-	escenario_id,
-	tipo_escenario,
-	id_concepto,
-	orden_concepto,
-	concepto,
-	centro,
-	sku,
-	periodo_num,
-	periodo,
-	cantidad
+  um,
+  grupoarticulo,
+  grupoarticuloexterno,
+  claveidioma,
+  articulodescribe,
+  escenario_id,
+  tipo_escenario,
+  id_concepto,
+  orden_concepto,
+  concepto,
+  centro,
+  sku,
+  periodo_num,
+  periodo,
+  cantidad
     ]
   }
 }
