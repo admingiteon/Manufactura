@@ -20,29 +20,7 @@ view: tb_largo_plazo_trazabilidad_nv {
 
 
 
-  measure: total_cantidad {
-    type: sum
-    sql: ${TABLE}.cantidad ;;
-    value_format: "#,##0.00"
 
-    html:
-    {% if   id_concepto._value  ==13   %}
-    {% assign indicator = "black,%" | split: ',' %}
-    {% else %}
-    {% assign indicator = "black,U." | split: ',' %}
-    {% endif %}
-
-      <font color="{{indicator[0]}}">
-
-      {% if value == 99999.12345 %} &infin
-
-      {% else %}{{rendered_value}}
-
-      {% endif %} {{indicator[1]}}
-
-      </font> ;;
-
-  }
 
 
   dimension: sku_describe {
@@ -156,6 +134,31 @@ view: tb_largo_plazo_trazabilidad_nv {
   dimension: cantidad {
     type: number
     sql: ${TABLE}.Cantidad ;;
+  }
+
+
+  measure: total_cantidad {
+    type: sum
+    sql: ${TABLE}.cantidad ;;
+    value_format: "#,##0.00"
+
+    html:
+    {% if   orden_concepto._value  ==4 or orden_concepto._value  ==14   or orden_concepto._value  ==16    %}
+    {% assign indicator = "black,%" | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,U." | split: ',' %}
+    {% endif %}
+
+      <font color="{{indicator[0]}}">
+
+      {% if value == 99999.12345 %} &infin
+
+      {% else %}{{rendered_value}}
+
+      {% endif %} {{indicator[1]}}
+
+      </font> ;;
+
   }
 
   set: detail {
