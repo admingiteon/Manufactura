@@ -1,12 +1,64 @@
 
 view: tb_largo_plazo_presupuesto_nv {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_presupuesto_nv` ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_presupuesto_nv` t
+     left join (SELECT material
+                             ,CONCAT(SUBSTR(material,12,50), "-" , texto_breve_material)   AS sku_describe
+                        FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales`
+                       group by texto_breve_material,material) m on m.material=t.SKU;;
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: sku_unicos {
+    type: count_distinct
+    sql: ${sku} ;;
+  }
+
+  dimension: sku_describe {
+    type: string
+    sql: ${TABLE}.sku_describe ;;
+  }
+
+
+  measure: Total_cantidad {
+    label: "importe Cantidad"
+    type: number
+    sql: case when ${id_concepto} in (1,2,9,10,11,13,17,18) then sum(${TABLE}.cantidad) else max(${TABLE}.cantidad) end ;;
+    value_format:"#,##0;(#,##0)"
+
+
+    html:
+    {% if   id_concepto._value  ==4 or id_concepto._value  ==12 or id_concepto._value  ==14  %}
+    {% assign indicator = "black,%" | split: ',' %}
+    {% else %}
+    {% assign indicator = "black,$" | split: ',' %}
+    {% endif %}
+
+      <font color="{{indicator[0]}}">
+
+      {% if   id_concepto._value  ==4 or id_concepto._value  ==12 or id_concepto._value  ==14  %}
+
+      {% if value == 99999.12345 %} &infin
+      {% else %}{{rendered_value}}
+      {% endif %} {{indicator[1]}}
+
+      {% else %}
+
+      {% if value == 99999.12345 %} &infin
+      {% else %} {{indicator[1]}}
+      {% endif %} {{rendered_value}}
+
+      {% endif %}
+
+
+      </font> ;;
+
+
+
   }
 
   dimension: escenario_id {
@@ -98,7 +150,7 @@ view: tb_largo_plazo_presupuesto_nv {
 
   dimension: sku {
     type: string
-    sql: ${TABLE}.sku ;;
+    sql:  SUBSTR(${TABLE}.sku,12,50)  ;;
   }
 
   dimension: periodonum {
