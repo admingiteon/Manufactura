@@ -24,7 +24,7 @@ select *,'Real' TipoEscenario from (
 
 union all
 select *,'Simulado' TipoEscenario from (
- select planta,grupo_art, centro,fecha,nombre,capacidad_total_ubicacion valor,'CAPACIDAD DE ALMACENAJE' concepto,1 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
+      select planta,grupo_art, centro,fecha,nombre,capacidad_total_ubicacion valor,'CAPACIDAD DE ALMACENAJE' concepto,1 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
       union all
       select planta,grupo_art, centro,fecha,nombre, ocupacion_inicial valor,'OCUPACION INICIAL' concepto,2 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Almacenamiento
        union all
