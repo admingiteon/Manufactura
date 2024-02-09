@@ -13,7 +13,7 @@ view: res_vw_cadena_suministro_datos_generales {
 
       sociedades as (
                   SELECT sociedad,
-                         num_almacen,
+                         almacen,
                          centro
                   FROM psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_almacenes
                   WHERE sociedad in ('AMSA','PISA') group by 1,2,3)
