@@ -1,7 +1,7 @@
 
 view: salidas_lp_fabricacion {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.fabricacion  ;;
+    sql: select * from `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Fabricacion_1`  ;;
   }
 
   measure: count {
@@ -29,14 +29,11 @@ view: salidas_lp_fabricacion {
     sql: ${TABLE}.centro ;;
   }
 
-  dimension_group: fecha_inicio_produccion {
-    type: time
-    sql: ${TABLE}.fecha_inicio_produccion ;;
-  }
 
-  dimension: cantidad_fabricar {
+
+  dimension:  cantidad_requerida {
     type: number
-    sql: ${TABLE}.cantidad_fabricar ;;
+    sql: ${TABLE}.cantidad_requerida ;;
   }
 
 
@@ -52,8 +49,8 @@ view: salidas_lp_fabricacion {
   documento,
   material,
   centro,
-  fecha_inicio_produccion_time,
-  cantidad_fabricar
+
+
     ]
   }
 }
