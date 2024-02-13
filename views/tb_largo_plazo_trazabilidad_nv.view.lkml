@@ -143,23 +143,45 @@ view: tb_largo_plazo_trazabilidad_nv {
     value_format: "#,##0.00"
 
     html:
-    {% if   orden_concepto._value  ==4 or orden_concepto._value  ==14   or orden_concepto._value  ==16    %}
-    {% assign indicator = "black,%" | split: ',' %}
+    {% if total_cantidad._value ==1000 and orden_concepto._value  ==14 %}
+      <p style="color: black; background-color: green;">{{ total_cantidad._rendered_value  }}</p>
+
+    {% elsif total_cantidad._value >=800 and total_cantidad._value <=999.99 and orden_concepto._value  ==14 %}
+      <p style="color: black; background-color: yellow;">{{ total_cantidad._rendered_value  }}</p>
+
+    {% elsif total_cantidad._value <800 and orden_concepto._value  ==14 %}
+      <p style="color: black; background-color: red;">{{ total_cantidad._rendered_value  }}%</p>
+
+    {% elsif total_cantidad._value ==0 and orden_concepto._value  ==16 %}
+      <p style="color: black; background-color: green;">{{ total_cantidad._rendered_value  }}%</p>
+
+    {% elsif total_cantidad._value >0  and total_cantidad._value <=200 and orden_concepto._value  ==16 %}
+      <p style="color: black; background-color: yellow;">{{ total_cantidad._rendered_value  }}%</p>
+
+    {% elsif total_cantidad._value >=200 and  orden_concepto._value  ==16 %}
+      <p style="color: black; background-color: red;">{{ total_cantidad._rendered_value  }}%</p>
+
+    {% elsif orden_concepto._value  ==4 %}
+      <p style="color: black;">{{ total_cantidad._rendered_value  }} %</p>
+
     {% else %}
-    {% assign indicator = "black,U." | split: ',' %}
+      <p style="color: black;">{{ total_cantidad._rendered_value  }} U.</p>
     {% endif %}
+    ;;
 
-      <font color="{{indicator[0]}}">
-
-      {% if value == 99999.12345 %} &infin
-
-      {% else %}{{rendered_value}}
-
-      {% endif %} {{indicator[1]}}
-
-      </font> ;;
+    #{% if   orden_concepto._value  ==4 or orden_concepto._value  ==14 or orden_concepto._value  ==16    %}
+    #{% assign indicator = "black,%" | split: ',' %}
+    #{% else %}
+    #{% assign indicator = "black,U." | split: ',' %}
+    #{% endif %}
+    #<font color="{{indicator[0]}}">
+    #{% if value == 99999.12345 %} &infin
+    #{% else %}{{rendered_value}}
+    #{% endif %} {{indicator[1]}}
+    #</font> ;;
 
   }
+
 
   set: detail {
     fields: [
