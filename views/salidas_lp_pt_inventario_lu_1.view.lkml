@@ -1,7 +1,7 @@
 
 view: salidas_lp_pt_inventario_lu_1 {
   derived_table: {
-    sql: select *, ROW_NUMBER() OVER (PARTITION BY id ORDER BY fecha ASC) as row_num from `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Inventario_LU_1`  ;;
+    sql: select *, ROW_NUMBER() OVER (PARTITION BY Cantidad ORDER BY fecha ASC) as row_num from `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Inventario_LU_1`  ;;
   }
 
   measure: count {
