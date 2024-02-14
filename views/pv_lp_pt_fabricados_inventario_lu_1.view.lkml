@@ -14,6 +14,12 @@ view: pv_lp_pt_fabricados_inventario_lu_1 {
     sql: ${TABLE}.Cantidad ;;
   }
 
+  measure: Total_cantidad_requerida {
+    label: "Cantidad Requerida"
+    type: sum
+    sql: ${TABLE}.cantidad_requerida ;;
+  }
+
   dimension: sku {
     type: string
     sql: SUBSTR(${TABLE}.material,12,7) ;;

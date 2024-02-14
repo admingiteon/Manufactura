@@ -19,10 +19,6 @@ view: tb_largo_plazo_trazabilidad_nv {
   }
 
 
-
-
-
-
   dimension: sku_describe {
     type: string
     sql: ${TABLE}.sku_describe ;;
@@ -141,6 +137,7 @@ view: tb_largo_plazo_trazabilidad_nv {
     type: sum
     sql: ${TABLE}.cantidad ;;
     value_format: "#,##0.00"
+    drill_fields: [centro,total_cantidad]
 
     html:
     {% if total_cantidad._value ==1000 and orden_concepto._value  ==14 %}
