@@ -37,6 +37,19 @@ view: pv_forecast_completo_lp {
 
 
 
+
+  dimension: cliente {
+    label: "cliente"
+    type: string
+    sql:    SPLIT(${id}, '_')[OFFSET(3)] ;;
+  }
+
+
+
+ # 000000000004000396_DN08_INT-FLP_537283__PISA___CALLE 7 VIDRIO
+
+
+
   dimension_group: Fecha_creacion {
     type: time
 
