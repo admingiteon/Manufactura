@@ -1,7 +1,7 @@
 
 view: pv_forecast_completo_lp {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.Forecast_Completo_LP`  ;;
+    sql: SELECT * FROM `psa-psa-cadena-qa.test_arima_dev.Forecast_Completo_LP`  ;;
   }
 
   measure: count {
