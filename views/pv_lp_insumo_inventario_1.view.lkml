@@ -14,6 +14,12 @@ view: pv_lp_insumo_inventario_1 {
     sql: ${TABLE}.Cantidad ;;
   }
 
+  measure: posicion_actual_max {
+    label: "Posición Actual"
+    type: max
+    sql: ${TABLE}.posicion_actual ;;
+  }
+
   dimension: sku {
     type: string
     sql: SUBSTR(${TABLE}.id,12,7) ;;
