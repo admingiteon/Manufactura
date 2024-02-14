@@ -1,7 +1,7 @@
 
 view: salidas_lp_pt_inventario_lu_1 {
   derived_table: {
-    sql: select * from `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Inventario_LU_1`  ;;
+    sql: select *, ROW_NUMBER() OVER (PARTITION BY id ORDER BY fecha ASC) as row_num from `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Inventario_LU_1`  ;;
   }
 
   measure: count {
@@ -29,8 +29,6 @@ view: salidas_lp_pt_inventario_lu_1 {
     sql: SUBSTR(${TABLE}.id,1,18) ;;
   }
 
-
-
   measure: ventas {
     type: sum
     sql: ${TABLE}.Cantidad ;;
@@ -41,7 +39,7 @@ view: salidas_lp_pt_inventario_lu_1 {
   measure: Total_posicion_actual {
     label: "Inventario Inicial"
     type: min
-    sql: ${TABLE}.posicion_actual ;;
+    sql: CASE WHEN ${TABLE}.row_num = 1 THEN ${TABLE}.posicion_actual ELSE NULL END ;;
     value_format: "#,##0"
   }
 
