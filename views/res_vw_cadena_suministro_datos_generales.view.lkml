@@ -34,6 +34,21 @@ view: res_vw_cadena_suministro_datos_generales {
     sql: ${TABLE}.material ;;
   }
 
+  dimension: unidad_de_medida {
+    type: string
+    sql: ${TABLE}.unidad_medida ;;
+  }
+
+  dimension: plazo_de_entrega {
+    type: number
+    sql: ${TABLE}.plazo_entrega ;;
+  }
+
+  dimension: tiempo_tratamiento_entrada_mercancias {
+    type: number
+    sql: ${TABLE}.tiempo_tratamiento_entrada_mercancias ;;
+  }
+
   dimension: centro {
     type: string
     sql: ${TABLE}.centro ;;
