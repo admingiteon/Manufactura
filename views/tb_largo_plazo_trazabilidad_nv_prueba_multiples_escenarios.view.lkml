@@ -1,7 +1,7 @@
 
 view: tb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios limit 1000 ;;
+    sql: select * from psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios where escenario_id = 800 ;;
   }
 
   measure: count {
@@ -92,21 +92,21 @@ view: tb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios {
   set: detail {
     fields: [
         tipomaterial,
-	um,
-	grupoarticulo,
-	grupoarticuloexterno,
-	claveidioma,
-	articulodescribe,
-	escenario_id,
-	tipo_escenario,
-	id_concepto,
-	orden_concepto,
-	concepto,
-	centro,
-	sku,
-	periodo_num,
-	periodo,
-	cantidad
+  um,
+  grupoarticulo,
+  grupoarticuloexterno,
+  claveidioma,
+  articulodescribe,
+  escenario_id,
+  tipo_escenario,
+  id_concepto,
+  orden_concepto,
+  concepto,
+  centro,
+  sku,
+  periodo_num,
+  periodo,
+  cantidad
     ]
   }
 }

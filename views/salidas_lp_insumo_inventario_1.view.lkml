@@ -21,14 +21,13 @@ view: salidas_lp_insumo_inventario_1 {
     sql: ${TABLE}.id ;;
   }
 
-<<<<<<< HEAD
-=======
+
   dimension_group: fecha {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.fecha ;;
   }
->>>>>>> branch 'master' of https://github.com/admingiteon/Cadena_suministro.git
+
 
   dimension_group: fecha_inicio_produccion {
     type: time
