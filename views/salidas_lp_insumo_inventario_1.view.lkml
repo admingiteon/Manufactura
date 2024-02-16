@@ -79,9 +79,9 @@ view: salidas_lp_insumo_inventario_1 {
     sql: ${TABLE}.cantidad_requerida ;;
   }
 
-  measure: Total_cantidad_requerida_Insumo {
-    label: "Cantidad Requerida Insumos"
-    type: sum
+  dimension: Total_cantidad_requerida_Insumo {
+    label: "Cantidad Requerida Insumos Inventario"
+    type: number
     sql: ${TABLE}.cantidad_requerida ;;
   }
 
