@@ -16,10 +16,19 @@ view: salidas_lp_insumo_inventario_1 {
   }
 
   dimension: id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
   }
 
+<<<<<<< HEAD
+=======
+  dimension_group: fecha {
+    type: time
+    timeframes: [raw, time, date, week, month, quarter, year]
+    sql: ${TABLE}.fecha ;;
+  }
+>>>>>>> branch 'master' of https://github.com/admingiteon/Cadena_suministro.git
 
   dimension_group: fecha_inicio_produccion {
     type: time
@@ -47,6 +56,21 @@ view: salidas_lp_insumo_inventario_1 {
   }
 
 
+  dimension: unidad_de_medida {
+    type: string
+    sql: ${TABLE}.Unidad_Medida ;;
+  }
+
+  dimension: prioridad {
+    type: string
+    sql: ${TABLE}.Prioridad ;;
+  }
+
+  dimension: necesidad {
+    type: string
+    sql: ${TABLE}.necesidad ;;
+  }
+
   measure: Total_tamano_lote_fabricacion {
     label: "Tamaño lote Fabricaciòn"
     type: min
@@ -56,6 +80,12 @@ view: salidas_lp_insumo_inventario_1 {
   measure: Total_cantidad_requerida {
     label: "Fabricación"
     type: sum
+    sql: ${TABLE}.cantidad_requerida ;;
+  }
+
+  dimension: Total_cantidad_requerida_Insumo {
+    label: "Cantidad Requerida Insumos Inventario"
+    type: number
     sql: ${TABLE}.cantidad_requerida ;;
   }
 
