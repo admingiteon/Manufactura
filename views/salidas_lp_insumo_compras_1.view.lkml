@@ -1,7 +1,11 @@
 
 view: salidas_lp_insumo_compras_1 {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Compras_1  ;;
+    sql:select * from psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Compras_1  AS IC
+    left join (SELECT id as id_insumo_inventario,
+                      cantidad_requerida as cantidad_requerida_insumo_inventario
+                        FROM psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Inventario_1
+                       ) AS II on II.id_insumo_inventario=IC.id;;
   }
 
   measure: count {
@@ -42,6 +46,12 @@ view: salidas_lp_insumo_compras_1 {
   dimension: Material {
     type: string
     sql: SUBSTR(${TABLE}.id,1,18) ;;
+  }
+
+  dimension: Total_cantidad_requerida_Insumo {
+    label: "Cantidad Requerida Insumos Inventario"
+    type: number
+    sql: ${TABLE}.cantidad_requerida_insumo_inventario ;;
   }
 
 
