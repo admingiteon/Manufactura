@@ -1,12 +1,18 @@
 
 view: salidas_lp_pt_inventario_lu_1 {
   derived_table: {
-    sql: select *, ROW_NUMBER() OVER (PARTITION BY Cantidad ORDER BY fecha ASC) as row_num from `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Inventario_LU_1`  ;;
+    sql: select * from (
+select *, ROW_NUMBER() OVER (PARTITION BY fecha, material, SUBSTR(id,20,10) ORDER BY posicion_actual ASC) as row_num from `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Inventario_LU_1` ) a where a.row_num=1  ;;
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  dimension: row_num {
+    type: number
+    sql: ${TABLE}.row_num ;;
   }
 
   dimension_group: fecha {
