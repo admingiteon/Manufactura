@@ -56,6 +56,21 @@ view: salidas_lp_insumo_inventario_1 {
   }
 
 
+  dimension: unidad_de_medida {
+    type: string
+    sql: ${TABLE}.Unidad_Medida ;;
+  }
+
+  dimension: prioridad {
+    type: string
+    sql: ${TABLE}.Prioridad ;;
+  }
+
+  dimension: necesidad {
+    type: string
+    sql: ${TABLE}.necesidad ;;
+  }
+
   measure: Total_tamano_lote_fabricacion {
     label: "Tamaño lote Fabricaciòn"
     type: min
