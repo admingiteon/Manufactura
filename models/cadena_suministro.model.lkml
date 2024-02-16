@@ -211,10 +211,18 @@ explore: salidas_lp_fabricacion {}
 
 
 explore: salidas_lp_insumo_compras_1 {
+
   join: res_vw_cadena_suministro_datos_generales  {
     type: left_outer
     sql_on: ${salidas_lp_insumo_compras_1.Material} = ${res_vw_cadena_suministro_datos_generales.material}
     AND ${salidas_lp_insumo_compras_1.Centro} = ${res_vw_cadena_suministro_datos_generales.centro};;
+    relationship: many_to_one
+  }
+
+  join: salidas_lp_insumo_inventario_1  {
+    type: left_outer
+    sql_on: ${salidas_lp_insumo_compras_1.Material} = ${salidas_lp_insumo_inventario_1.Material}
+      AND ${salidas_lp_insumo_compras_1.Centro} = ${salidas_lp_insumo_inventario_1.Centro};;
     relationship: many_to_one
   }
 
