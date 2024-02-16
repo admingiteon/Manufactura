@@ -2,6 +2,18 @@
 view: salidas_lp_fabricacion {
   derived_table: {
     sql: select * from `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Inventario_LU_1`  ;;
+
+
+  }
+
+  dimension_group: fecha {
+    type: time
+    sql: ${TABLE}.fecha ;;
+  }
+
+  dimension_group: fecha_inicio_produccion {
+    type: time
+    sql: ${TABLE}.fecha_inicio_produccion ;;
   }
 
   measure: count {
