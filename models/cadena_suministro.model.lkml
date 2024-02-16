@@ -272,3 +272,5 @@ explore: alm_pt_almacenamiento_sim {}
 
 explore: tb_largo_plazo_trazabilidad_nv {}
 explore: tb_largo_plazo_presupuesto_nv {}
+
+explore: tb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios {}
