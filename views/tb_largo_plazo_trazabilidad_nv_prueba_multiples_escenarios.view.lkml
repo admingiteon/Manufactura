@@ -9,6 +9,14 @@ view: tb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios {
     drill_fields: [detail*]
   }
 
+
+  measure: Total_cantidad {
+    type: sum
+    sql: ${cantidad} ;;
+    drill_fields: [detail*]
+  }
+
+
   dimension: tipomaterial {
     type: string
     sql: ${TABLE}.tipomaterial ;;
