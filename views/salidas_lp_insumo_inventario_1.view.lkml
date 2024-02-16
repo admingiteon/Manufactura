@@ -15,8 +15,19 @@ view: salidas_lp_insumo_inventario_1 {
   }
 
   dimension: id {
-    type: string
+    primary_key: yes
     sql: ${TABLE}.id ;;
+  }
+
+  #dimension: id {
+  #  type: string
+   # sql: ${TABLE}.id ;;
+  #}
+
+  dimension_group: fecha {
+    type: time
+    timeframes: [raw, time, date, week, month, quarter, year]
+    sql: ${TABLE}.fecha ;;
   }
 
   dimension_group: fecha_inicio_produccion {
