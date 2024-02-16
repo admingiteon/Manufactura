@@ -38,6 +38,10 @@ view: salidas_lp_pt_fabricacion_1 {
     type: number
     sql: ${TABLE}.`%_producible` ;;
   }
+  dimension: tipo {
+    type: string
+    sql: ${TABLE}.tipo ;;
+  }
 
 
   dimension: Material {
