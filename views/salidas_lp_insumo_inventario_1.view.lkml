@@ -16,13 +16,9 @@ view: salidas_lp_insumo_inventario_1 {
 
   dimension: id {
     primary_key: yes
+    type: string
     sql: ${TABLE}.id ;;
   }
-
-  #dimension: id {
-  #  type: string
-   # sql: ${TABLE}.id ;;
-  #}
 
   dimension_group: fecha {
     type: time
