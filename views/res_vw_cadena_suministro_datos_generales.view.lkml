@@ -8,6 +8,9 @@ view: res_vw_cadena_suministro_datos_generales {
               precio_medio_variable,
               precio_absorbente ,
               centro,
+              unidad_medida,
+              plazo_entrega,
+              tiempo_tratamiento_entrada_mercancias,
               indicador_control_precios /*s=standar, v=medio variable, a=absorbente ---No aplica--*/
       from psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales),
 
@@ -32,6 +35,21 @@ view: res_vw_cadena_suministro_datos_generales {
   dimension: material {
     type: string
     sql: ${TABLE}.material ;;
+  }
+
+  dimension: unidad_de_medida {
+    type: string
+    sql: ${TABLE}.unidad_medida ;;
+  }
+
+  dimension: plazo_de_entrega {
+    type: number
+    sql: ${TABLE}.plazo_entrega ;;
+  }
+
+  dimension: tiempo_tratamiento_entrada_mercancias {
+    type: number
+    sql: ${TABLE}.tiempo_tratamiento_entrada_mercancias ;;
   }
 
   dimension: centro {

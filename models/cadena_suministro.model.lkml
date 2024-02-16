@@ -208,7 +208,19 @@ explore: salida_cp_pt_fabricacion_1 {}
 explore: salida_cp_pt_comprados_inventario_lu_1 {}
 
 explore: salidas_lp_fabricacion {}
-explore: salidas_lp_insumo_compras_1 {}
+
+
+explore: salidas_lp_insumo_compras_1 {
+  join: res_vw_cadena_suministro_datos_generales  {
+    type: left_outer
+    sql_on: ${salidas_lp_insumo_compras_1.Material} = ${res_vw_cadena_suministro_datos_generales.material}
+    AND ${salidas_lp_insumo_compras_1.Centro} = ${res_vw_cadena_suministro_datos_generales.centro};;
+    relationship: many_to_one
+  }
+
+}
+
+
 explore: salidas_lp_insumo_inventario_1 {}
 explore: salidas_lp_pt_fabricacion_1 {}
 explore: salidas_lp_pt_inventario_lu_1 {}
