@@ -1,7 +1,7 @@
 
 view: salidas_lp_pt_fabricacion_1 {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Fabricacion_1  ;;
+    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Fabricacion_Final  ;;
   }
 
   measure: count {
@@ -37,6 +37,10 @@ view: salidas_lp_pt_fabricacion_1 {
   dimension: _producible {
     type: number
     sql: ${TABLE}.`%_producible` ;;
+  }
+  dimension: tipo {
+    type: string
+    sql: ${TABLE}.tipo ;;
   }
 
 
