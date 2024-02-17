@@ -1,13 +1,14 @@
 
 view: salidas_lp_insumo_inventario_1 {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Inventario_1  ;;
+    sql: select  * from psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Inventario_1  ;;
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
   }
+
 
   dimension: componente {
     type: string
@@ -20,11 +21,13 @@ view: salidas_lp_insumo_inventario_1 {
     sql: ${TABLE}.id ;;
   }
 
+
   dimension_group: fecha {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.fecha ;;
   }
+
 
   dimension_group: fecha_inicio_produccion {
     type: time
