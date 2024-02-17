@@ -141,13 +141,16 @@ view: tb_largo_plazo_trazabilidad_nv {
 
     html:
     {% if total_cantidad._value ==1000 and id_concepto._value  ==14 %}
-      <p style="color: black; background-color: green;">{{ total_cantidad._rendered_value  }}</p>
+      <p style="color: black; background-color: green;">{{ total_cantidad._rendered_value  }}%</p>
 
     {% elsif total_cantidad._value >=800 and total_cantidad._value <=999.99 and id_concepto._value  ==14 %}
-      <p style="color: black; background-color: yellow;">{{ total_cantidad._rendered_value  }}</p>
+      <p style="color: black; background-color: yellow;">{{ total_cantidad._rendered_value  }}%</p>
 
     {% elsif total_cantidad._value <800 and id_concepto._value  ==14 %}
       <p style="color: black; background-color: red;">{{ total_cantidad._rendered_value  }}%</p>
+
+    {% elsif id_concepto._value  ==14 %}
+      <p style="color: black;">{{ total_cantidad._rendered_value  }}%</p>
 
     {% elsif total_cantidad._value ==0 and id_concepto._value  ==16 %}
       <p style="color: black; background-color: green;">{{ total_cantidad._rendered_value  }}%</p>
