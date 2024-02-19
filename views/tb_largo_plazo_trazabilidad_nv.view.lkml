@@ -133,6 +133,57 @@ view: tb_largo_plazo_trazabilidad_nv {
   }
 
 
+  measure: new_cantidad_total {
+    type: number
+    drill_fields: [percentage_detail*]
+    sql: CASE
+      WHEN ${id_concepto} = 14 AND (SUM(${TABLE}.divisor) = 0 OR SUM(${TABLE}.dividendo) = 0) THEN ROUND(SUM(0), 2)
+      WHEN ${id_concepto} = 14 AND (SUM(${TABLE}.divisor) >= SUM(${TABLE}.dividendo)) THEN ROUND(AVG(100), 2)
+      WHEN ${id_concepto} = 14 AND (SUM(${TABLE}.divisor) < SUM(${TABLE}.dividendo) AND (SUM(${TABLE}.divisor) <> 0 AND SUM(${TABLE}.dividendo) <> 0)) THEN ROUND((SUM(${TABLE}.divisor) / SUM(${TABLE}.dividendo)) * 100, 2)
+      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) = 0 OR SUM(${TABLE}.dividendo) = 0) THEN ROUND(100-SUM(0), 2)
+      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) >= SUM(${TABLE}.dividendo)) THEN ROUND(100-AVG(100), 2)
+      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) < SUM(${TABLE}.dividendo) AND (SUM(${TABLE}.divisor) <> 0 AND SUM(${TABLE}.dividendo) <> 0)) THEN ROUND( 100-((SUM(${TABLE}.divisor) / SUM(${TABLE}.dividendo)) * 100), 2)
+      WHEN ${id_concepto} = 4 AND (SUM(${TABLE}.divisor) = 0 OR SUM(${TABLE}.dividendo) = 0) THEN ROUND(SUM(0), 2)
+      WHEN ${id_concepto} = 4 AND SUM(${TABLE}.dividendo)<>0 THEN ROUND(AVG(100), 2)
+      WHEN ${id_concepto} = 4 AND (SUM(${TABLE}.divisor) <>0 AND SUM(${TABLE}.dividendo) <> 0) THEN ROUND( ((SUM(${TABLE}.dividendo) / SUM(${TABLE}.divisor)) * 100)-100, 2)
+      ELSE ROUND(SUM(${TABLE}.Cantidad), 2)
+        END;;
+
+    value_format: "#,##0.00"
+
+    html:
+
+    {% if id_concepto._value  ==4 %}
+      <p style="color: black;">{{ new_cantidad_total._rendered_value  }}%</p>
+
+    {% elsif new_cantidad_total._value ==100 and id_concepto._value  ==14 %}
+      <p style="color: black; background-color: #98FB98;">{{ new_cantidad_total._rendered_value  }}%</p>
+
+    {% elsif new_cantidad_total._value >=80 and new_cantidad_total._value <=99.99 and id_concepto._value  ==14 %}
+      <p style="color: black; background-color: #FFD700;">{{ new_cantidad_total._rendered_value  }}%</p>
+
+    {% elsif new_cantidad_total._value <80 and id_concepto._value  ==14 %}
+      <p style="color: black; background-color: red;">{{ new_cantidad_total._rendered_value  }}%</p>
+
+    {% elsif new_cantidad_total._value==0 and id_concepto._value  ==16 %}
+      <p style="color: black; background-color: #98FB98;">{{ new_cantidad_total._rendered_value  }}%</p>
+
+    {% elsif new_cantidad_total._value >0  and percentage_16._value <=20 and id_concepto._value  ==16 %}
+      <p style="color: black; background-color: #FFD700;">{{ new_cantidad_total._rendered_value  }}%</p>
+
+    {% elsif new_cantidad_total._value>20 and id_concepto._value  ==16 %}
+      <p style="color: black; background-color: red;">{{ new_cantidad_total._rendered_value  }}%</p>
+
+    {% elsif id_concepto._value  ==1 or  id_concepto._value  ==2 or id_concepto._value  ==3 or id_concepto._value  ==5 or id_concepto._value  ==6 or id_concepto._value  ==7 or id_concepto._value  ==8  or id_concepto._value  ==9 or id_concepto._value  ==10 or id_concepto._value  ==11 or id_concepto._value  ==12 or id_concepto._value  ==13 or id_concepto._value  ==15 or id_concepto._value  ==17 or id_concepto._value  ==18 %}
+      <p style="color: black;">{{ new_cantidad_total._rendered_value  }} U.</p>
+    {% endif %}
+    ;;
+
+
+  }
+
+
+
   measure: total_cantidad {
     type: sum
     sql: ${TABLE}.cantidad ;;
@@ -140,25 +191,28 @@ view: tb_largo_plazo_trazabilidad_nv {
     drill_fields: [centro,total_cantidad]
 
     html:
-    {% if total_cantidad._value ==1000 and orden_concepto._value  ==14 %}
-      <p style="color: black; background-color: green;">{{ total_cantidad._rendered_value  }}</p>
+    {% if total_cantidad._value ==1000 and id_concepto._value  ==14 %}
+      <p style="color: black; background-color: #98FB98;">{{ total_cantidad._rendered_value  }}%</p>
 
-    {% elsif total_cantidad._value >=800 and total_cantidad._value <=999.99 and orden_concepto._value  ==14 %}
-      <p style="color: black; background-color: yellow;">{{ total_cantidad._rendered_value  }}</p>
+    {% elsif total_cantidad._value >=800 and total_cantidad._value <=999.99 and id_concepto._value  ==14 %}
+      <p style="color: black; background-color: #FFD700;">{{ total_cantidad._rendered_value  }}%</p>
 
-    {% elsif total_cantidad._value <800 and orden_concepto._value  ==14 %}
+    {% elsif total_cantidad._value <800 and id_concepto._value  ==14 %}
       <p style="color: black; background-color: red;">{{ total_cantidad._rendered_value  }}%</p>
 
-    {% elsif total_cantidad._value ==0 and orden_concepto._value  ==16 %}
-      <p style="color: black; background-color: green;">{{ total_cantidad._rendered_value  }}%</p>
+    {% elsif id_concepto._value  ==14 %}
+      <p style="color: black;">{{ total_cantidad._rendered_value  }}%</p>
 
-    {% elsif total_cantidad._value >0  and total_cantidad._value <=200 and orden_concepto._value  ==16 %}
-      <p style="color: black; background-color: yellow;">{{ total_cantidad._rendered_value  }}%</p>
+    {% elsif total_cantidad._value ==0 and id_concepto._value  ==16 %}
+      <p style="color: black; background-color: #98FB98;">{{ total_cantidad._rendered_value  }}%</p>
 
-    {% elsif total_cantidad._value >=200 and  orden_concepto._value  ==16 %}
+    {% elsif total_cantidad._value >0  and total_cantidad._value <=200 and id_concepto._value  ==16 %}
+      <p style="color: black; background-color: #FFD700;">{{ total_cantidad._rendered_value  }}%</p>
+
+    {% elsif total_cantidad._value >=200 and  id_concepto._value  ==16 %}
       <p style="color: black; background-color: red;">{{ total_cantidad._rendered_value  }}%</p>
 
-    {% elsif orden_concepto._value  ==4 %}
+    {% elsif id_concepto._value  ==4 %}
       <p style="color: black;">{{ total_cantidad._rendered_value  }} %</p>
 
     {% else %}
@@ -198,6 +252,28 @@ view: tb_largo_plazo_trazabilidad_nv {
   periodo_num,
   periodo,
   cantidad
+    ]
+  }
+
+
+  set: percentage_detail {
+    fields: [centro,
+      cantidad,
+      tipomaterial,
+      um,
+      grupoarticulo,
+      grupoarticuloexterno,
+      claveidioma,
+      articulodescribe,
+      escenario_id,
+      tipo_escenario,
+      id_concepto,
+      concepto,
+      centro,
+      sku,
+      periodo_num,
+      periodo,
+      cantidad
     ]
   }
 }
