@@ -169,10 +169,14 @@ view: tb_largo_plazo_trazabilidad_nv {
     {% elsif new_cantidad_total._value>20 and id_concepto._value  ==16 %}
     <p style="color: black; background-color: red;">{{ rendered_value  }}%</p>
 
-    {% elsif id_concepto._value  ==4 and orden_concepto._value  ==4 %}
-    <p style="color: black; background-color: red; ">{{ rendered_value  }}%</p>
+    {% elsif id_concepto._value  ==4 %}
+      <p style="color: black;">{{ new_cantidad_total._rendered_value  }} %</p>
 
-    {% endif %};;
+    {% else %}
+      <p style="color: black;">{{ new_cantidad_total._rendered_value  }} U.</p>
+    {% endif %}
+    ;;
+
 
   }
 
