@@ -149,6 +149,7 @@ view: tb_largo_plazo_trazabilidad_nv {
       ELSE ROUND(SUM(${TABLE}.Cantidad), 2)
         END;;
 
+    value_format: "#,##0.00"
 
     html:
     {% if new_cantidad_total._value ==100 and id_concepto._value  ==14 %}
