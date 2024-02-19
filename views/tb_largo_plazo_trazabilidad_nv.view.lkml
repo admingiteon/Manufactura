@@ -169,8 +169,8 @@ view: tb_largo_plazo_trazabilidad_nv {
     {% elsif new_cantidad_total._value>20 and id_concepto._value  ==16 %}
     <p style="color: black; background-color: red;">{{ rendered_value  }}%</p>
 
-    {% elsif id_concepto._value  ==4 and orden_concepto._value  ==4 and concepto._value=='PORCENTAJE VARIACIÓN DEL PLAN DE LA DEMANDA' %}
-    <p style="color: black; background-color: white; ">{{ rendered_value  }}%</p>
+    {% elsif id_concepto._value  ==4 and orden_concepto._value  ==4 %}
+    <p style="color: black; background-color: red; ">{{ rendered_value  }}%</p>
 
     {% endif %};;
 
