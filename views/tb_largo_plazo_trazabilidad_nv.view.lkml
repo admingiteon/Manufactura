@@ -5,7 +5,8 @@ view: tb_largo_plazo_trazabilidad_nv {
             left join (SELECT material
                              ,CONCAT(SUBSTR(material,12,50), "-" , texto_breve_material)   AS sku_describe
                         FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales`
-                       group by texto_breve_material,material) m on m.material=t.SKU   ;;
+                       group by texto_breve_material,material) m on m.material=t.SKU
+            WHERE {% condition escenario_id %} Escenario_id {% endcondition %};;
   }
 
   measure: count {
