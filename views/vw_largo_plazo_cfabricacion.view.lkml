@@ -84,6 +84,11 @@ view: vw_largo_plazo_cfabricacion {
     sql: ${TABLE}.concepto ;;
   }
 
+  dimension: tipo_escenario {
+    type: string
+    sql: ${TABLE}.TipoEscenario ;;
+  }
+
 
   dimension: Grupo_linea {
     type: string
