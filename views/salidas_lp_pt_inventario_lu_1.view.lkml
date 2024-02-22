@@ -25,12 +25,12 @@ select *, ROW_NUMBER() OVER (PARTITION BY fecha, material, centro ORDER BY posic
     sql: ${TABLE}.id ;;
   }
 
-  dimension: Centro {
+  dimension: centro {
     type: string
     sql: ${TABLE}.centro ;;
   }
 
-  dimension: Material {
+  dimension: material {
     type: string
     sql: ${TABLE}.material ;;
   }
@@ -41,6 +41,17 @@ select *, ROW_NUMBER() OVER (PARTITION BY fecha, material, centro ORDER BY posic
     drill_fields: [detail*]
   }
 
+  measure: dynamic_value_window {
+    description: "dd."
+    type: number
+    sql: SUM(SUM(${TABLE}.Cantidad)) OVER (PARTITION BY
+      {% if material._is_selected %} ${material}, {% endif %}
+      {% if centro._is_selected %} ${centro}, {% endif %}
+      {% if fecha_date._is_selected %} ${fecha_date}, {% endif %}
+      1 -- helper if none of the above dimensions is selected
+    )
+    ;;
+  }
 
   measure: Total_posicion_actual {
     label: "Inventario Inicial"
