@@ -20,6 +20,11 @@ select *, ROW_NUMBER() OVER (PARTITION BY fecha, material, centro ORDER BY posic
     sql: ${TABLE}.fecha ;;
   }
 
+  dimension: fecha_string {
+    type: date
+    sql: ${TABLE}.fecha ;;
+  }
+
   dimension: id {
     type: string
     sql: ${TABLE}.id ;;
@@ -47,7 +52,7 @@ select *, ROW_NUMBER() OVER (PARTITION BY fecha, material, centro ORDER BY posic
     sql: SUM(SUM(${TABLE}.Cantidad)) OVER (PARTITION BY
       {% if material._is_selected %} ${material}, {% endif %}
       {% if centro._is_selected %} ${centro}, {% endif %}
-      {% if fecha_date._is_selected %} ${fecha_date}, {% endif %}
+
       1 -- helper if none of the above dimensions is selected
     )
     ;;
