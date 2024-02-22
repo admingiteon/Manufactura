@@ -101,7 +101,7 @@ view: lp_pt_inventario_lu_1_rec_2 {
   measure: inventario_final {
     label: "Inventario Final"
     type: min
-    sql: CASE WHEN ${TABLE}.row_num = (SELECT MAX(row_num) FROM ${TABLE}) THEN ${TABLE}.posicion_actual ELSE NULL END ;;
+    sql: CASE WHEN ${TABLE}.row_num = (SELECT MAX(row_num) FROM ${TABLE}) THEN ${TABLE}.posicion_actual_rec ELSE NULL END ;;
     value_format: "#,##0"
   }
 
