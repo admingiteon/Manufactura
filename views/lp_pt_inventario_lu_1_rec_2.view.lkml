@@ -36,7 +36,7 @@ view: lp_pt_inventario_lu_1_rec_2 {
   measure: Total_cantidad_requerida {
     label: "Fabricación"
     type: sum
-    sql: ${TABLE}.cantidad_requerida_rec ;;
+    sql: ${TABLE}.cantidad_requerida_rec_y ;;
     value_format: "#,##0"
   }
 
@@ -78,7 +78,7 @@ view: lp_pt_inventario_lu_1_rec_2 {
     type: number
     sql: ${TABLE}.Inventario_Objetivo_Proporcional_rec ;;
   }
-  dimension: material_rec {
+  dimension: material {
     type: string
     sql: ${TABLE}.material_rec ;;
   }
@@ -118,6 +118,11 @@ view: lp_pt_inventario_lu_1_rec_2 {
   dimension: sociedad_rec {
     type: string
     sql: ${TABLE}.sociedad_rec ;;
+  }
+
+  measure: ventas {
+    type: sum
+    sql: ${TABLE}.Cantidad_rec ;;
   }
 
   dimension: stock_control_calidad {
