@@ -150,13 +150,15 @@ view: tb_largo_plazo_trazabilidad_nv {
       ELSE ROUND(SUM(${TABLE}.Cantidad), 2)
         END;;
 
-    value_format: "#,##0.00"
+    #value_format: "#,##0.00"
 
     html:
 
 
+    {% if id_concepto._value  ==4 %}
+      <p style="color:black;">{{ new_cantidad_total._rendered_value  }}%</p>
 
-    {% if (new_cantidad_total._value ==100 or new_cantidad_total._value ==100.00) and id_concepto._value  ==14 %}
+    {% elsif (new_cantidad_total._value ==100 or new_cantidad_total._value ==100.00) and id_concepto._value  ==14 %}
       <p style="color: black; background-color: #98FB98;">{{ new_cantidad_total._rendered_value  }}%</p>
 
     {% elsif id_concepto._value  ==14 %}
@@ -167,9 +169,6 @@ view: tb_largo_plazo_trazabilidad_nv {
 
     {% elsif (new_cantidad_total._value <80.00) and id_concepto._value  ==14 %}
       <p style="color: black; background-color: red;">{{ new_cantidad_total._rendered_value  }}%</p>
-
-    {% elsif id_concepto._value  ==4 %}
-      <p style="color:black;">{{ new_cantidad_total._rendered_value  }}%</p>
 
     {% elsif new_cantidad_total._value==0 and id_concepto._value  ==16 %}
       <p style="color: black; background-color: #98FB98;">{{ new_cantidad_total._rendered_value  }}%</p>
