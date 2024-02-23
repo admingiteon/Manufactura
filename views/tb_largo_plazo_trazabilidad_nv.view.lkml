@@ -156,7 +156,7 @@ view: tb_largo_plazo_trazabilidad_nv {
 
 
 
-    {% if (new_cantidad_total._value ==100 or new_cantidad_total._value ==100.00)and id_concepto._value  ==14 %}
+    {% if (new_cantidad_total._value ==100 or new_cantidad_total._value ==100.00) and id_concepto._value  ==14 %}
       <p style="color: black; background-color: #98FB98;">{{ new_cantidad_total._rendered_value  }}%</p>
 
     {% elsif id_concepto._value  ==14 %}
