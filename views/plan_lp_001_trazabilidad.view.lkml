@@ -14,7 +14,7 @@ view: plan_lp_001_trazabilidad {
                      PeriodoNum,
                      Periodo,
                      Cantidad
-             FROM `psa-sga-dfn-qa.reporting_ecc_mx.pla_de_demanda_01`
+             FROM `eon-bus-proj-cadena-demo.reporting_ecc_mx.pla_de_demanda_01`
             WHERE PeriodoNum IS NOT null   ;;
   }
 

@@ -1,7 +1,9 @@
 
 view: pv_lp_pt_comprados_inventario_lu_1 {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Comprados_Inventario_LU_1`  ;;
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Comprados_Inventario_LU_1`
+
+  ;;
   }
 
   measure: count {

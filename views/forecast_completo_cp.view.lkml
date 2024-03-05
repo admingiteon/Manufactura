@@ -1,7 +1,7 @@
 
 view: forecast_completo_cp {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.forecast_completo_cp_` ;;
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.forecast_completo_cp_` ;;
   }
 
   measure: count {

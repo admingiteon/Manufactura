@@ -15,7 +15,9 @@ view: val_vw_datos_generales {
                   0 as cantidad_necesaria_tot,
                   '?' as unidad_medida_resb,
                   0 as cantidad_tomada_tot
-          FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales`
+      --    FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales`
+
+         FROM   `eon-bus-proj-cadena-demo.p_reporting_homologacion_mx.vw_cadena_suministro_datos_generales`
           where  grupo_articulos in  ('AM',
 'A',
 'T',

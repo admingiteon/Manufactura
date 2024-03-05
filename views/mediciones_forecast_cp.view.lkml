@@ -1,7 +1,7 @@
 
 view: mediciones_forecast_cp {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.entradas_y_salidas.mediciones_forecast_cp`  ;;
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.entradas_y_salidas.mediciones_forecast_cp`  ;;
   }
 
   measure: count {

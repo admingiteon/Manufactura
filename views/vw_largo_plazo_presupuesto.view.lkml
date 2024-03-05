@@ -4,8 +4,7 @@ view: vw_largo_plazo_presupuesto {
     sql:
 
 
-    SELECT * FROM tb_largo_plazo_presupuesto
-    `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_presupuesto`
+    SELECT * FROM  `eon-bus-proj-cadena-demo.p_reporting_ecc_mx._backuptb_largo_plazo_presupuesto`
     where  grupoarticulo in  ('AM',
 'A',
 'T',

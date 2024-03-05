@@ -1,7 +1,7 @@
 
 view: demanda_calculos {
   derived_table: {
-    sql: SELECT *,CONCAT('00000000000' , material) SKU FROM `psa-psa-cadena-qa.reporting_ecc_mx.demanda_calculos` ;;
+    sql: SELECT *,CONCAT('00000000000' , material) SKU FROM `eon-bus-proj-cadena-demo.reporting_ecc_mx.demanda_calculos` ;;
   }
 
   measure: count {

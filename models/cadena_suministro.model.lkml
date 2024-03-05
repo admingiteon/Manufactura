@@ -2,7 +2,7 @@ connection: "hypson"
 
 # include all the views
 include: "/views/**/*.view.lkml"
-
+include: "/**/*.dashboard"
 
 
 datagroup: cadena_suministro_default_datagroup {

@@ -1,7 +1,7 @@
 
 view: arima_medicion_lp {
   derived_table: {
-    sql: select * from psa-psa-cadena-qa.arima.Medicion_LP ;;
+    sql: select * from eon-bus-proj-cadena-demo.arima.Medicion_LP ;;
   }
 
   measure: count {

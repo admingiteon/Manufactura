@@ -4,7 +4,7 @@
 
 view: pe_cad_sum_dat_gen {
   derived_table: {
-    sql: SELECT * FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales`   ;;
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.reporting_ecc_mx.vw_cadena_suministro_datos_generales`   ;;
   }
 
   measure: count {

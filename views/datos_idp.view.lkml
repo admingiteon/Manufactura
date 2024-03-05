@@ -1,7 +1,7 @@
 
 view: datos_idp {
   derived_table: {
-    sql: SELECT *  FROM `psa-psa-cadena-qa.entradas_y_salidas.forecast_completo_v1`
+    sql: SELECT *  FROM `eon-bus-proj-cadena-demo.entradas_y_salidas.forecast_completo_v1`
 
     ;;
   }

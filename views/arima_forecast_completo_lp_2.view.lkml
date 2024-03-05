@@ -1,7 +1,7 @@
 
 view: arima_forecast_completo_lp_2 {
   derived_table: {
-    sql: select * from  psa-psa-cadena-qa.modelo_de_calculo.Forecast_Completo_LP_2 ;;
+    sql: select * from  eon-bus-proj-cadena-demo.modelo_de_calculo.Forecast_Completo_LP_2 ;;
   }
 
   measure: count {

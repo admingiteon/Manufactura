@@ -1,7 +1,7 @@
 view: lp_pt_inventario_lu_1_rec_2 {
   derived_table: {
     sql: select * from (
-      select *, ROW_NUMBER() OVER (PARTITION BY fecha_rec, material_rec, centro_rec ORDER BY posicion_actual_rec DESC) as row_num from `psa-psa-cadena-qa.modelo_de_calculo.LP_PT_Inventario_LU_1_rec_2`) a where a.row_num=1  ;;
+      select *, ROW_NUMBER() OVER (PARTITION BY fecha_rec, material_rec, centro_rec ORDER BY posicion_actual_rec DESC) as row_num from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Inventario_LU_1_rec_2`) a where a.row_num=1  ;;
   }
 
   dimension: cantidad_final_rec {

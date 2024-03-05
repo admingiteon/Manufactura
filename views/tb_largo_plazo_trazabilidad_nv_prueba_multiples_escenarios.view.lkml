@@ -1,10 +1,10 @@
 
 view: tb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.reporting_ecc_mx.tb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios` t
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.p_reporting_ecc_mx._backuptb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios` t
     left join (SELECT material
                              ,CONCAT(SUBSTR(material,12,50), "-" , texto_breve_material)   AS sku_describe
-                        FROM `psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_datos_generales`
+                        FROM `eon-bus-proj-cadena-demo.p_reporting_homologacion_mx.vw_cadena_suministro_datos_generales`
                        group by texto_breve_material,material) m on m.material=t.SKU
    --where Escenario_id=801
      WHERE {% condition escenario_id %} Escenario_id {% endcondition %}

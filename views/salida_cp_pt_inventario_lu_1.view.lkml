@@ -3,7 +3,7 @@ view: salida_cp_pt_inventario_lu_1 {
   derived_table: {
     sql: SELECT *,
 
-      FROM `psa-psa-cadena-qa.modelo_de_calculo.CP_PT_Inventario_LU_1` ;;
+      FROM `eon-bus-proj-cadena-demo.p_modelo_de_calculo._backupCP_PT_Inventario_LU_1` ;;
   }
 
   measure: count {

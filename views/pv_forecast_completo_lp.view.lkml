@@ -1,7 +1,7 @@
 
 view: pv_forecast_completo_lp {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.test_arima_dev.Forecast_Completo_LP`  ;;
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.p_test_arima_dev._backupPrueba_LP`  ;;
   }
 
   measure: count {
