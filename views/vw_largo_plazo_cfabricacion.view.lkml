@@ -6,7 +6,7 @@ view: vw_largo_plazo_cfabricacion {
 
 
     select * from (
-    SELECT * FROM  `eon-bus-proj-cadena-demo.p_reporting_ecc_mx._backuptb_largo_plazo_fabricacion_nv`
+    SELECT * FROM  `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_tb_largo_plazo_fabricacion_nv`
     where  planta not in (
 
 'AS01',
