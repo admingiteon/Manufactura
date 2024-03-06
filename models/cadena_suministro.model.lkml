@@ -273,7 +273,17 @@ explore: tb_corto_plazo_plansuministro {}
 explore: tb_corto_plazo_planentregas {}
 explore: alm_pt_almacenamiento_sim {}
 
-explore: tb_largo_plazo_trazabilidad_nv {}
+explore: tb_largo_plazo_trazabilidad_nv {
+
+
+   join: escenarios  {
+    type: left_outer
+    sql_on: ${tb_largo_plazo_trazabilidad_nv.escenario_id} = ${escenarios.escenario_id} ;;
+    relationship: many_to_one
+  }
+
+
+}
 explore: tb_largo_plazo_presupuesto_nv {}
 
 explore: tb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios {}

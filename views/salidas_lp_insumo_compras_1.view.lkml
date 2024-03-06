@@ -1,7 +1,7 @@
 
 view: salidas_lp_insumo_compras_1 {
   derived_table: {
-    sql:select * from psa-psa-cadena-qa.modelo_de_calculo.LP_Insumo_Compras_1;;
+    sql:select * from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_Insumo_Compras_1`;;
   }
 
   measure: count {

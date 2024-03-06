@@ -21,7 +21,7 @@ view: res_vw_cadena_suministro_datos_generales {
                   SELECT sociedad,
                          almacen,
                          centro
-                  FROM psa-sga-dfn-qa.reporting_ecc_mx.vw_cadena_suministro_almacenes
+                  FROM `eon-bus-proj-cadena-demo.p_reporting_homologacion_mx.vw_cadena_suministro_almacenes`
                   WHERE sociedad in ('AMSA','PISA') group by 1,2,3)
 
                 select m.*,s.sociedad from materiales m
