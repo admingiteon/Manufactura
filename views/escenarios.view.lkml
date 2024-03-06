@@ -1,7 +1,7 @@
 
 view: escenarios {
   derived_table: {
-    sql: SELECT Escenario_id FROM `eon-bus-proj-cadena-demo.p_reporting_ecc_mx._backuptb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios` group by Escenario_id ;;
+    sql: SELECT Escenario_id FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_tb_largo_plazo_trazabilidad_nv` group by Escenario_id ;;
   }
 
   measure: count {
@@ -10,8 +10,8 @@ view: escenarios {
   }
 
   dimension: escenario_id {
-    type: string
-    sql: cast(${TABLE}.Escenario_id as string) ;;
+    type: number
+    sql: ${TABLE}.Escenario_id ;;
   }
 
   set: detail {
