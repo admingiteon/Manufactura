@@ -16,8 +16,31 @@ view: vw_largo_plazo_cfabricacion {
 'CM13',
 'MA01',
 'PY01'
-)) a where a.planta not like ('AG%') ;;
+)) a where a.planta not like ('AG%')  AND Escenario_id = {% parameter Escenario %};;
   }
+
+
+  parameter: Escenario {
+    type: number
+    allowed_value: {
+      label: "0"
+      value: "0"
+    }
+    allowed_value: {
+      label: "662"
+      value: "662"
+    }
+    allowed_value: {
+      label: "665"
+      value: "665"
+    }
+  }
+
+  dimension: escenario_id {
+    type: number
+    sql: ${TABLE}.Escenario_id ;;
+  }
+
 
   measure: count {
     type: count
