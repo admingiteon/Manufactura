@@ -288,3 +288,6 @@ explore: tb_largo_plazo_presupuesto_nv {}
 
 explore: tb_largo_plazo_trazabilidad_nv_prueba_multiples_escenarios {}
 explore: prueba2 {}
+
+explore: vw_cadena_suministro_datos_generales {}
+explore: lp_pt_fabricacion_final {}

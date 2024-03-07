@@ -5,13 +5,10 @@ view: alm_pt_almacenamiento_sim {
     sql:
 
 
+
     select planta,grupo_art, centro,fecha,nombre,capacidad_total_ubicacion valor,'CAPACIDAD DE ALMACENAJE' concepto,1 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,0 escenario_id from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
       union all
       select planta,grupo_art, centro,fecha,nombre, ocupacion_inicial valor,'OCUPACION INICIAL' concepto,2 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
-       union all
-      select planta,grupo_art, centro,fecha,nombre,entradas valor,'ENTRADAS' concepto,3 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento` where {% condition escenario_id %} escenario_id {% endcondition %}
-      union all
-      select planta,grupo_art, centro,fecha,nombre,salidas valor,'SALIDAS' concepto,4 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento` where  {% condition escenario_id %} escenario_id {% endcondition %}
       union all
       select planta,grupo_art, centro,fecha,nombre,ocupacion_final valor,'OCUPACION FINAL, EN PALLETS' concepto ,5 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
       union all
@@ -22,6 +19,14 @@ view: alm_pt_almacenamiento_sim {
       select planta,grupo_art, centro,fecha,nombre, ocupacion_final/NULLIF(capacidad_total_ubicacion,0) * 100 valor,'FALTANTE DE CAPACIDAD DE ALMACENAJE (%)' concepto,8 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
        union all
       select planta,grupo_art, centro,fecha,nombre,total_pallets valor,'TOTAL DE PALLETS MOVIDOS' concepto,9 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion, 0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
+      union all
+      select planta,grupo_art, centro,fecha,nombre,entradas valor,'ENTRADAS' concepto,3 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento` where {% condition escenario_id %} escenario_id {% endcondition %}
+      union all
+      select planta,grupo_art, centro,fecha,nombre,salidas valor,'SALIDAS' concepto,4 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento` where {% condition escenario_id %} escenario_id {% endcondition %}
+
+
+
+
 
 
 
