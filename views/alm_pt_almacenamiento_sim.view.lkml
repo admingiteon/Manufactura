@@ -21,7 +21,7 @@ view: alm_pt_almacenamiento_sim {
       union all
       select planta,grupo_art, centro,fecha,nombre, ocupacion_final/NULLIF(capacidad_total_ubicacion,0) * 100 valor,'FALTANTE DE CAPACIDAD DE ALMACENAJE (%)' concepto,8 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
        union all
-      select planta,grupo_art, centro,fecha,nombre,total_pallets valor,'TOTAL DE PALLETS MOVIDOS' concepto,9 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion 0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
+      select planta,grupo_art, centro,fecha,nombre,total_pallets valor,'TOTAL DE PALLETS MOVIDOS' concepto,9 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion, 0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
 
 
 
