@@ -4,53 +4,36 @@ view: alm_pt_almacenamiento_sim {
   derived_table: {
     sql:
 
-  WITH completetbl AS (
-    select planta,escenario_id,grupo_art, centro,fecha,nombre,capacidad_total_ubicacion valor,'CAPACIDAD DE ALMACENAJE' concepto,1 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento`
-      union all
-      select planta,escenario_id,grupo_art, centro,fecha,nombre, ocupacion_inicial valor,'OCUPACION INICIAL' concepto,2 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento`
-       union all
-      select planta,escenario_id,grupo_art, centro,fecha,nombre,entradas valor,'ENTRADAS' concepto,3 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento` where escenario_id=(select max(escenario_id)  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento`)
-      union all
-      select planta,escenario_id,grupo_art, centro,fecha,nombre,salidas valor,'SALIDAS' concepto,4 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento` where  escenario_id=(select max(escenario_id)  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento`)
-      union all
-      select planta,escenario_id,grupo_art, centro,fecha,nombre,ocupacion_final valor,'OCUPACION FINAL, EN PALLETS' concepto ,5 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento`
-      union all
-      select planta,escenario_id,grupo_art, centro,fecha,nombre,ocupacion_final/NULLIF(capacidad_total_ubicacion,0) * 100 valor,'USO DE CAPACIDAD DE ALMACENAJE (%)' concepto,6 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento`
-      union all
-      select planta,escenario_id,grupo_art, centro,fecha,nombre, 0  valor,'FALTANTE DE CAPACIDAD DE ALMACENAJE (#)' concepto,7 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento`
-      union all
-      select planta,escenario_id,grupo_art, centro,fecha,nombre, ocupacion_final/NULLIF(capacidad_total_ubicacion,0) * 100 valor,'FALTANTE DE CAPACIDAD DE ALMACENAJE (%)' concepto,8 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento`
-       union all
-      select planta,escenario_id,grupo_art, centro,fecha,nombre,total_pallets valor,'TOTAL DE PALLETS MOVIDOS' concepto,9 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento`
 
-)
+    select planta,grupo_art, centro,fecha,nombre,capacidad_total_ubicacion valor,'CAPACIDAD DE ALMACENAJE' concepto,1 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,0 escenario_id from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
+      union all
+      select planta,grupo_art, centro,fecha,nombre, ocupacion_inicial valor,'OCUPACION INICIAL' concepto,2 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
+       union all
+      select planta,grupo_art, centro,fecha,nombre,entradas valor,'ENTRADAS' concepto,3 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento` where escenario_id={% condition escenario_id %} Escenario_id {% endcondition %}
+      union all
+      select planta,grupo_art, centro,fecha,nombre,salidas valor,'SALIDAS' concepto,4 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Almacenamiento` where  escenario_id={% condition escenario_id %} Escenario_id {% endcondition %}
+      union all
+      select planta,grupo_art, centro,fecha,nombre,ocupacion_final valor,'OCUPACION FINAL, EN PALLETS' concepto ,5 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
+      union all
+      select planta,grupo_art, centro,fecha,nombre,ocupacion_final/NULLIF(capacidad_total_ubicacion,0) * 100 valor,'USO DE CAPACIDAD DE ALMACENAJE (%)' concepto,6 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
+      union all
+      select planta,grupo_art, centro,fecha,nombre, 0  valor,'FALTANTE DE CAPACIDAD DE ALMACENAJE (#)' concepto,7 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
+      union all
+      select planta,grupo_art, centro,fecha,nombre, ocupacion_final/NULLIF(capacidad_total_ubicacion,0) * 100 valor,'FALTANTE DE CAPACIDAD DE ALMACENAJE (%)' concepto,8 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion,0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
+       union all
+      select planta,grupo_art, centro,fecha,nombre,total_pallets valor,'TOTAL DE PALLETS MOVIDOS' concepto,9 idconcepto,capacidad_total_ubicacion,ocupacion_inicial,capacidad_libre_ubicacion 0 escenario_id  from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Almacenamiento`
 
-SELECT * FROM completetbl  WHERE escenario_id = {% parameter Escenario %}
+
 
       ;;
   }
+
 
   dimension: escenario_id {
     type: number
     sql: ${TABLE}.escenario_id ;;
   }
 
-
-  parameter: Escenario {
-    type: number
-    allowed_value: {
-      label: "0"
-      value: "0"
-    }
-    allowed_value: {
-      label: "662"
-      value: "662"
-    }
-    allowed_value: {
-      label: "665"
-      value: "665"
-    }
-  }
 
 
   measure: count {
