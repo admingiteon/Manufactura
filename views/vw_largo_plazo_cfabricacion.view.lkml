@@ -16,7 +16,7 @@ view: vw_largo_plazo_cfabricacion {
 'CM13',
 'MA01',
 'PY01'
-)) a where a.planta not like ('AG%')  AND Escenario_id = {% parameter Escenario %};;
+)) a where a.planta not like ('AG%')  AND  {% condition escenario_id %} Escenario_id {% endcondition %};;
   }
 
 
