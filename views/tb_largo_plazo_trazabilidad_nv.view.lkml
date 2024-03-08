@@ -1,7 +1,7 @@
 
 view: tb_largo_plazo_trazabilidad_nv {
   derived_table: {
-    sql: SELECT * FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_tb_largo_plazo_trazabilidad_nv` t
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_tb_largo_plazo_trazabilidad_nv_cast_escenario_id` t
             left join (SELECT material
                              ,CONCAT(SUBSTR(material,12,50), "-" , texto_breve_material)   AS sku_describe
                         FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_homologacion_mx_vw_cadena_suministro_datos_generales`
@@ -104,7 +104,7 @@ view: tb_largo_plazo_trazabilidad_nv {
   }
 
   dimension: escenario_id {
-    type: number
+    type: string
     sql: ${TABLE}.Escenario_id ;;
   }
 
