@@ -16,7 +16,7 @@ view: escenarios {
 
   set: detail {
     fields: [
-        escenario_id
+      escenario_id
     ]
   }
 }

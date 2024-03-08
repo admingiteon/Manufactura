@@ -14,6 +14,7 @@ view: tb_largo_plazo_trazabilidad_nv {
 
   parameter: Escenario {
     type: number
+    default_value: "all"
     allowed_value: {
       label: "0"
       value: "0"
