@@ -7,7 +7,7 @@ view: tb_largo_plazo_presupuesto_nv {
                         FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_homologacion_mx_vw_cadena_suministro_datos_generales`
 
                        group by texto_breve_material,material) m on m.material=t.SKU
-                        where  id_concepto not in (5,6,7,8) AND  {% condition escenario_str %} escenario_string {% endcondition %}
+                        where  id_concepto not in (5,6,7,8) AND  {% condition escenario_id %} escenario_string {% endcondition %}
                       ;;
   }
 
