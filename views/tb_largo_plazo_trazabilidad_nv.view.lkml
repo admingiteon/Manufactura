@@ -6,7 +6,7 @@ view: tb_largo_plazo_trazabilidad_nv {
                              ,CONCAT(SUBSTR(material,12,50), "-" , texto_breve_material)   AS sku_describe
                         FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_homologacion_mx_vw_cadena_suministro_datos_generales`
                        group by texto_breve_material,material) m on m.material=t.SKU
-  WHERE {% condition escenario_id %} escenario_string {% endcondition %}
+  WHERE {% condition escenario_str %} escenario_string {% endcondition %}
 ;;
 
 
@@ -104,6 +104,11 @@ view: tb_largo_plazo_trazabilidad_nv {
   }
 
   dimension: escenario_id {
+    type: string
+    sql: ${TABLE}.escenario_string ;;
+  }
+
+  dimension: escenario_str {
     type: string
     sql: ${TABLE}.escenario_string ;;
   }

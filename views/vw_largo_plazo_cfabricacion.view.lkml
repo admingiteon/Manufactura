@@ -6,7 +6,7 @@ view: vw_largo_plazo_cfabricacion {
 
 
     select * from (
-    SELECT * FROM  `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_tb_largo_plazo_fabricacion_nv`
+    SELECT  * EXCEPT(Escenario_id), CAST(Escenario_id AS STRING) as escenario_string FROM  `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_tb_largo_plazo_fabricacion_nv`
     where  planta not in (
 
 'AS01',
@@ -16,7 +16,7 @@ view: vw_largo_plazo_cfabricacion {
 'CM13',
 'MA01',
 'PY01'
-)) a where a.planta not like ('AG%')  AND  {% condition escenario_id %} Escenario_id {% endcondition %};;
+)) a where a.planta not like ('AG%')  AND  {% condition escenario_str %} escenario_string {% endcondition %};;
   }
 
 
@@ -37,8 +37,13 @@ view: vw_largo_plazo_cfabricacion {
   }
 
   dimension: escenario_id {
-    type: number
-    sql: ${TABLE}.Escenario_id ;;
+    type: string
+    sql: ${TABLE}.escenario_string ;;
+  }
+
+  dimension: escenario_str {
+    type: string
+    sql: ${TABLE}.escenario_string ;;
   }
 
 
