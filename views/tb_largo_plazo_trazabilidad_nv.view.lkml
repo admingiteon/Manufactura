@@ -167,7 +167,9 @@ view: tb_largo_plazo_trazabilidad_nv {
       WHEN ${id_concepto} = 14 AND (SUM(${TABLE}.divisor) >= SUM(${TABLE}.dividendo)) THEN ROUND(AVG(100), 2)
       WHEN ${id_concepto} = 14 AND (SUM(${TABLE}.divisor) < SUM(${TABLE}.dividendo) AND (SUM(${TABLE}.divisor) <> 0 AND SUM(${TABLE}.dividendo) <> 0)) THEN ROUND( (SUM(${TABLE}.divisor) / SUM(${TABLE}.dividendo)) * 100 , 2)
 
-      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) = 0 OR SUM(${TABLE}.dividendo) = 0) THEN ROUND(100-SUM(0), 2)
+      --WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) = 0 OR SUM(${TABLE}.dividendo) = 0) THEN ROUND(100-SUM(0), 2)
+      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) = 0 AND SUM(${TABLE}.dividendo) > 0) THEN ROUND(100-SUM(0), 2)
+      WHEN ${id_concepto} = 16 AND SUM(${TABLE}.dividendo) = 0 THEN ROUND(SUM(0), 2)
       WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) >= SUM(${TABLE}.dividendo)) THEN ROUND(100-AVG(100), 2)
       WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) < SUM(${TABLE}.dividendo) AND (SUM(${TABLE}.divisor) <> 0 AND SUM(${TABLE}.dividendo) <> 0)) THEN ROUND( 100-((SUM(${TABLE}.divisor) / SUM(${TABLE}.dividendo)) * 100), 2)
 
