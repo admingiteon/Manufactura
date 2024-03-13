@@ -174,7 +174,7 @@ view: tb_largo_plazo_trazabilidad_nv {
       WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) < SUM(${TABLE}.dividendo) AND (SUM(${TABLE}.divisor) <> 0 AND SUM(${TABLE}.dividendo) <> 0)) THEN ROUND( 100-((SUM(${TABLE}.divisor) / SUM(${TABLE}.dividendo)) * 100), 2)
 
       WHEN ${id_concepto} = 4 AND (SUM(${TABLE}.divisor) = 0 OR SUM(${TABLE}.dividendo) = 0) THEN ROUND(SUM(0), 2)
-      WHEN ${id_concepto} = 4 AND SUM(${TABLE}.dividendo)<>0 THEN ROUND(AVG(100), 2)-100
+      --WHEN ${id_concepto} = 4 AND SUM(${TABLE}.dividendo)<>0 THEN ROUND(AVG(100), 2)-100
       WHEN ${id_concepto} = 4 AND (SUM(${TABLE}.divisor) <>0 AND SUM(${TABLE}.dividendo) <> 0) THEN ROUND( ((SUM(${TABLE}.dividendo) / SUM(${TABLE}.divisor)) * 100)-100, 2)
       --WHEN ${id_concepto} = 1 THEN ROUND(SUM(${TABLE}.Cantidad), 2)/2
       ELSE ROUND(SUM(${TABLE}.Cantidad), 2)
