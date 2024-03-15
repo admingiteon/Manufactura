@@ -54,7 +54,12 @@ view: vw_largo_plazo_cfabricacion {
 
   measure: Total_cantidad {
     type: number
-   sql: case when ${id_concepto} in (1,4,5,8,9,101) then max(${TABLE}.cantidad) when ${id_concepto} in (6) then sum(${TABLE}.cantidad)  else sum(${TABLE}.cantidad) end  ;;
+   sql: case WHEN ${id_concepto} in (1,5,8,9,101) then max(${TABLE}.cantidad)
+            WHEN ${id_concepto} in (6) then sum(${TABLE}.cantidad)
+            WHEN ${id_concepto} = 4 AND (SUM(${TABLE}.divisor) = 0 OR SUM(${TABLE}.dividendo) = 0) THEN SUM(0)
+            WHEN ${id_concepto} = 4 AND (SUM(${TABLE}.divisor) <>0 AND SUM(${TABLE}.dividendo) <> 0) THEN ROUND( ((SUM(${TABLE}.dividendo) / SUM(${TABLE}.divisor)) * 100)-100, 2)
+            ELSE sum(${TABLE}.cantidad)
+        end  ;;
     value_format: "#,##0.00"
 
     html:
