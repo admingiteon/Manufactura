@@ -158,6 +158,25 @@ view: tb_largo_plazo_trazabilidad_nv {
     sql: ${TABLE}.Cantidad ;;
   }
 
+  measure: concepto_16 {
+    type: number
+    drill_fields: [percentage_detail*]
+    sql: CASE
+      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) = 0 AND SUM(${TABLE}.dividendo) > 0) THEN 100-SUM(0)
+      WHEN ${id_concepto} = 16 AND SUM(${TABLE}.dividendo) = 0 THEN SUM(0)
+      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) >= SUM(${TABLE}.dividendo)) THEN 100-AVG(100)
+      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) < SUM(${TABLE}.dividendo) AND (SUM(${TABLE}.divisor) <> 0 AND SUM(${TABLE}.dividendo) <> 0)) THEN ROUND( 100-((SUM(${TABLE}.divisor) / SUM(${TABLE}.dividendo)) * 100), 2)
+    END;;
+  }
+
+  measure: concepto_16_conteo {
+    type: number
+    drill_fields: [percentage_detail*]
+    sql: CASE
+      WHEN ${concepto_16} >0 THEN SUM(1)
+      ELSE 0
+    END;;
+  }
 
   measure: new_cantidad_total {
     type: number
