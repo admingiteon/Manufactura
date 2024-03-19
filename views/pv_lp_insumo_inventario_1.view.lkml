@@ -33,6 +33,8 @@ view: pv_lp_insumo_inventario_1 {
 
 
 
+
+
   dimension_group: Fecha_creacion {
     type: time
 
@@ -146,6 +148,23 @@ view: pv_lp_insumo_inventario_1 {
     type: time
     sql: ${TABLE}.fecha_orden_de_compra ;;
   }
+
+  dimension: fecha_orden_de_compra_dim {
+    type: date
+    sql: ${TABLE}.fecha_orden_de_compra ;;
+  }
+
+
+  dimension: producible {
+    type: yesno
+    sql: CASE
+          WHEN ${posicion_actual} > ${cantidad_requerida} THEN TRUE
+          WHEN ${posicion_actual} < ${cantidad_requerida} AND ${fecha_orden_de_compra_dim} > CURRENT_DATE THEN TRUE
+          WHEN ${posicion_actual} < ${cantidad_requerida} AND ${fecha_orden_de_compra_dim} <= CURRENT_DATE THEN FALSE
+          ELSE FALSE
+        END ;;
+  }
+
 
   set: detail {
     fields: [
