@@ -23,6 +23,7 @@ view: pv_lp_insumo_inventario_1 {
   dimension: sku {
     type: string
     sql: SUBSTR(${TABLE}.id,12,7) ;;
+    html: <p style="font-weight: bolder ;">{{ rendered_value }}</p>;;
   }
 
 
@@ -163,6 +164,7 @@ view: pv_lp_insumo_inventario_1 {
           WHEN ${posicion_actual} < ${cantidad_requerida} AND ${fecha_orden_de_compra_dim} <= CURRENT_DATE THEN FALSE
           ELSE FALSE
         END ;;
+
   }
 
 
