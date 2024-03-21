@@ -25,6 +25,13 @@ explore: val_vw_datos_generales {
     sql_on: ${val_vw_datos_generales.material} = ${demanda_calculos.sku} ;;
     relationship: many_to_one
   }
+
+  join: vw_largo_plazo_cfabricacion {
+    type: left_outer
+    sql_on: ${val_vw_datos_generales.material} = ${vw_largo_plazo_cfabricacion.sku} ;;
+    relationship: many_to_one
+  }
+
 } #Para validar la vista de Cadena de datos Generales
 explore: val_vw_ordenes_compra {} #Para validar la vista de Ordenes de Compra
 explore: lista_materiales_datos_generales {}
