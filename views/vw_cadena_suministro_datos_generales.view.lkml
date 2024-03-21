@@ -14,6 +14,11 @@ view: vw_cadena_suministro_datos_generales {
     sql: ${TABLE}.material ;;
   }
 
+  measure: number_of_unique_material {
+    type: count_distinct
+    sql: ${material} ;;
+  }
+
   dimension: tipo_material {
     type: string
     sql: ${TABLE}.tipo_material ;;
@@ -167,36 +172,36 @@ view: vw_cadena_suministro_datos_generales {
   set: detail {
     fields: [
         material,
-	tipo_material,
-	unidad_medida,
-	grupo_articulos,
-	grupo_articulos_externos,
-	texto_breve_material,
-	centro,
-	caract_plan_necesidades,
-	punto_pedido,
-	tamano_lote_min,
-	plazo_entrega,
-	stock_seguridad,
-	stock_seguridad_min,
-	tiempo_tratamiento_entrada_mercancias,
-	valor_redond,
-	tamano_lote_max,
-	responsable_control_prod,
-	tamano_lote_fijo,
-	clase_aprovisionamiento,
-	indicador_control_precios,
-	precio_medio_variable,
-	precio_estandar,
-	cantidad_base,
-	precio_absorbente,
-	almacen,
-	stock_libre_utilizacion,
-	stock_traslado,
-	stock_control_calidad,
-	stock_bloqueado,
-	contador_conversion_unidad_medida_base,
-	denominador_conversion_unidad_medida_base
+  tipo_material,
+  unidad_medida,
+  grupo_articulos,
+  grupo_articulos_externos,
+  texto_breve_material,
+  centro,
+  caract_plan_necesidades,
+  punto_pedido,
+  tamano_lote_min,
+  plazo_entrega,
+  stock_seguridad,
+  stock_seguridad_min,
+  tiempo_tratamiento_entrada_mercancias,
+  valor_redond,
+  tamano_lote_max,
+  responsable_control_prod,
+  tamano_lote_fijo,
+  clase_aprovisionamiento,
+  indicador_control_precios,
+  precio_medio_variable,
+  precio_estandar,
+  cantidad_base,
+  precio_absorbente,
+  almacen,
+  stock_libre_utilizacion,
+  stock_traslado,
+  stock_control_calidad,
+  stock_bloqueado,
+  contador_conversion_unidad_medida_base,
+  denominador_conversion_unidad_medida_base
     ]
   }
 }
