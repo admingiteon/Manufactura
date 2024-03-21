@@ -104,6 +104,11 @@ view: val_vw_datos_generales {
 
   }
 
+  measure: number_of_unique_material {
+    type: count_distinct
+    sql: ${sku} ;;
+  }
+
   dimension: tipo_material {
     type: string
     sql: ${TABLE}.tipo_material ;;
