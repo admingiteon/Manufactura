@@ -9,6 +9,12 @@ view: lp_pt_fabricacion_final {
     drill_fields: [detail*]
   }
 
+  measure: linea_fabricacion_saturada {
+    type: count_distinct
+    sql: CASE WHEN ${producible} < 100 THEN ${puesto_trabajo} ELSE NULL END ;;
+  }
+
+
   dimension: sociedad {
     type: string
     sql: ${TABLE}.sociedad ;;
@@ -132,29 +138,29 @@ view: lp_pt_fabricacion_final {
   set: detail {
     fields: [
         sociedad,
-	fecha_time,
-	material,
-	componente,
-	prioridad,
-	cliente,
-	id,
-	centro_suministrador,
-	centro,
-	num_material,
-	cantidad_requerida,
-	velocidad_fabricacion,
-	puesto_trabajo,
-	texto_breve_operacion,
-	planta,
-	horas_requeridas,
-	horas,
-	mes_ano,
-	horas_disponibles_mensual,
-	material_fecha,
-	cantidad_producible,
-	horas_restantes,
-	producible,
-	tipo
+  fecha_time,
+  material,
+  componente,
+  prioridad,
+  cliente,
+  id,
+  centro_suministrador,
+  centro,
+  num_material,
+  cantidad_requerida,
+  velocidad_fabricacion,
+  puesto_trabajo,
+  texto_breve_operacion,
+  planta,
+  horas_requeridas,
+  horas,
+  mes_ano,
+  horas_disponibles_mensual,
+  material_fecha,
+  cantidad_producible,
+  horas_restantes,
+  producible,
+  tipo
     ]
   }
 }
