@@ -1,7 +1,14 @@
 view: fabricacion_no_cubierta {
   derived_table: {
     sql:
-SELECT * FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_manufactura_vw_cobertura_fabricacion`
+SELECT t.fecha,t.material ,t.cantidad_requerida,b.cantidad_producible FROM
+(select fecha, material,cantidad_requerida from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Inventario_LU_1`) as t
+
+inner JOIN
+
+(select fecha, material, cantidad_producible from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Fabricacion_Final`) as b
+
+ON t.material=b.material and t.fecha=b.fecha
 ;;
   }
 
@@ -23,9 +30,9 @@ SELECT * FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_manufactura_vw
   }
 
   measure: cobertura_fab{
-    label: "cantidad_producible/cobertura_fab"
+    label: "cantidad_producible"
     type: sum
-    sql: ${TABLE}.cobertura_fab ;;
+    sql: ${TABLE}.cantidad_producible ;;
   }
 
 }
