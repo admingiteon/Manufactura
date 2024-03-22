@@ -8,11 +8,24 @@ SELECT * FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_manufactura_vw
 
   dimension: material {
     type: string
-    sql: ${TABLE}.material ;;
+    sql: SUBSTR(${TABLE}.material,12,50) ;;
   }
 
   dimension: fecha {
     type: date
+    sql:  ${TABLE}.fecha;;
 
   }
+
+  measure: cantidad_requerida{
+    type: sum
+    sql: ${TABLE}.cantidad_requerida ;;
+  }
+
+  measure: cobertura_fab{
+    label: "cantidad_producible/cobertura_fab"
+    type: sum
+    sql: ${TABLE}.cobertura_fab ;;
+  }
+
 }
