@@ -1,7 +1,7 @@
 view: almacenes_excedidos {
   derived_table: {
     sql:
-    SELECT * FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.reporting_manufactura_vw_almacenes_excedidos`) as t
+    SELECT * FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.reporting_manufactura_vw_almacenes_excedidos`)
 
       ;;
   }
@@ -12,10 +12,16 @@ view: almacenes_excedidos {
     sql: ${TABLE}.centro ;;
   }
 
-  dimension: fecha {
-    type: date
-    sql:  ${TABLE}.fecha;;
+  #dimension: fecha {
+  #  type: date
+   # sql:  ${TABLE}.fecha;;
 
+  #}
+
+  dimension_group: fecha {
+    type: time
+    timeframes: [raw, time, date, week, month, quarter, year]
+    sql: ${TABLE}.fecha ;;
   }
 
   measure: ocupacion_final{
