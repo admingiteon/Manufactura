@@ -3,7 +3,7 @@ view: salida_cp_insumo_inventario_1 {
   derived_table: {
     sql: SELECT *,
       substring(id,1,18) as material
-      FROM `psa-psa-cadena-qa.modelo_de_calculo.CP_Insumo_Inventario_1` ;;
+      FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_Insumo_Inventario_1` ;;
   }
 
   measure: count {

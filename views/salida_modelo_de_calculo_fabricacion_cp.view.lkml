@@ -1,7 +1,7 @@
 
 view: salida_modelo_de_calculo_fabricacion_cp {
   derived_table: {
-    sql: SELECT * FROM `psa-psa-cadena-qa.modelo_de_calculo.CP_PT_Fabricacion_1` ;;
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Fabricacion_1` ;;
   }
 
   measure: count {
