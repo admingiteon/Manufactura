@@ -5,7 +5,8 @@ derived_table: {
         centro,
         fecha AS fecha,
         capacidad_total_ubicacion,
-        ocupacion_final
+        ocupacion_final,
+        nombre
       FROM modelo_de_calculo.LP_PT_Almacenamiento ;;
 }
 
@@ -13,6 +14,11 @@ dimension: centro {
   type: string
   sql: ${TABLE}.centro ;;
 }
+
+  dimension: centro_nombre {
+    type: string
+    sql: ${TABLE}.nombre ;;
+  }
 
 
   dimension_group: fecha {
@@ -35,10 +41,10 @@ measure: porcentaje_ocupacion {
   type: number
   sql:
       CASE
-        WHEN ROUND(${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100, 0) > ${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100 THEN
-          CEIL(${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100)
+        WHEN ROUND(${max_ocupacion_final} / ${capacidad_total_ubicacion}, 0) > ${max_ocupacion_final} / ${capacidad_total_ubicacion} THEN
+          CEIL(${max_ocupacion_final} / ${capacidad_total_ubicacion} )
         ELSE
-          FLOOR(${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100)
+          FLOOR(${max_ocupacion_final} / ${capacidad_total_ubicacion} )
       END ;;
 }
 }
