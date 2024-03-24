@@ -41,10 +41,24 @@ measure: porcentaje_ocupacion {
   type: number
   sql:
       CASE
-        WHEN ROUND(${max_ocupacion_final} / ${capacidad_total_ubicacion}, 0) > ${max_ocupacion_final} / ${capacidad_total_ubicacion} THEN
-          CEIL(${max_ocupacion_final} / ${capacidad_total_ubicacion} )
+        WHEN ROUND(${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100, 0) > ${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100 THEN
+          CEIL(${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100)
         ELSE
-          FLOOR(${max_ocupacion_final} / ${capacidad_total_ubicacion} )
+          FLOOR(${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100)
       END ;;
+
+
+  html:
+
+  {% if value >100 %}
+  <p style="color:black; background-color: #D22B2B  ">{{ rendered_value }}</p>
+
+  {% elsif value <80 %}
+  <p style="color: black;">{{ rendered_value }}</p>
+
+  {% elsif (value >=80 or value <=100) %}
+  <p style="color: black; background-color: #FEED1B;">{{ rendered_value }}</p>
+
+  {% endif %};;
 }
 }
