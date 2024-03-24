@@ -20,6 +20,11 @@ dimension: centro {
     sql: ${TABLE}.nombre ;;
   }
 
+  dimension: capacidad {
+    type: string
+    sql: ${TABLE}.capacidad_libre_ubicacion ;;
+  }
+
 
   dimension_group: fecha {
     type: time
