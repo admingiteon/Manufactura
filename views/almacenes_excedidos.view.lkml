@@ -1,7 +1,7 @@
 view: almacenes_excedidos {
   derived_table: {
     sql:
-    SELECT * FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.reporting_manufactura_vw_almacenes_excedidos`)
+    SELECT * FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.reporting_manufactura_vw_almacenes_excedidos`
 
       ;;
   }
