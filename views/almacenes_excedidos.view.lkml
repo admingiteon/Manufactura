@@ -1,22 +1,19 @@
 view: almacenes_excedidos {
-  derived_table: {
-    sql:
-    SELECT * FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.reporting_manufactura_vw_almacenes_excedidos`
+derived_table: {
+  sql:
+      SELECT
+        centro,
+        fecha AS fecha,
+        capacidad_total_ubicacion,
+        ocupacion_final
+      FROM modelo_de_calculo.LP_PT_Almacenamiento ;;
+}
 
-      ;;
-  }
+dimension: centro {
+  type: string
+  sql: ${TABLE}.centro ;;
+}
 
-
-  dimension: centro {
-    type: string
-    sql: ${TABLE}.centro ;;
-  }
-
-  #dimension: fecha {
-  #  type: date
-   # sql:  ${TABLE}.fecha;;
-
-  #}
 
   dimension_group: fecha {
     type: time
@@ -24,16 +21,24 @@ view: almacenes_excedidos {
     sql: ${TABLE}.fecha ;;
   }
 
-  measure: ocupacion_final{
-    label: "Ocupación Final"
-    type: number
-    sql: ${TABLE}.max_ocupacion_final ;;
-  }
+dimension: capacidad_total_ubicacion {
+  type: number
+  sql: ${TABLE}.capacidad_total_ubicacion ;;
+}
 
-  measure: porcentaje_ocupacion{
-    label: "Porcentaje Ocupación"
-    type: number
-    sql: ${TABLE}.porcentaje_ocupacion ;;
-  }
+measure: max_ocupacion_final {
+  type: max
+  sql: ${TABLE}.ocupacion_final ;;
+}
 
+measure: porcentaje_ocupacion {
+  type: number
+  sql:
+      CASE
+        WHEN ROUND(${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100, 0) > ${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100 THEN
+          CEIL(${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100)
+        ELSE
+          FLOOR(${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100)
+      END ;;
+}
 }
