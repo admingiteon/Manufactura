@@ -45,6 +45,8 @@ explore: val_vw_recursos_capacidades {}
 explore: val_largo_plazo_completo_aruma {}
 explore: fabricacion_no_cubierta {}
 
+explore: almacenes_excedidos {}
+
 
 explore: vw_largo_plazo_trazabilidad {
   join: vw_lista_componentes {
