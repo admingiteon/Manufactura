@@ -6,7 +6,8 @@ derived_table: {
         fecha AS fecha,
         capacidad_total_ubicacion,
         ocupacion_final,
-        nombre
+        nombre,
+        capacidad_libre_ubicacion
       FROM modelo_de_calculo.LP_PT_Almacenamiento ;;
 }
 
@@ -20,9 +21,14 @@ dimension: centro {
     sql: ${TABLE}.nombre ;;
   }
 
-  dimension: capacidad {
-    type: string
+  measure: capacidad {
+    type: max
     sql: ${TABLE}.capacidad_libre_ubicacion ;;
+  }
+
+  measure: num_total_centros {
+    type: count_distinct
+    sql: ${centro_nombre};;
   }
 
 
@@ -52,6 +58,7 @@ measure: porcentaje_ocupacion {
           FLOOR(${max_ocupacion_final} / ${capacidad_total_ubicacion} * 100)
       END ;;
 
+  value_format: "0\%"
 
   html:
 
