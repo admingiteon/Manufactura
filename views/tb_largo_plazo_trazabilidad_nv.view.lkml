@@ -1,7 +1,7 @@
 
 view: tb_largo_plazo_trazabilidad_nv {
   derived_table: {
-    sql: SELECT * EXCEPT(Escenario_id), CAST(Escenario_id AS STRING) as escenario_string FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_vw_largo_plazo_trazabilidad_nv` t
+    sql: SELECT * EXCEPT(Escenario_id), CAST(Escenario_id AS STRING) as escenario_string FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_tb_largo_plazo_trazabilidad_nv` t
             left join (SELECT material
                              ,CONCAT(SUBSTR(material,12,50), "-" , texto_breve_material)   AS sku_describe
                         FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_homologacion_mx_vw_cadena_suministro_datos_generales`

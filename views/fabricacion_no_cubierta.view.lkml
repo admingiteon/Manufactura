@@ -25,14 +25,16 @@ ON t.material=b.material and t.fecha=b.fecha
   }
 
   measure: cantidad_requerida{
-    type: sum
+    type: max
     sql: ${TABLE}.cantidad_requerida ;;
   }
 
   measure: cobertura_fab{
     label: "cantidad_producible"
-    type: sum
+    type: max
     sql: ${TABLE}.cantidad_producible ;;
   }
+
+
 
 }
