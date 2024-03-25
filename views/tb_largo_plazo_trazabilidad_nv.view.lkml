@@ -162,11 +162,23 @@ view: tb_largo_plazo_trazabilidad_nv {
     type: number
     drill_fields: [percentage_detail*]
     sql: CASE
-      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) = 0 AND SUM(${TABLE}.dividendo) > 0) THEN 100-SUM(0)
+      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) = 0 AND SUM(${TABLE}.dividendo) > 0) THEN (100-SUM(0))
       WHEN ${id_concepto} = 16 AND SUM(${TABLE}.dividendo) = 0 THEN SUM(0)
-      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) >= SUM(${TABLE}.dividendo)) THEN 100-AVG(100)
+      WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) >= SUM(${TABLE}.dividendo)) THEN (100-AVG(100))
       WHEN ${id_concepto} = 16 AND (SUM(${TABLE}.divisor) < SUM(${TABLE}.dividendo) AND (SUM(${TABLE}.divisor) <> 0 AND SUM(${TABLE}.dividendo) <> 0)) THEN ROUND( 100-((SUM(${TABLE}.divisor) / SUM(${TABLE}.dividendo)) * 100), 2)
     END;;
+  }
+
+  dimension: divisor {
+    type: number
+    label: "Cobertura de la demanda"
+    sql: ${TABLE}.divisor ;;
+  }
+
+  dimension: dividendo {
+    label: "Plan de la demanda"
+    type: number
+    sql: ${TABLE}.dividendo ;;
   }
 
   measure: concepto_16_conteo {
