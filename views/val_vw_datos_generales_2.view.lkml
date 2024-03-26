@@ -32,7 +32,7 @@ dimension: sin_lineas_de_fabricacion {
 
 dimension: material {
   type: string
-  sql: ${TABLE}.material ;;
+  sql: SUBSTR(${TABLE}.material,12,50) ;;
 }
 
 }
