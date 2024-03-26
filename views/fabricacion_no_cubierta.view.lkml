@@ -32,7 +32,7 @@ ON t.material=b.material and t.fecha=b.fecha
   measure: cobertura_fab{
     label: "cantidad_producible"
     type: max
-    sql: ${TABLE}.cantidad_producible ;;
+    sql: CASE WHEN ${TABLE}.cantidad_producible IS NOT NULL THEN ${TABLE}.cantidad_producible ELSE 0 END ;;
   }
 
 
