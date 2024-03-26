@@ -222,6 +222,7 @@ explore: salida_cp_pt_fabricacion_1 {}
 explore: salida_cp_pt_comprados_inventario_lu_1 {}
 
 explore: salidas_lp_fabricacion {}
+explore: lp_insumo_inventario_1{}
 
 
 explore: salidas_lp_insumo_compras_1 {

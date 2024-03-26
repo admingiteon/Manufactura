@@ -1,15 +1,27 @@
-view: cobertura_fabricacion {
+view: lp_insumo_inventario_1 {
   derived_table: {
     sql: SELECT
+    id,
 posicion_actual,
-cantidadrequerida
+cantidadrequerida,
+fecha
       FROM
           `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_Insumo_Inventario_1`;;
   }
 
   dimension: material {
     type: string
-    sql: SUBSTR(${TABLE}.material,12,50) ;;
+    sql: SUBSTR(SUBSTR(id, 1, INSTR(id, '_') - 1), 12, 50) ;;
+  }
+
+measure: posicion_actual {
+  type: sum
+  sql: ${TABLE}.posicion_actual ;;
+}
+
+  measure: cantidadrequerida {
+    type: sum
+    sql: ${TABLE}.cantidadrequerida ;;
   }
 
   dimension_group: fecha {
