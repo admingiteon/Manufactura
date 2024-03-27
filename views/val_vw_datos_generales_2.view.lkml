@@ -1,38 +1,39 @@
 view: val_vw_datos_generales_2 {
 
   derived_table: {
-    sql: SELECT
-  material,
-  SUM(cantidad) AS diferencia
-FROM (
+    sql: WITH total AS (
   SELECT
-    material,
-    COUNT(DISTINCT material) AS cantidad
+    COUNT(DISTINCT material) AS total_count
   FROM
-    `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Fabricacion_Final`
-  GROUP BY material
-
-  UNION ALL
-
+    `modelo_de_calculo.LP_PT_Inventario_LU_1`
+),
+capFab AS (
   SELECT
-    Sku as material,
-    (-1) * COUNT(DISTINCT Sku) AS cantidad
+    COUNT(DISTINCT Sku) AS capfab_count
   FROM
     `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_vw_largo_plazo_fabricacion_capacidadFabrica`
-  GROUP BY Sku
-) AS subconsulta
-GROUP BY material
+)
+select 'Total' as concepto,
+total_count as quantity from total
+UNION ALL
+SELECT
+'SKUs Sin Lineas de Fabricación' as concepto,
+  (SELECT total_count FROM total) - (SELECT capfab_count FROM capFab) AS quantity
+
+
   ;;
   }
 
-dimension: sin_lineas_de_fabricacion {
-  type: number
-  sql: ${TABLE}.diferencia ;;
-}
+  dimension: concepto {
+    type: string
+    sql: ${TABLE}.concepto ;;
+  }
 
-dimension: material {
-  type: string
-  sql: SUBSTR(${TABLE}.material,12,50) ;;
-}
+
+
+  measure: quantity{
+    type: sum
+    sql: ${TABLE}.quantity ;;
+  }
 
 }

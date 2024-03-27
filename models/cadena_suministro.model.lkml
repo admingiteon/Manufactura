@@ -212,6 +212,7 @@ explore: res_tb_sku_componentes {}
 explore: res_tb_sku_componentes_uni {}
 explore: res_tb_sku_componentes_vertical {}
 explore: cobertura_fabricacion {}
+explore: lineas_fab_saturadas{}
 
 
 explore: salida_cp_insumo_compras_1 {}
