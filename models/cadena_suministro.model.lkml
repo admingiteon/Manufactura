@@ -263,6 +263,7 @@ explore: tb_corto_plazo_fabricacion {}
 
 explore: arima_medicion_lp {}
 explore: lp_pt_inventario_lu_1_rec_2{}
+explore: indexes_fabricacion_no_cubierta{}
 
 
 explore: arima_forecast_completo_lp_2 {
