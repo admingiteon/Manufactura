@@ -78,7 +78,7 @@ FROM
 
 
   measure: quantity{
-    type: number
+    type: sum
     sql: ${TABLE}.quantity ;;
   }
 

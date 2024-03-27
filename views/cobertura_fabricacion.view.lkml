@@ -67,8 +67,11 @@ ON
     {% if porcentaje_cobertura_fabricacion._value > 1 %}
     <p style="color:black; background-color: #90D26D;">{{ porcentaje_cobertura_fabricacion._rendered_value  }}</p>
 
-    {% elsif porcentaje_cobertura_fabricacion._value < 0.2 %}
+    {% elsif porcentaje_cobertura_fabricacion._value < 0.2 and cantidad_requerida._value !=0  %}
     <p style="color: black; background-color: #FE0000;">{{ porcentaje_cobertura_fabricacion._rendered_value  }}</p>
+
+    {% elsif cantidad_requerida._value ==0  %}
+    <p style="color: black;">{{ porcentaje_cobertura_fabricacion._rendered_value  }}</p>
 
     {% else %}
     <p style="color: black; background-color: #FFD23F">{{ porcentaje_cobertura_fabricacion._rendered_value  }} </p>
