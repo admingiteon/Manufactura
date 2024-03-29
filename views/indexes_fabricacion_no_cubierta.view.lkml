@@ -1,7 +1,6 @@
 view: indexes_fabricacion_no_cubierta {
   derived_table: {
-    sql:
-   WITH tblmain AS (
+    sql:WITH tblmain AS (
     SELECT
         inv.material,
         DATE(inv.fecha) AS fecha,
@@ -38,18 +37,35 @@ Desabasto AS(
         tblmain
     GROUP BY
         material,fecha
-)
-
-SELECT
+),
+total AS (
+  SELECT
     'Total' AS concepto,
     COUNT(distinct(material)) as quantity
 FROM tblmain
+)
+
+SELECT
+    concepto,
+    quantity
+FROM total
 
 UNION ALL
 
 SELECT
     'SKUs con Problemas de Fabricación' AS concepto,
     COUNT(material) as quantity
+FROM
+    ProbFab
+WHERE
+    sum_cantidad_requerida > sum_cobertura_fab
+
+
+UNION ALL
+
+SELECT
+    'SKUs con Problemas de Fabricación Complemento' AS concepto,
+    (SELECT quantity FROM total WHERE concepto = 'Total') - COUNT(material) as quantity,
 FROM
     ProbFab
 WHERE
@@ -66,7 +82,19 @@ SELECT
     END) AS quantity
 FROM
     Desabasto
-      ;;
+
+UNION ALL
+
+SELECT
+    'Desabasto de Insumos Complemento' AS concepto,
+    (SELECT quantity FROM total WHERE concepto = 'Total') - COUNT(DISTINCT CASE
+        WHEN posicion_actual_insumo < cantidad_requerida_insumo
+            AND fecha <= CURRENT_DATE THEN material
+        ELSE NULL
+    END) as quantity
+FROM
+    Desabasto
+    ;;
   }
 
 
@@ -81,8 +109,4 @@ FROM
     type: sum
     sql: ${TABLE}.quantity ;;
   }
-
-
-
-
 }
