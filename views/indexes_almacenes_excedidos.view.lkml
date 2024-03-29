@@ -5,6 +5,7 @@ WITH PorcentajeOcupacion AS (
   SELECT
     centro,
     fecha,
+    nombre,
     capacidad_total_ubicacion,
     ocupacion_final,
     (ocupacion_final / capacidad_total_ubicacion * 100.0) AS porcentaje_ocupacion
@@ -32,7 +33,12 @@ SELECT
 UNION ALL
 SELECT
 'total_centros_con_ocupacion_mayor_a_80' as concept,
-  (SELECT COUNT(*) FROM AlmacenesOcupados) AS quantity ;;
+  (SELECT COUNT(*) FROM AlmacenesOcupados) AS quantity
+UNION ALL
+SELECT
+'Total' AS concept,
+count(distinct(concat(centro,nombre)))FROM PorcentajeOcupacion
+ ;;
   }
 
   dimension: concepto {
