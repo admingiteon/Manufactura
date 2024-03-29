@@ -21,7 +21,7 @@ SELECT
   (SELECT total_count FROM total) - (SELECT capfab_count FROM capFab) AS quantity
 UNION ALL
 SELECT
-'SKUs con Lineas de Fabricación' as concepto,
+'SKUs Con Lineas de Fabricación' as concepto,
   (SELECT capfab_count FROM capFab) AS quantity;;
   }
 
