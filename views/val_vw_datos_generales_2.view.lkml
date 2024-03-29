@@ -1,7 +1,7 @@
 view: val_vw_datos_generales_2 {
 
   derived_table: {
-    sql: WITH total AS (
+    sql:WITH total AS (
   SELECT
     COUNT(DISTINCT material) AS total_count
   FROM
@@ -19,9 +19,10 @@ UNION ALL
 SELECT
 'SKUs Sin Lineas de Fabricación' as concepto,
   (SELECT total_count FROM total) - (SELECT capfab_count FROM capFab) AS quantity
-
-
-  ;;
+UNION ALL
+SELECT
+'SKUs con Lineas de Fabricación' as concepto,
+  (SELECT capfab_count FROM capFab) AS quantity;;
   }
 
   dimension: concepto {
