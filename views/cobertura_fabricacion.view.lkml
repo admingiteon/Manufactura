@@ -40,13 +40,13 @@ ON
   measure: cantidad_requerida {
     label: "Requerimiento de Fabricación"
     type: sum
-    sql: ${TABLE}.cantidad_requerida ;;
+    sql: COALESCE(${TABLE}.cantidad_requerida, 0);;
   }
 
   measure: cobertura_fab{
     label: "Fabricación Final"
     type: sum
-    sql: ${TABLE}.cobertura_fab ;;
+    sql: COALESCE(${TABLE}.cobertura_fab, 0) ;;
   }
 
   measure: problemas_fabricacion {

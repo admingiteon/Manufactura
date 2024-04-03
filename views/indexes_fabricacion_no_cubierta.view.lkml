@@ -20,12 +20,13 @@ view: indexes_fabricacion_no_cubierta {
 ProbFab AS (
     SELECT
         material,
+        fecha,
         SUM(cantidad_requerida) AS sum_cantidad_requerida,
         SUM(cobertura_fab) AS sum_cobertura_fab
     FROM
         tblmain
     GROUP BY
-        material
+        material,fecha
 ),
 Desabasto AS(
     SELECT
@@ -54,7 +55,7 @@ UNION ALL
 
 SELECT
     'SKUs con Problemas de Fabricación' AS concepto,
-    COUNT(material) as quantity
+    COUNT(distinct(material)) as quantity
 FROM
     ProbFab
 WHERE
@@ -65,7 +66,7 @@ UNION ALL
 
 SELECT
     'SKUs con Problemas de Fabricación Complemento' AS concepto,
-    (SELECT quantity FROM total WHERE concepto = 'Total') - COUNT(material) as quantity,
+    (SELECT quantity FROM total WHERE concepto = 'Total') - COUNT(distinct(material)) as quantity,
 FROM
     ProbFab
 WHERE
