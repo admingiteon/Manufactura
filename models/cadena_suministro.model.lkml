@@ -28,7 +28,7 @@ explore: val_vw_datos_generales {
 
 
 }
-
+explore: sanimex_poc {}
 
 explore: val_vw_datos_generales_2 {
 
