@@ -46,6 +46,7 @@ explore: val_largo_plazo_completo_aruma {}
 explore: fabricacion_no_cubierta {}
 
 explore: almacenes_excedidos {}
+explore: cv_margen_utilidad {}
 
 
 explore: vw_largo_plazo_trazabilidad {
