@@ -125,13 +125,13 @@ view: sanimex_poc {
     sql: ${TABLE}.unidad_e ;;
   }
 
-  dimension: valor_de_venta {
-    type: number
+  measure: valor_de_venta {
+    type: sum
     sql: ${TABLE}.valor_de_venta ;;
   }
 
-  dimension: venta_sin_iva {
-    type: number
+  measure: venta_sin_iva {
+    type: sum
     sql: ${TABLE}.venta_sin_iva ;;
   }
 
