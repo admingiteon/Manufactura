@@ -309,6 +309,8 @@ explore: prueba2 {}
 explore: vw_cadena_suministro_datos_generales {}
 explore: lp_pt_fabricacion_final {}
 
+explore: locations_sanimex_map {}
+
 map_layer: mexico_cities {
   file: "mun_mx.json"
 }

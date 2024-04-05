@@ -1,6 +1,30 @@
 view: sanimex_poc {
 
-  sql_table_name: `eon-bus-proj-cadena-demo.eon_training.sanimex_poc` ;;
+  derived_table: {
+    sql: SELECT main.*,lat_long.latitud,lat_long.longitud FROM
+`eon-bus-proj-cadena-demo.eon_training.sanimex_poc` as main
+LEFT JOIN `eon-bus-proj-cadena-demo.eon_training.lat_long_sanimex` as lat_long
+ ON main.colonia=lat_long.Colonia and  lat_long.cp=main.cp
+;;
+
+
+  }
+
+  dimension: longitud {
+    type: string
+    sql: ${TABLE}.longitud ;;
+  }
+
+  dimension: latitud {
+    type: string
+    sql: ${TABLE}.latitud ;;
+  }
+
+  dimension: map {
+    type: location
+    sql_latitude:${latitud} ;;
+    sql_longitude:${longitud} ;;
+  }
 
 
   dimension: anio {
@@ -132,8 +156,24 @@ view: sanimex_poc {
 
   measure: venta_sin_iva {
     type: sum
+    value_format: "#,##0"
     sql: ${TABLE}.venta_sin_iva ;;
   }
+
+  measure: suma_ventas_sin_iva_1p {
+    type: sum
+    sql: CASE WHEN ${TABLE}.Rango = '1P' THEN ${TABLE}.venta_sin_iva ELSE 0 END ;;
+    label: "Suma Ventas Sin IVA 1P"
+    value_format: "#,##0"
+  }
+
+  measure: suma_ventas_sin_iva_2p {
+    type: sum
+    sql: CASE WHEN ${TABLE}.Rango = '2P' THEN ${TABLE}.venta_sin_iva ELSE 0 END ;;
+    label: "Suma Ventas Sin IVA 2P"
+    value_format: "#,##0"
+  }
+
 
   dimension: zona {
     type: string
