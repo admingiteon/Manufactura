@@ -9,7 +9,6 @@ view: tb_largo_plazo_trazabilidad_nv {
   WHERE {% condition escenario_id %} escenario_string {% endcondition %}
 ;;
 
-
   }
 
   parameter: Escenario {
