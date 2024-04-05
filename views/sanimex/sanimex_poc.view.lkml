@@ -2,11 +2,10 @@ view: sanimex_poc {
 
   derived_table: {
     sql: SELECT main.*,lat_long.latitud,lat_long.longitud FROM
-`eon-bus-proj-cadena-demo.eon_training.sanimex_poc` as main
-LEFT JOIN `eon-bus-proj-cadena-demo.eon_training.lat_long_sanimex` as lat_long
- ON main.colonia=lat_long.Colonia and  lat_long.cp=main.cp
+    `eon-bus-proj-cadena-demo.eon_training.sanimex_poc` as main
+    LEFT JOIN `eon-bus-proj-cadena-demo.eon_training.lat_long_sanimex` as lat_long
+    ON main.colonia=lat_long.Colonia and  lat_long.cp=main.cp
 ;;
-
 
   }
 
@@ -58,8 +57,6 @@ LEFT JOIN `eon-bus-proj-cadena-demo.eon_training.lat_long_sanimex` as lat_long
     type: number
     sql: ${TABLE}.ctd_venta ;;
   }
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: fecha_contab {
     type: time
