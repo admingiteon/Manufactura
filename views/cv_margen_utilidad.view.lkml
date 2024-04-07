@@ -24,7 +24,7 @@ view: cv_margen_utilidad {
     }
 
     measure: plan_ventas {
-      label: "Plan De Ventaa"
+      label: "Plan De Venta"
       type: sum
       sql: ${TABLE}.plan_ventas;;
     }
