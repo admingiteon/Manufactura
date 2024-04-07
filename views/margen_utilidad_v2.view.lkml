@@ -36,12 +36,7 @@ view: margen_utilidad_v2 {
     sql: ${TABLE}.porcentaje_no_cubierto;;
   }
 
-  measure: perdida {
-    #label: "Pérdidas (Margen de Utilidad)"
-    value_format: "$#,##0.00"
-    type: sum
-    sql: ${TABLE}.perdida ;;
-  }
+
 
   measure: count {
     type: count
