@@ -60,11 +60,24 @@ SKUs_con_perdidas AS (
     WHERE Perdida <> 0
     GROUP BY material
     HAVING SUM(Perdida) < 0
+),
+Centros_con_perdidas AS (
+    SELECT
+        centro,
+        SUM(Perdida) as Suma_Perdidas
+    FROM Final
+    WHERE Perdida <> 0
+    GROUP BY centro
+    HAVING SUM(Perdida) < 0
 )
 
 SELECT count(distinct(material)) as total, 'Material Con Perdidas' AS concepto FROM SKUs_con_perdidas
 UNION ALL
 SELECT count(distinct(material)) as total, 'Total SKUs' AS concepto FROM Final
+UNION ALL
+SELECT count(distinct(material)) as centro, 'Centro Con Perdidas' AS concepto FROM SKUs_con_perdidas
+UNION ALL
+SELECT count(distinct(material)) as centro, 'Total Centros' AS concepto FROM Final
         ;;
     }
 
