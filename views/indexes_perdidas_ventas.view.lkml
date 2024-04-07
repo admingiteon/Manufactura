@@ -75,7 +75,7 @@ SELECT count(distinct(material)) as total, 'Material Con Perdidas' AS concepto F
 UNION ALL
 SELECT count(distinct(material)) as total, 'Total SKUs' AS concepto FROM Final
 UNION ALL
-SELECT count(distinct(centro)) as centro, 'Centro Con Perdidas' AS concepto FROM SKUs_con_perdidas
+SELECT count(distinct(centro)) as centro, 'Centro Con Perdidas' AS concepto FROM Centros_con_perdidas
 UNION ALL
 SELECT count(distinct(centro)) as centro, 'Total Centros' AS concepto FROM Final
         ;;
