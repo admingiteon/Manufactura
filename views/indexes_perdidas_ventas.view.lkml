@@ -68,7 +68,6 @@ SELECT count(distinct(material)) as total, 'Total SKUs' AS concepto FROM Final
         ;;
     }
 
-
     dimension: concepto {
       type: string
       sql: ${TABLE}.concepto ;;
