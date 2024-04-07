@@ -37,7 +37,7 @@ view: margen_utilidad_v2 {
   }
 
   measure: perdida {
-    label: "Pérdidas (Margen de Utilidad)"
+    #label: "Pérdidas (Margen de Utilidad)"
     value_format: "$#,##0.00"
     type: sum
     sql: ${TABLE}.perdida ;;
