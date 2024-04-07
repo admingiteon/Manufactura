@@ -1,4 +1,4 @@
-view: cv_margen_utilidad_v2 {
+view: margen_utilidad_v2 {
   derived_table: {
     sql: SELECT *
         FROM
