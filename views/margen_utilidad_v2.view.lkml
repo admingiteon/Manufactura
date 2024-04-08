@@ -3,7 +3,6 @@ view: margen_utilidad_v2 {
     sql: SELECT *
         FROM
             `eon-bus-proj-cadena-demo.modelo_de_calculo.cv_margen_utilidad`
-
       ;;
   }
 
