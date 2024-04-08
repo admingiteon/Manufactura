@@ -2,6 +2,7 @@ view: cobertura_fabricacion {
   derived_table: {
     sql: SELECT
     lp_pt_inv_lu_1.material,
+    nombre_material.articulodescribe as descripcion_producto,
     lp_pt_inv_lu_1.fecha,
     IF(lp_pt_inv_lu_1.cantidad_requerida IS NOT NULL, lp_pt_inv_lu_1.cantidad_requerida, 0) AS cantidad_requerida,
     IF(lp_pt_fab_fin.producible IS NOT NULL, lp_pt_fab_fin.producible, 0) AS cobertura_fab
@@ -22,13 +23,23 @@ ON
                             lp_pt_fab_fin.fecha
                             )
       )
-
+LEFT JOIN
+  (
+  SELECT distinct(sku),articulodescribe FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_tb_largo_plazo_trazabilidad_nv`
+  ) as nombre_material
+ON
+nombre_material.sku=lp_pt_inv_lu_1.material
     ;;
   }
 
   dimension: material {
     type: string
     sql: SUBSTR(${TABLE}.material,12,50) ;;
+  }
+
+  dimension: descripcion_producto {
+    type: string
+    sql: ${TABLE}.descripcion_producto ;;
   }
 
   dimension_group: fecha {
