@@ -43,8 +43,6 @@ view: margen_utilidad_v2 {
   }
 
 
-
-
   measure: count {
     type: count
   }
