@@ -40,7 +40,6 @@ view: margen_utilidad_v2 {
     value_format: "$#,##0.00"
     sql: ${TABLE}.perdida;;
   }
-
   measure: count {
     type: count
   }
