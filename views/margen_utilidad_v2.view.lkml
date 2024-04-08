@@ -33,7 +33,7 @@ view: margen_utilidad_v2 {
     label: "Porcentaje Demanda No Cubierta"
     type: average
     value_format: "0\%"
-    sql: ${TABLE}.porcentaje_no_cubierto;;
+    sql: ${TABLE}.porcentaje_no_cubierto*(-1);;
   }
 
   measure: perdida{
