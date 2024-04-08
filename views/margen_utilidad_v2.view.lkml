@@ -42,7 +42,6 @@ view: margen_utilidad_v2 {
     sql: ${TABLE}.perdida;;
   }
 
-
   measure: count {
     type: count
   }
