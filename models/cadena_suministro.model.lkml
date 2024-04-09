@@ -170,6 +170,13 @@ explore: tb_largo_plazo_trazabilidad_nv {
     relationship: many_to_one
   }
 }
+explore: cv_margen_material {
+  join: lista_materiales_datos_generales  {
+    type: left_outer
+    sql_on: ${cv_margen_material.material} = ${lista_materiales_datos_generales.material} ;;
+    relationship: many_to_one
+  }
+}
 explore: sanimex_poc {}
 explore: val_vw_datos_generales_2 {}
 explore: val_vw_ordenes_compra {} #Para validar la vista de Ordenes de Compra
@@ -184,7 +191,6 @@ explore: val_largo_plazo_completo_aruma {}
 explore: fabricacion_no_cubierta {}
 explore: almacenes_excedidos {}
 explore: cv_margen_utilidad {}
-explore: cv_margen_material {}
 explore: vw_lista_componentes {}
 explore: demanda_calculos {}
 explore: vw_largo_plazo_trazabilidad_drill {}
