@@ -1,6 +1,9 @@
 view: vw_entradas_insumos_compras_cortex {
 
-  sql_table_name: `eon-bus-proj-cadena-demo.reporting_manufactura.vw_entradas_insumos_compras_cortex` ;;
+  derived_table: {
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.reporting_manufactura.vw_entradas_insumos_compras_cortex`
+      WHERE SUBSTR(material,12,50) LIKE '4%' ;;
+  }
 
 
   dimension: cantidad {
@@ -8,8 +11,8 @@ view: vw_entradas_insumos_compras_cortex {
     sql: ${TABLE}.cantidad ;;
   }
 
-
   measure: total_cantidad {
+    label: "Cantidad"
     type: sum
     sql: ${cantidad} ;;  }
   measure: average_cantidad {
@@ -17,11 +20,10 @@ view: vw_entradas_insumos_compras_cortex {
     sql: ${cantidad} ;;  }
 
   dimension: componente {
+    label: "Insumo"
     type: string
-    sql: ${TABLE}.componente ;;
+    sql:  SUBSTR(${TABLE}.componente,12,50) ;;
   }
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: fecha_entrega {
     type: time
@@ -41,7 +43,7 @@ view: vw_entradas_insumos_compras_cortex {
 
   dimension: material {
     type: string
-    sql: ${TABLE}.material ;;
+    sql:  SUBSTR(${TABLE}.material,12,50) ;;
   }
 
   dimension: nombre_insumo {
@@ -49,12 +51,13 @@ view: vw_entradas_insumos_compras_cortex {
     sql: ${TABLE}.nombre_insumo ;;
   }
 
-  dimension: plazo_entrega {
-    type: number
+  measure: plazo_entrega {
+    type: max
     sql: ${TABLE}.plazo_entrega ;;
   }
 
   dimension: unidad_medida {
+    label: "Unidad de Medida"
     type: string
     sql: ${TABLE}.unidad_medida ;;
   }
