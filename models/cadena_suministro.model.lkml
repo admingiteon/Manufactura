@@ -193,6 +193,24 @@ explore: indexes_pie_ordenes_vs_inventario {
   }
 }
 
+explore: lote_fabricacion_producto_terminado {
+  join: lista_materiales_datos_generales  {
+    type: left_outer
+    sql_on: ${lote_fabricacion_producto_terminado.material} = ${lista_materiales_datos_generales.material} ;;
+    relationship: many_to_one
+  }
+}
+
+
+explore: recursos_materiales {
+  join: lista_materiales_datos_generales  {
+    type: left_outer
+    sql_on: ${recursos_materiales.material} = ${lista_materiales_datos_generales.material} ;;
+    relationship: many_to_one
+  }
+}
+
+
 explore: sanimex_poc {}
 explore: val_vw_datos_generales_2 {}
 explore: val_vw_ordenes_compra {} #Para validar la vista de Ordenes de Compra

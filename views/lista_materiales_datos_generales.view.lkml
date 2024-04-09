@@ -1,7 +1,11 @@
 view: lista_materiales_datos_generales {
   derived_table: {
     sql: SELECT * FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_homologacion_mx_vw_cadena_suministro_datos_generales`
-    WHERE SUBSTR(material,12,50) LIKE '4%' ;;
+    WHERE SUBSTR(material,12,50) LIKE '4%' AND centro in ('Sinaloa',
+'Cd-Juarez',
+'Cuautitlan',
+'Guadalajara',
+'CDMX-Vallejo') ;;
   }
 
   measure: count {
