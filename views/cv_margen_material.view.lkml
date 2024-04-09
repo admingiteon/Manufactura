@@ -31,7 +31,7 @@ view: cv_margen_material {
   }
 
   measure: costo_produccion {
-    type: sum
+    type: max
     sql: ${TABLE}.costo_produccion ;;
   }
 
