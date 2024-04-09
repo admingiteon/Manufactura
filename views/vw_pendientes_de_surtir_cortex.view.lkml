@@ -1,5 +1,7 @@
 view: vw_pendientes_de_surtir_cortex {
-  sql_table_name: `eon-bus-proj-cadena-demo.reporting_manufactura.vw_pendientes_de_surtir_cortex` ;;
+  sql_table_name: `eon-bus-proj-cadena-demo.reporting_manufactura.vw_pendientes_de_surtir_cortex`
+  WHERE {% condition material %} material {% endcondition %}
+;;
 
 
   dimension: cantidad_requerida {
