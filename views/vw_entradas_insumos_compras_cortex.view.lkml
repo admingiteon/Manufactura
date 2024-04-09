@@ -10,7 +10,6 @@ view: vw_entradas_insumos_compras_cortex {
     # Here's what a typical dimension looks like in LookML.
     # A dimension is a groupable field that can be used to filter query results.
     # This dimension will be called "Cantidad" in Explore.
-
   dimension: cantidad {
     type: number
     sql: ${TABLE}.cantidad ;;
