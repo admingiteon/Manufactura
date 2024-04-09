@@ -36,7 +36,8 @@ view: cv_margen_material {
   }
 
   measure: margen {
-    type: sum
+    type: max
+    value_format: "$#,##0.00"
     sql: ${TABLE}.margen ;;
   }
 
