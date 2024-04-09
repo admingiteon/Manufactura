@@ -210,6 +210,13 @@ explore: recursos_materiales {
   }
 }
 
+explore: vw_insumos_requeridos_cortex {
+  join: lista_materiales_datos_generales  {
+    type: left_outer
+    sql_on: ${vw_insumos_requeridos_cortex.material} = ${lista_materiales_datos_generales.material} ;;
+    relationship: many_to_one
+  }
+}
 
 explore: sanimex_poc {}
 explore: val_vw_datos_generales_2 {}
