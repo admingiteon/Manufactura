@@ -4,7 +4,7 @@
 
 view: lista_materiales_datos_generales {
   derived_table: {
-    sql: SELECT * FROM `eon-bus-proj-cadena-demo.reporting_ecc_mx.vw_lista_materiales_de_datos_generales`  ;;
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_homologacion_mx_vw_cadena_suministro_datos_generales`  ;;
   }
 
   measure: count {
