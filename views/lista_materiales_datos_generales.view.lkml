@@ -19,6 +19,16 @@ view: lista_materiales_datos_generales {
     sql: ${TABLE}.texto_breve_material ;;
   }
 
+  dimension: centro {
+    type: string
+    sql: ${TABLE}.centro ;;
+  }
+
+  measure: stock_de_seguridad {
+    type: max
+    sql: ${TABLE}.stock_seguridad ;;
+  }
+
   set: detail {
     fields: [
       material,
