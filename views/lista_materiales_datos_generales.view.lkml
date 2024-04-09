@@ -29,6 +29,26 @@ view: lista_materiales_datos_generales {
     sql: ${TABLE}.stock_seguridad ;;
   }
 
+  measure: stock_libre_utilizacion {
+    type: sum
+    sql: ${TABLE}.stock_libre_utilizacion ;;
+  }
+
+  measure: stock_traslado {
+    type: sum
+    sql: ${TABLE}.stock_traslado ;;
+  }
+
+  measure: stock_control_calidad {
+    type: sum
+    sql: ${TABLE}.stock_control_calidad ;;
+  }
+
+  measure: tiempo_tratamiento_entrada_mercancias {
+    type: max
+    sql: ${TABLE}.tiempo_tratamiento_entrada_mercancias ;;
+  }
+
   set: detail {
     fields: [
       material,
