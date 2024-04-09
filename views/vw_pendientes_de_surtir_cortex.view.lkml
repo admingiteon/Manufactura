@@ -1,8 +1,11 @@
 view: vw_pendientes_de_surtir_cortex {
-  sql_table_name: `eon-bus-proj-cadena-demo.reporting_manufactura.vw_pendientes_de_surtir_cortex`
-  WHERE {% condition material %} material {% endcondition %}
-;;
-
+  derived_table: {
+    sql: SELECT *
+        FROM
+            `eon-bus-proj-cadena-demo.reporting_manufactura.vw_pendientes_de_surtir_cortex`
+      WHERE {% condition material %} material {% endcondition %}
+      ;;
+  }
 
   dimension: cantidad_requerida {
     type: number
@@ -13,6 +16,8 @@ view: vw_pendientes_de_surtir_cortex {
   measure: total_cantidad_requerida {
     type: sum
     sql: ${cantidad_requerida} ;;  }
+
+
   measure: average_cantidad_requerida {
     type: average
     sql: ${cantidad_requerida} ;;  }
@@ -42,8 +47,8 @@ view: vw_pendientes_de_surtir_cortex {
     sql: ${TABLE}.fecha_inicio ;;
   }
 
-  dimension: inventario_pt {
-    type: number
+  measure: inventario_pt {
+    type: sum
     sql: ${TABLE}.inventario_pt ;;
   }
 
@@ -58,6 +63,7 @@ view: vw_pendientes_de_surtir_cortex {
   }
 
   dimension: npedido {
+    label: "Pedido"
     type: string
     sql: ${TABLE}.npedido ;;
   }
@@ -79,6 +85,7 @@ view: vw_pendientes_de_surtir_cortex {
   }
 
   dimension: texto_breve_material {
+    label: "Descripción "
     type: string
     sql: ${TABLE}.texto_breve_material ;;
   }
