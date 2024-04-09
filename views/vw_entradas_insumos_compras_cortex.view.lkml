@@ -13,6 +13,7 @@ view: vw_entradas_insumos_compras_cortex {
 
   measure: total_cantidad {
     label: "Cantidad"
+    value_format: "#,##0"
     type: sum
     sql: ${cantidad} ;;  }
   measure: average_cantidad {

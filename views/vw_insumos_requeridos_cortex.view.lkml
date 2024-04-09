@@ -12,6 +12,7 @@ view: vw_insumos_requeridos_cortex {
 
   measure: total_cantidad_requerida {
     label: "Cantidad Requerida"
+    value_format: "#,##0.00"
     type: sum
     sql: ${cantidad_requerida} ;;  }
 
