@@ -1,7 +1,5 @@
-# The name of this view in Looker is "Vw Entradas Insumos Compras Cortex"
 view: vw_entradas_insumos_compras_cortex {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
+
   sql_table_name: `eon-bus-proj-cadena-demo.reporting_manufactura.vw_entradas_insumos_compras_cortex` ;;
 
 
@@ -10,9 +8,6 @@ view: vw_entradas_insumos_compras_cortex {
     sql: ${TABLE}.cantidad ;;
   }
 
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
   measure: total_cantidad {
     type: sum
