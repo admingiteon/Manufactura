@@ -15,7 +15,7 @@ view: vw_pendientes_de_surtir_cortex {
 
   measure: total_cantidad_requerida {
     type: sum
-    sql: ${cantidad_requerida} ;;  }
+    sql: COALESCE(${cantidad_requerida},0) ;;  }
 
 
   measure: average_cantidad_requerida {
@@ -36,8 +36,6 @@ view: vw_pendientes_de_surtir_cortex {
     type: number
     sql: ${TABLE}.costo_produccion ;;
   }
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: fecha_inicio {
     type: time
@@ -49,7 +47,7 @@ view: vw_pendientes_de_surtir_cortex {
 
   measure: inventario_pt {
     type: sum
-    sql: ${TABLE}.inventario_pt ;;
+    sql: COALESCE(${TABLE}.inventario_pt,0) ;;
   }
 
   dimension: margen {
@@ -76,7 +74,7 @@ view: vw_pendientes_de_surtir_cortex {
   measure: porcentaje_cobertura {
     type: average
     value_format: "0\%"
-    sql: ${TABLE}.porcentaje_cobertura ;;
+    sql: COALESCE(${TABLE}.porcentaje_cobertura,0) ;;
   }
 
   dimension: precio_venta {
