@@ -52,7 +52,7 @@ view: vw_pendientes_de_surtir_cortex {
 
   dimension: material {
     type: string
-    sql: ${TABLE}.material ;;
+    sql: SUBSTR(${TABLE}.material,12,50) ;;
   }
 
   dimension: npedido {
@@ -65,8 +65,9 @@ view: vw_pendientes_de_surtir_cortex {
     sql: ${TABLE}.periodo ;;
   }
 
-  dimension: porcentaje_cobertura {
-    type: number
+  measure: porcentaje_cobertura {
+    type: average
+    value_format: "0\%"
     sql: ${TABLE}.porcentaje_cobertura ;;
   }
 
