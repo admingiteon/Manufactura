@@ -10,7 +10,7 @@ view: lista_materiales_datos_generales {
 
   dimension: material {
     type: string
-    sql: ${TABLE}.material ;;
+    sql: SUBSTR(${TABLE}.material,12,50) ;;
   }
 
   dimension: texto_breve_material {

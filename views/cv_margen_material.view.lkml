@@ -20,7 +20,8 @@ view: cv_margen_material {
 
 
   measure: precio_venta {
-    type: sum
+    type: max
+    value_format: "$#,##0.00"
     sql: ${TABLE}.precio_venta ;;
   }
 
