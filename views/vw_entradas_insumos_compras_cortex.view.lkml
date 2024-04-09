@@ -55,6 +55,8 @@ view: vw_entradas_insumos_compras_cortex {
   measure: plazo_entrega {
     type: max
     sql: ${TABLE}.plazo_entrega ;;
+    html: {{ rendered_value }} hrs
+    ;;
   }
 
   dimension: unidad_medida {
