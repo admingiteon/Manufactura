@@ -243,6 +243,7 @@ explore: lp_pt_fabricacion_final {}
 explore: locations_sanimex_map {}
 explore: indexes_perdidas_ventas {}
 explore: margen_utilidad_v2 {}
+explore: vw_pendientes_de_surtir_cortex {}
 
 map_layer: mexico_cities {
   file: "mun_mx.json"

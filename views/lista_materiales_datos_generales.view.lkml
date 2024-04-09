@@ -1,7 +1,3 @@
-#X# Conversion failed: failed to parse YAML.  Check for pipes on newlines
-
-
-
 view: lista_materiales_datos_generales {
   derived_table: {
     sql: SELECT * FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_homologacion_mx_vw_cadena_suministro_datos_generales`  ;;
