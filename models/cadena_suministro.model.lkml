@@ -204,7 +204,7 @@ explore: lote_fabricacion_producto_terminado {
 
 explore: recursos_materiales {
   join: lista_materiales_datos_generales  {
-    type: left_outer
+    type: inner
     sql_on: ${recursos_materiales.material} = ${lista_materiales_datos_generales.material} ;;
     relationship: many_to_one
   }

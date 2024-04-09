@@ -1,6 +1,9 @@
 view: recursos_materiales {
-  sql_table_name: `eon-bus-proj-cadena-demo.entradas_y_salidas.recursos_materiales` ;;
 
+  derived_table: {
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.entradas_y_salidas.recursos_materiales`
+    WHERE SUBSTR(num_material,12,50) LIKE '4%';;
+    }
 
   dimension: cantidad_base {
     type: number
@@ -65,8 +68,11 @@ view: recursos_materiales {
 
   dimension: tiempo_total_fabricacion_lote {
     label: "Velocidad de fabricación (Horas)"
+    value_format: "#,##0.00"
     type: number
-    sql: ${TABLE}.tiempo_total_fabricacion_lote ;;
+    sql: COALESCE(${TABLE}.tiempo_total_fabricacion_lote,0) ;;
+    html: {{ rendered_value }} hrs
+    ;;
   }
 
   dimension: velocidad_fabricacion {
