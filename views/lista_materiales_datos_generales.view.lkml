@@ -51,7 +51,7 @@ view: lista_materiales_datos_generales {
   measure: tiempo_tratamiento_entrada_mercancias {
     type: max
     sql: ${TABLE}.tiempo_tratamiento_entrada_mercancias ;;
-    html: {{ rendered_value }} hrs
+    html: {{ rendered_value }} días
     ;;
   }
 
