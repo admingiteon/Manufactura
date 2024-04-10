@@ -1,7 +1,8 @@
 
 view: vw_cadena_suministro_datos_generales {
   derived_table: {
-    sql: select * from `eon-bus-proj-cadena-demo.p_reporting_homologacion_mx.vw_cadena_suministro_datos_generales` limit 1000 ;;
+    #sql: select * from `eon-bus-proj-cadena-demo.p_reporting_homologacion_mx.vw_cadena_suministro_datos_generales` limit 1000 ;;
+    sql: select * from `eon-bus-proj-cadena-demo.data_foundation.reporting_homologacion_mx_vw_cadena_suministro_datos_generales`;;
   }
 
   measure: count {
