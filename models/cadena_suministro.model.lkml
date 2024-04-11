@@ -233,6 +233,13 @@ explore: pv_forecast_completo_lp {
     relationship: many_to_one
   }
 }
+explore: pv_lp_insumo_inventario_1 {
+  join: lista_materiales_datos_generales  {
+    type: left_outer
+    sql_on: ${pv_lp_insumo_inventario_1.sku} = ${lista_materiales_datos_generales.material} ;;
+    relationship: many_to_one
+  }
+}
 explore: sanimex_poc {}
 explore: val_vw_datos_generales_2 {}
 explore: val_vw_ordenes_compra {} #Para validar la vista de Ordenes de Compra
@@ -280,7 +287,7 @@ explore: alm_lp_pt_almacenamiento {}
 explore: alm_cp_pt_almacenamiento {}
 explore: salida_lp_Forecast_Completo_LP {}
 
-explore: pv_lp_insumo_inventario_1 {}
+
 explore: pv_lp_pt_comprados_inventario_lu_1 {}
 explore: pv_lp_pt_fabricados_inventario_lu_1 {}
 explore: tb_corto_plazo_trazabilidad {}

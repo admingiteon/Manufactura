@@ -1,7 +1,8 @@
 
 view: pv_lp_insumo_inventario_1 {
   derived_table: {
-    sql: SELECT * FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_Insumo_Inventario_1`  ;;
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_Insumo_Inventario_1`
+        WHERE SUBSTR(id,12,7) LIKE '4%';;
   }
 
   measure: count {

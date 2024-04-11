@@ -1,7 +1,8 @@
 
 view: pv_forecast_completo_lp {
   derived_table: {
-    sql: SELECT * FROM `eon-bus-proj-cadena-demo.arima.Forecast_Completo_LP`  ;;
+    sql: SELECT * FROM `eon-bus-proj-cadena-demo.arima.Forecast_Completo_LP`
+    WHERE SUBSTR(id,12,7) LIKE '4%';;
   }
 
   measure: count {
