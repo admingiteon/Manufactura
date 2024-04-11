@@ -36,8 +36,9 @@ select *, ROW_NUMBER() OVER (PARTITION BY fecha, material, centro ORDER BY posic
   }
 
   dimension: material {
+    label: "Producto"
     type: string
-    sql: ${TABLE}.material ;;
+    sql: SUBSTR(${TABLE}.material,12,50) ;;
   }
 
   measure: ventas {

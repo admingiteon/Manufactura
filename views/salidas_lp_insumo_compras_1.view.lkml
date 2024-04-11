@@ -11,7 +11,7 @@ view: salidas_lp_insumo_compras_1 {
 
   dimension: componente {
     type: string
-    sql: ${TABLE}.Componente ;;
+    sql: SUBSTR(${TABLE}.Componente,12,50);;
   }
 
   dimension: id {
@@ -41,7 +41,7 @@ view: salidas_lp_insumo_compras_1 {
 
   dimension: Material {
     type: string
-    sql: SUBSTR(${TABLE}.id,1,18) ;;
+    sql: SUBSTR(${TABLE}.id,12,7) ;;
   }
 
 

@@ -73,6 +73,8 @@ view: lp_pt_fabricacion_final {
   dimension: velocidad_fabricacion {
     type: number
     sql: ${TABLE}.velocidad_fabricacion ;;
+    value_format: "#,##0.00"
+    html: {{ rendered_value }} hrs;;
   }
 
   dimension: puesto_trabajo {
@@ -108,6 +110,7 @@ view: lp_pt_fabricacion_final {
   dimension: horas_disponibles_mensual {
     type: number
     sql: ${TABLE}.horas_disponibles_mensual ;;
+    html: {{ rendered_value }} hrs;;
   }
 
   dimension: material_fecha {

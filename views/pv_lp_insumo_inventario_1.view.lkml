@@ -72,8 +72,9 @@ view: pv_lp_insumo_inventario_1 {
   }
 
   dimension: componente {
+    label: "Insumo"
     type: string
-    sql: ${TABLE}.Componente ;;
+    sql: SUBSTR(${TABLE}.Componente,12,50);;
   }
 
   dimension: texto_breve_material {

@@ -45,9 +45,11 @@ view: salidas_lp_pt_fabricacion_1 {
 
 
   dimension: Material {
+    label: "Producto"
     type: string
-    sql: SUBSTR(${TABLE}.id,1,18) ;;
+    sql: SUBSTR(${TABLE}.id,12,7) ;;
   }
+
 
   dimension: Centro {
     type: string

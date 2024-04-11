@@ -33,8 +33,9 @@ view: salidas_lp_fabricacion {
   }
 
   dimension: material {
+    label: "Producto"
     type: string
-    sql: ${TABLE}.material ;;
+    sql: SUBSTR(${TABLE}.material,12,50) ;;
   }
 
   dimension: centro {
