@@ -22,6 +22,7 @@ view: pv_lp_insumo_inventario_1 {
 
   dimension: sku {
     type: string
+    label: "Producto"
     sql: SUBSTR(${TABLE}.id,12,7) ;;
     html: <p style="font-weight: bolder ;">{{ rendered_value }}</p>;;
   }

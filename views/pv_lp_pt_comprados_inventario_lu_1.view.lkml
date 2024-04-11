@@ -17,6 +17,7 @@ view: pv_lp_pt_comprados_inventario_lu_1 {
   }
 
   dimension: sku {
+    label: "Producto"
     type: string
     sql: SUBSTR(${TABLE}.material,12,7) ;;
   }

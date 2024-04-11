@@ -32,7 +32,7 @@ view: lp_pt_fabricacion_final {
 
   dimension: componente {
     type: string
-    sql: ${TABLE}.Componente ;;
+    sql: SUBSTR(${TABLE}.Componente,12,50) ;;
   }
 
   dimension: prioridad {
