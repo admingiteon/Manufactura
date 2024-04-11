@@ -45,7 +45,7 @@ view: salidas_lp_insumo_inventario_1 {
     sql: ${TABLE}.posicion_actual ;;
   }
 
-  dimension: Material {
+  dimension: producto {
     label: "Producto"
     type: string
     sql: SUBSTR(${TABLE}.id,12,7) ;;
