@@ -1,7 +1,8 @@
 
 view: salidas_lp_insumo_compras_1 {
   derived_table: {
-    sql:select * from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_Insumo_Compras_1`;;
+    sql:select * from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_Insumo_Compras_1`
+    WHERE SUBSTR(id,12,7) LIKE '4%' ;;
   }
 
   measure: count {
