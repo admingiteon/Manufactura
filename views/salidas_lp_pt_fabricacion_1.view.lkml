@@ -1,7 +1,8 @@
 
 view: salidas_lp_pt_fabricacion_1 {
   derived_table: {
-    sql: select * from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Fabricacion_Final` ;;
+    sql: select * from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Fabricacion_Final`
+     WHERE SUBSTR(id,12,7) LIKE '4%' ;;
   }
 
   measure: count {

@@ -240,6 +240,27 @@ explore: pv_lp_insumo_inventario_1 {
     relationship: many_to_one
   }
 }
+explore: salidas_lp_pt_inventario_lu_1 {
+  join: lista_materiales_datos_generales  {
+    type: left_outer
+    sql_on: ${salidas_lp_pt_inventario_lu_1.material} = ${lista_materiales_datos_generales.material} ;;
+    relationship: many_to_one
+  }
+}
+explore: salidas_lp_fabricacion {
+  join: lista_materiales_datos_generales  {
+    type: left_outer
+    sql_on: ${salidas_lp_fabricacion.material} = ${lista_materiales_datos_generales.material} ;;
+    relationship: many_to_one
+  }
+}
+explore: salidas_lp_pt_fabricacion_1 {
+  join: lista_materiales_datos_generales  {
+    type: left_outer
+    sql_on: ${salidas_lp_pt_fabricacion_1.Material} = ${lista_materiales_datos_generales.material} ;;
+    relationship: many_to_one
+  }
+}
 explore: sanimex_poc {}
 explore: val_vw_datos_generales_2 {}
 explore: val_vw_ordenes_compra {} #Para validar la vista de Ordenes de Compra
@@ -278,11 +299,10 @@ explore: salida_cp_pt_inventario_lu_1 {}
 explore: salida_modelo_de_calculo_fabricacion_cp {}
 explore: salida_cp_pt_fabricacion_1 {}
 explore: salida_cp_pt_comprados_inventario_lu_1 {}
-explore: salidas_lp_fabricacion {}
+
 explore: lp_insumo_inventario_1{}
 explore: salidas_lp_insumo_inventario_1 {}
-explore: salidas_lp_pt_fabricacion_1 {}
-explore: salidas_lp_pt_inventario_lu_1 {}
+
 explore: alm_lp_pt_almacenamiento {}
 explore: alm_cp_pt_almacenamiento {}
 explore: salida_lp_Forecast_Completo_LP {}

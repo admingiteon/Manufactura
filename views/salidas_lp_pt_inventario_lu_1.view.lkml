@@ -2,7 +2,9 @@
 view: salidas_lp_pt_inventario_lu_1 {
   derived_table: {
     sql: select * from (
-select *, ROW_NUMBER() OVER (PARTITION BY fecha, material, centro ORDER BY posicion_actual DESC) as row_num from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Inventario_LU_1`) a  ;;
+select *, ROW_NUMBER() OVER (PARTITION BY fecha, material, centro ORDER BY posicion_actual DESC) as row_num
+from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Inventario_LU_1`) a
+WHERE SUBSTR(material,12,50) LIKE '4%';;
   }
 
   measure: count {

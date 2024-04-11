@@ -1,7 +1,8 @@
 
 view: salidas_lp_fabricacion {
   derived_table: {
-    sql: select * from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Inventario_LU_1`  ;;
+    sql: select * from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Inventario_LU_1`
+     WHERE SUBSTR(material,12,50) LIKE '4%' ;;
 
 
 
