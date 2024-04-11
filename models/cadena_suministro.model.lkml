@@ -146,6 +146,12 @@ explore: salidas_lp_insumo_compras_1 {
     relationship: many_to_one
   }
 
+  join: lista_materiales_datos_generales  {
+    type: left_outer
+    sql_on: ${salidas_lp_insumo_compras_1.Material} = ${lista_materiales_datos_generales.material} ;;
+    relationship: many_to_one
+  }
+
 }
 explore: arima_forecast_completo_lp_2 {
 
