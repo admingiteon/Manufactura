@@ -2,9 +2,7 @@ view: cv_margen_material {
   derived_table: {
     sql: SELECT *
         FROM
-            `eon-bus-proj-cadena-demo.modelo_de_calculo.cv_margen_material`
-
-      ;;
+            `eon-bus-proj-cadena-demo.modelo_de_calculo.cv_margen_material`;;
   }
 
   dimension: centro {
@@ -16,8 +14,6 @@ view: cv_margen_material {
     type: string
     sql: SUBSTR(${TABLE}.material,12,50) ;;
   }
-
-
 
   measure: precio_venta {
     type: max
