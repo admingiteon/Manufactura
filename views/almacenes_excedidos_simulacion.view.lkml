@@ -33,12 +33,14 @@ view: almacenes_excedidos_simulacion {
   }
 
   measure: max_ocupacion_final {
+    label: "Ocupación Final"
     type: max
-    sql: ${TABLE}.ocupacion_final ;;
+    sql: ${TABLE}.max_ocupacion_final ;;
   }
 
   measure: porcentaje_ocupacion {
-    type: number
+    label: "Porcentaje Ocupación"
+    type: sum
     sql: ${TABLE}.porcentaje_ocupacion ;;
 
     value_format: "0\%"
