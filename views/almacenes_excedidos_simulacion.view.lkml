@@ -1,8 +1,11 @@
 view: almacenes_excedidos_simulacion {
   derived_table: {
     sql:
-      SELECT * FROM `eon-bus-proj-cadena-demo.reporting_manufactura.vw_almacenes_excedidos_sm` ;;
+      SELECT * FROM `eon-bus-proj-cadena-demo.reporting_manufactura.vw_almacenes_excedidos_sm`
+      ORDER BY escenario_id DESC;;
   }
+
+
 
   dimension: escenario_id {
     type: string
