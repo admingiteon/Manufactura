@@ -1,15 +1,34 @@
 view: lineas_fab_saturadas {
 
   derived_table: {
-    sql: select 'Total' AS concepto,
-    count(distinct(puesto_trabajo)) as quantity
-    from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Fabricacion_Final`
+    sql: WITH TotalPuestosTrabajo AS (
+    SELECT DISTINCT puesto_trabajo FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Fabricacion_Final`
+),
+LineasSaturadas AS (
+    SELECT DISTINCT puesto_trabajo FROM `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Fabricacion_Final`
+    WHERE producible < 100
+),
+LineasNoSaturadas AS (
+    SELECT puesto_trabajo FROM TotalPuestosTrabajo
+    WHERE puesto_trabajo NOT IN (SELECT puesto_trabajo FROM LineasSaturadas)
+)
 
-  UNION ALL
-    select 'Lineas de Fabricación Saturadas' AS concepto,
-    count(distinct(puesto_trabajo)) as quantity
-    from `eon-bus-proj-cadena-demo.modelo_de_calculo.LP_PT_Fabricacion_Final`
-    where producible < 100 ;;
+SELECT 'Total' AS concepto,
+       COUNT(puesto_trabajo) as quantity
+FROM TotalPuestosTrabajo
+
+UNION ALL
+
+SELECT 'Lineas de Fabricación Saturadas' AS concepto,
+       COUNT(puesto_trabajo) as quantity
+FROM LineasSaturadas
+
+UNION ALL
+
+SELECT 'Lineas de Fabricación No Saturadas' AS concepto,
+       COUNT(puesto_trabajo) as quantity
+FROM LineasNoSaturadas
+;;
     }
 
     dimension: concepto {
