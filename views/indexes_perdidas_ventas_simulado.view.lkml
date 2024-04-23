@@ -1,12 +1,12 @@
 view: indexes_perdidas_ventas_simulado {
     derived_table: {
-      sql:WITH Productos_con_perdidas AS (
+      sql:WITH SKUs_con_perdidas AS (
     SELECT
-        Producto,
+        material,
         SUM(Perdida) as Suma_Perdidas
     FROM `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.cv_margen_utilidad`
     WHERE Perdida <> 0
-    GROUP BY Producto
+    GROUP BY material
     HAVING SUM(Perdida) < 0
 ),
 Centros_con_perdidas AS (
@@ -24,17 +24,17 @@ Total_Centros AS (
     FROM `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.cv_margen_utilidad`
     GROUP BY centro
 ),
-Total_Productos AS (
+Total_SKUs AS (
     SELECT
-        Producto
+        material
     FROM `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.cv_margen_utilidad`
-    GROUP BY Producto
+    GROUP BY material
 )
 SELECT
     COUNT(*) as total,
     'Productos sin Perdidas' AS concepto
-FROM Total_Productos
-WHERE Producto NOT IN (SELECT Producto FROM Productos_con_perdidas)
+FROM Total_SKUs
+WHERE material NOT IN (SELECT material FROM SKUs_con_perdidas)
 
 UNION ALL
 SELECT
@@ -53,7 +53,7 @@ FROM `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.cv_margen_utilidad` as t
 UNION ALL
 
 SELECT
-    count(distinct(t.Producto)) as total,
+    count(distinct(t.material)) as total,
     'Total Productos' AS concepto
 FROM `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.cv_margen_utilidad` as t
 
@@ -64,8 +64,8 @@ SELECT count(distinct(centro)) as centro,
 
 UNION ALL
 
-SELECT count(distinct(Producto)) as total,
-'Producto Con Perdidas' AS concepto FROM Productos_con_perdidas
+SELECT count(distinct(material)) as total,
+'Producto Con Perdidas' AS concepto FROM SKUs_con_perdidas
 
         ;;
     }
