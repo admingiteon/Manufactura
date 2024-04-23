@@ -30,20 +30,20 @@ view: margen_utilidad_simulado {
     measure: plan_ventas {
       label: "Plan De Venta"
       type: sum
-      sql: ${TABLE}.plan_ventas;;
+      sql: COALESCE(${TABLE}.plan_ventas,0);;
     }
 
     measure: porcentaje_no_cubierto{
       label: "Porcentaje Demanda No Cubierta"
       type: average
       value_format: "0\%"
-      sql: ${TABLE}.porcentaje_no_cubierto*(-1);;
+      sql: (${TABLE}.porcentaje_no_cubierto*(-1))/100;;
     }
 
     measure: perdida{
       type: sum
       value_format: "$#,##0.00"
-      sql: ${TABLE}.perdida;;
+      sql: COALESCE(${TABLE}.perdida,0);;
     }
     measure: count {
       type: count
