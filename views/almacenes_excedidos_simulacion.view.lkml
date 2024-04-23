@@ -19,7 +19,7 @@ view: almacenes_excedidos_simulacion {
 
   measure: capacidad {
     type: max
-    sql: ${TABLE}.capacidad_libre_ubicacion ;;
+    sql: ${TABLE}.capacidad_total_ubicacion ;;
   }
 
 
