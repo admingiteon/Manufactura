@@ -278,6 +278,7 @@ explore: salidas_lp_insumo_inventario_1 {
 explore: sanimex_poc {}
 explore: val_vw_datos_generales_2 {}
 explore: margen_utilidad_simulado {}
+explore: indexes_perdidas_ventas_simulado {}
 explore: almacenes_excedidos_simulacion {}
 explore: indexes_almacenes_excedidos_simulacion {}
 explore: val_vw_ordenes_compra {} #Para validar la vista de Ordenes de Compra
