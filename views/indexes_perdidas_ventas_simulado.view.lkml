@@ -21,12 +21,12 @@ Centros_con_perdidas AS (
 
 SELECT
     count(distinct(centro)) as total,
-    'Total SKUs' AS concepto
+    'Total Centros' AS concepto
 FROM `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.cv_margen_utilidad`
 UNION ALL
 SELECT
     count(distinct(material)) as total,
-    'Total SKUs' AS concepto
+    'Total Productos' AS concepto
 FROM `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.cv_margen_utilidad`
 
 UNION ALL
@@ -37,7 +37,7 @@ SELECT count(distinct(centro)) as centro,
 
 UNION ALL
 SELECT count(distinct(material)) as total,
-'Material Con Perdidas' AS concepto FROM SKUs_con_perdidas
+'Producto Con Perdidas' AS concepto FROM SKUs_con_perdidas
         ;;
     }
 
