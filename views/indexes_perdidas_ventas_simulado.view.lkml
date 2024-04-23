@@ -60,12 +60,12 @@ FROM `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.cv_margen_utilidad` as t
 UNION ALL
 
 SELECT count(distinct(centro)) as centro,
-'Centro Con Perdidas' AS concepto FROM Centros_con_perdidas
+'Centro con Perdidas' AS concepto FROM Centros_con_perdidas
 
 UNION ALL
 
 SELECT count(distinct(material)) as total,
-'Producto Con Perdidas' AS concepto FROM SKUs_con_perdidas
+'Producto con Perdidas' AS concepto FROM SKUs_con_perdidas
 
         ;;
     }

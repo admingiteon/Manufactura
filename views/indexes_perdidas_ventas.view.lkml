@@ -69,15 +69,33 @@ Centros_con_perdidas AS (
     WHERE Perdida <> 0
     GROUP BY centro
     HAVING SUM(Perdida) < 0
+),
+Total_Material AS (
+    SELECT DISTINCT material FROM Final
+),
+Total_Centros AS (
+    SELECT DISTINCT centro FROM Final
+),
+Material_Sin_Perdidas AS (
+    SELECT material FROM Total_Material
+    WHERE material NOT IN (SELECT material FROM SKUs_con_perdidas)
+),
+Centro_Sin_Perdidas AS (
+    SELECT centro FROM Total_Centros
+    WHERE centro NOT IN (SELECT centro FROM Centros_con_perdidas)
 )
 
-SELECT count(distinct(material)) as total, 'Material Con Perdidas' AS concepto FROM SKUs_con_perdidas
+SELECT count(distinct(material)) as total, 'Productos Sin Perdidas' AS concepto FROM Material_Sin_Perdidas
 UNION ALL
-SELECT count(distinct(material)) as total, 'Total SKUs' AS concepto FROM Final
+SELECT count(distinct(centro)) as total, 'Centros Sin Perdidas' AS concepto FROM Centro_Sin_Perdidas
 UNION ALL
-SELECT count(distinct(centro)) as centro, 'Centro Con Perdidas' AS concepto FROM Centros_con_perdidas
+SELECT count(distinct(material)) as total, 'Productos Con Perdidas' AS concepto FROM SKUs_con_perdidas
 UNION ALL
-SELECT count(distinct(centro)) as centro, 'Total Centros' AS concepto FROM Final
+SELECT count(distinct(material)) as total, 'Total Productos' AS concepto FROM Total_Material
+UNION ALL
+SELECT count(distinct(centro)) as total, 'Centros Con Perdidas' AS concepto FROM Centros_con_perdidas
+UNION ALL
+SELECT count(distinct(centro)) as total, 'Total Centros' AS concepto FROM Total_Centros
         ;;
     }
 

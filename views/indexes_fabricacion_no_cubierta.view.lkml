@@ -54,7 +54,7 @@ FROM total
 UNION ALL
 
 SELECT
-    'SKUs con Problemas de Fabricación' AS concepto,
+    'Productos con Problemas de Fabricación' AS concepto,
     COUNT(distinct(material)) as quantity
 FROM
     ProbFab
@@ -65,7 +65,7 @@ WHERE
 UNION ALL
 
 SELECT
-    'SKUs con Problemas de Fabricación Complemento' AS concepto,
+    'Productos Sin Problemas de Fabricación' AS concepto,
     (SELECT quantity FROM total WHERE concepto = 'Total') - COUNT(distinct(material)) as quantity,
 FROM
     ProbFab
