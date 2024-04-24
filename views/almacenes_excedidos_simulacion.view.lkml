@@ -28,7 +28,6 @@ view: almacenes_excedidos_simulacion {
   }
 
 
-
   dimension_group: fecha {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
