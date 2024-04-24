@@ -14,7 +14,7 @@ view: almacenes_excedidos_simulacion {
   dimension: escenario_id {
     type: string
     sql: ${TABLE}.escenario_id ;;
-    order_by_field: row_num
+    #order_by_field: row_num
   }
 
   dimension: centro {
@@ -42,6 +42,7 @@ view: almacenes_excedidos_simulacion {
 
   measure: max_ocupacion_final {
     label: "Ocupación Final"
+    value_format: "#,##0.00"
     type: max
     sql: ${TABLE}.max_ocupacion_final ;;
   }
