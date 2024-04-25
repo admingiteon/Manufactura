@@ -31,7 +31,7 @@ ON
     SELECT distinct(sku),articulodescribe FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_tb_largo_plazo_trazabilidad_nv`
     ) as nombre_material
     ON
-    nombre_material.sku=lp_pt_inv_lu_1.material
+    nombre_material.sku=lp_pt_inv_lu_1.material and lp_pt_inv_lu_1.escenario_id=nombre_material.Escenario_id
     ;;
 }
 
