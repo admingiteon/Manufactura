@@ -2,6 +2,7 @@ view: cobertura_fabricacion_simulacion {
 derived_table: {
   sql: SELECT
     lp_pt_inv_lu_1.material,
+    lp_pt_inv_lu_1.escenario_id,
     nombre_material.articulodescribe as descripcion_producto,
     lp_pt_inv_lu_1.fecha,
     IF(lp_pt_inv_lu_1.cantidad_requerida IS NOT NULL, lp_pt_inv_lu_1.cantidad_requerida, 0) AS cantidad_requerida,
@@ -14,13 +15,15 @@ ON
      (
                     Concat  (
                             lp_pt_inv_lu_1.material,
-                            lp_pt_inv_lu_1.fecha
+                            lp_pt_inv_lu_1.fecha,
+                            lp_pt_inv_lu_1.escenario_id
 
     )
     =
     Concat  (
     lp_pt_fab_fin.material,
-    lp_pt_fab_fin.fecha
+    lp_pt_fab_fin.fecha,
+    lp_pt_fab_fin.escenario_id
     )
     )
     LEFT JOIN
@@ -37,6 +40,11 @@ dimension: material {
   label: "Producto"
   sql: SUBSTR(${TABLE}.material,12,50) ;;
 }
+
+  dimension: escenario_id {
+    type: string
+    sql: ${TABLE}.escenario_id ;;
+  }
 
 dimension: descripcion_producto {
   type: string
