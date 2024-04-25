@@ -280,6 +280,7 @@ explore: val_vw_datos_generales_2 {}
 explore: margen_utilidad_simulado {}
 explore: indexes_perdidas_ventas_simulado {}
 explore: indexes_fabricacion_no_cubierta_simulacion {}
+explore: indexes_fabricacion_no_cubierta_simulacion_2 {}
 explore: cobertura_fabricacion_simulacion {}
 explore: almacenes_excedidos_simulacion {}
 explore: indexes_almacenes_excedidos_simulacion {}
