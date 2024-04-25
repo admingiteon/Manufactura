@@ -1,69 +1,73 @@
 view: indexes_fabricacion_no_cubierta_simulacion_2 {
-  # # You can specify the table name if it's different from the view name:
-  # sql_table_name: my_schema_name.tester ;;
-  #
-  # # Define your dimensions and measures here, like this:
-  # dimension: user_id {
-  #   description: "Unique ID for each user that has ordered"
-  #   type: number
-  #   sql: ${TABLE}.user_id ;;
-  # }
-  #
-  # dimension: lifetime_orders {
-  #   description: "The total number of orders for each user"
-  #   type: number
-  #   sql: ${TABLE}.lifetime_orders ;;
-  # }
-  #
-  # dimension_group: most_recent_purchase {
-  #   description: "The date when each user last ordered"
-  #   type: time
-  #   timeframes: [date, week, month, year]
-  #   sql: ${TABLE}.most_recent_purchase_at ;;
-  # }
-  #
-  # measure: total_lifetime_orders {
-  #   description: "Use this for counting lifetime orders across many users"
-  #   type: sum
-  #   sql: ${lifetime_orders} ;;
-  # }
-}
+  derived_table: {
+    sql:WITH tblmain AS (
+    SELECT
+        SUBSTR(ins.id, 1, INSTR(ins.id, '_') - 1) as material,
+        ins.posicion_actual AS posicion_actual_insumo,
+        DATE(ins.fecha) as fecha,
+        ins.cantidadrequerida AS cantidad_requerida_insumo
+    FROM
+        `modelo_de_calculo_sm.LP_Insumo_Inventario_1` AS ins
+),
+Desabasto AS(
+    SELECT
+        material,
+        fecha,
+        SUM(posicion_actual_insumo) as posicion_actual_insumo,
+        SUM(cantidad_requerida_insumo) as cantidad_requerida_insumo
+    FROM
+        tblmain
+    GROUP BY
+        material,fecha
+),
+total AS (
+  SELECT
+    'Total' AS concepto,
+    COUNT(distinct(material)) as quantity
+FROM tblmain
+)
 
-# view: indexes_fabricacion_no_cubierta_simulacion_2 {
-#   # Or, you could make this view a derived table, like this:
-#   derived_table: {
-#     sql: SELECT
-#         user_id as user_id
-#         , COUNT(*) as lifetime_orders
-#         , MAX(orders.created_at) as most_recent_purchase_at
-#       FROM orders
-#       GROUP BY user_id
-#       ;;
-#   }
-#
-#   # Define your dimensions and measures here, like this:
-#   dimension: user_id {
-#     description: "Unique ID for each user that has ordered"
-#     type: number
-#     sql: ${TABLE}.user_id ;;
-#   }
-#
-#   dimension: lifetime_orders {
-#     description: "The total number of orders for each user"
-#     type: number
-#     sql: ${TABLE}.lifetime_orders ;;
-#   }
-#
-#   dimension_group: most_recent_purchase {
-#     description: "The date when each user last ordered"
-#     type: time
-#     timeframes: [date, week, month, year]
-#     sql: ${TABLE}.most_recent_purchase_at ;;
-#   }
-#
-#   measure: total_lifetime_orders {
-#     description: "Use this for counting lifetime orders across many users"
-#     type: sum
-#     sql: ${lifetime_orders} ;;
-#   }
-# }
+SELECT
+    concepto,
+    quantity
+FROM total
+
+UNION ALL
+
+
+SELECT
+    'Productos con Desabasto de Insumos' AS concepto,
+    COUNT(DISTINCT CASE
+        WHEN posicion_actual_insumo < cantidad_requerida_insumo
+            AND fecha <= CURRENT_DATE THEN material
+        ELSE NULL
+    END) AS quantity
+FROM
+    Desabasto
+
+UNION ALL
+
+SELECT
+    'Productos sin Desabasto de Insumos' AS concepto,
+    (SELECT quantity FROM total WHERE concepto = 'Total') - COUNT(DISTINCT CASE
+        WHEN posicion_actual_insumo < cantidad_requerida_insumo
+            AND fecha <= CURRENT_DATE THEN material
+        ELSE NULL
+    END) as quantity
+FROM
+    Desabasto;;
+  }
+
+
+  dimension: concepto {
+    type: string
+    sql: ${TABLE}.concepto ;;
+  }
+
+
+
+  measure: quantity{
+    type: sum
+    sql: ${TABLE}.quantity ;;
+  }
+}
