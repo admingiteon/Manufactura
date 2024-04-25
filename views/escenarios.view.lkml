@@ -10,7 +10,7 @@ view: escenarios {
   }
 
   dimension: escenario_id {
-    type: number
+    type: string
     sql: ${TABLE}.Escenario_id ;;
   }
 
