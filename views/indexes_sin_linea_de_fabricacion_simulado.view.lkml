@@ -11,16 +11,20 @@ view: indexes_sin_linea_de_fabricacion_simulado {
           COUNT(DISTINCT Sku) AS capfab_count
         FROM
           `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_vw_largo_plazo_fabricacion_capacidadFabrica`
+        where Sku in (SELECT
+          DISTINCT material AS total_count
+        FROM
+          `modelo_de_calculo_sm.LP_PT_Inventario_LU_1`)
       )
       select 'Total' as concepto,
       total_count as quantity from total
       UNION ALL
       SELECT
-      'SKUs Sin Lineas de Fabricación' as concepto,
+      'Productos sin Lineas de Fabricación' as concepto,
         (SELECT total_count FROM total) - (SELECT capfab_count FROM capFab) AS quantity
       UNION ALL
       SELECT
-      'SKUs Con Lineas de Fabricación' as concepto,
+      'Productos Con Lineas de Fabricación' as concepto,
         (SELECT capfab_count FROM capFab) AS quantity;;
   }
 
