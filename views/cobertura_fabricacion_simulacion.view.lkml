@@ -34,6 +34,7 @@ ON
 
 dimension: material {
   type: string
+  label: "Producto"
   sql: SUBSTR(${TABLE}.material,12,50) ;;
 }
 
