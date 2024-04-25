@@ -282,6 +282,7 @@ explore: indexes_fabricacion_no_cubierta_2 {}
 explore: lineas_fab_saturadas_simuladas {}
 explore: indexes_perdidas_ventas_simulado {}
 explore: indexes_fabricacion_no_cubierta_simulacion {}
+explore: indexes_sin_linea_de_fabricacion_simulado {}
 explore: indexes_fabricacion_no_cubierta_simulacion_2 {}
 explore: cobertura_fabricacion_simulacion {}
 explore: almacenes_excedidos_simulacion {}
