@@ -6,7 +6,7 @@ view: escenarios {
         WHERE Escenario_id in(
              SELECT DISTINCT(escenario_id)
              FROM
-            `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.LP_PT_Fabricacion_Final`
+            `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.vw_LP_PT_Fabricacion_Final`
         );;
   }
 
