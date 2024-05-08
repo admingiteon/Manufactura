@@ -5,7 +5,6 @@ view: margen_utilidad_simulado {
            `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.cv_margen_utilidad`
       ;;
     }
-
     dimension: escenario_id {
       type: string
       sql: ${TABLE}.escenario_id ;;
