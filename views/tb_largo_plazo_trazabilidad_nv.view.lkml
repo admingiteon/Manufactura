@@ -1,12 +1,13 @@
 
 view: tb_largo_plazo_trazabilidad_nv {
   derived_table: {
-    sql: SELECT * EXCEPT(Escenario_id), CAST(Escenario_id AS STRING) as escenario_string FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_tb_largo_plazo_trazabilidad_nv` t
+    sql: --SELECT * EXCEPT(Escenario_id), CAST(Escenario_id AS STRING) as escenario_string FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_tb_largo_plazo_trazabilidad_nv` t
+            SELECT *  FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_ecc_mx_vw_largo_plazo_trazabilidad_nv_2` t
             left join (SELECT material
                              ,CONCAT(SUBSTR(material,12,50), "-" , texto_breve_material)   AS sku_describe
                         FROM `eon-bus-proj-cadena-demo.data_foundation.reporting_homologacion_mx_vw_cadena_suministro_datos_generales`
                        group by texto_breve_material,material) m on m.material=t.SKU
-  WHERE {% condition escenario_id %} escenario_string {% endcondition %}
+  WHERE {% condition escenario_id %} Escenario_id {% endcondition %}
 ;;
 
   }
@@ -27,6 +28,12 @@ view: tb_largo_plazo_trazabilidad_nv {
       value: "665"
     }
   }
+
+  dimension: escenario_id {
+    type: string
+    sql: ${TABLE}.Escenario_id ;;
+  }
+
 
   measure: count {
     type: count
@@ -102,15 +109,6 @@ view: tb_largo_plazo_trazabilidad_nv {
     sql: ${TABLE}.articulodescribe ;;
   }
 
-  dimension: escenario_id {
-    type: string
-    sql: ${TABLE}.escenario_string ;;
-  }
-
-  dimension: escenario_str {
-    type: string
-    sql: ${TABLE}.escenario_string ;;
-  }
 
   dimension: tipo_escenario {
     type: string
