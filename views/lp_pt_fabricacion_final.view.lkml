@@ -14,7 +14,6 @@ view: lp_pt_fabricacion_final {
     sql: CASE WHEN ${producible} < 100 THEN ${puesto_trabajo} ELSE NULL END ;;
   }
 
-
   dimension: sociedad {
     type: string
     sql: ${TABLE}.sociedad ;;
