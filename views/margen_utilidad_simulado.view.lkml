@@ -1,7 +1,6 @@
 view: margen_utilidad_simulado {
     derived_table: {
-      sql: SELECT *
-        FROM
+      sql: SELECT * FROM
            `eon-bus-proj-cadena-demo.modelo_de_calculo_sm.cv_margen_utilidad`
       ;;
     }
