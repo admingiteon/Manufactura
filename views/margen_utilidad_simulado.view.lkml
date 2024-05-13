@@ -8,7 +8,7 @@ view: margen_utilidad_simulado {
     dimension: escenario_id {
       type: string
       sql: ${TABLE}.escenario_id ;;
-      primary_key: yes
+      #primary_key: yes
     }
 
     dimension: centro {
