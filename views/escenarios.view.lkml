@@ -19,7 +19,8 @@ view: escenarios {
   dimension: escenario_id {
     type: string
     sql: ${TABLE}.Escenario_id ;;
-    primary_key: yes
+    #primary_key: yes
+    suggest_persist_for: "2 seconds"
   }
 
   set: detail {
