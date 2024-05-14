@@ -6,6 +6,7 @@ view: margen_utilidad_simulado {
     }
     dimension: escenario_id {
       type: string
+      suggest_persist_for: "2 seconds"
       sql: ${TABLE}.escenario_id ;;
       #primary_key: yes
     }
