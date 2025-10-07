@@ -1,5 +1,5 @@
-view: forecast_completo_lp {
-  sql_table_name: `eon-bus-proj-cadena-demo.arima.Forecast_Completo_LP` ;;
+view: forecast_completo_lp_resp {
+  sql_table_name: `eon-bus-proj-cadena-demo.demo_bigqueryml_arima_plus_2025.Forecast_Completo_LP` ;;
   drill_fields: [id]
 
   dimension: id {
