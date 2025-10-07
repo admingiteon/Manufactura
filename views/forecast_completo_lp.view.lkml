@@ -47,7 +47,7 @@ view: forecast_completo_lp {
 
   measure: forecast_quantity {
     label: "Forecast Quantity"
-    type: average
+    type: sum #average
     sql: (${TABLE}.prediction_interval_lower_bound + ${TABLE}.prediction_interval_upper_bound) / 2 ;;
     value_format_name: decimal_2
     description: "This creates the main forecast line by averaging the bounds"
@@ -55,14 +55,14 @@ view: forecast_completo_lp {
 
   measure: prediction_lower_bound {
     label: "Prediction Lower Bound"
-    type: average
+    type: sum #average
     sql: ${TABLE}.prediction_interval_lower_bound ;;
     value_format_name: decimal_2
   }
 
   measure: prediction_upper_bound {
     label: "Prediction Upper Bound"
-    type: average
+    type: sum #average
     sql: ${TABLE}.prediction_interval_upper_bound ;;
     value_format_name: decimal_2
   }
