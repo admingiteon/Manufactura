@@ -349,3 +349,8 @@ explore: margen_utilidad_v2 {}
 map_layer: mexico_cities {
   file: "mun_mx.json"
 }
+
+explore: forecast_completo_lp {
+  label: "Demand Forecast LP"
+  description: "Explore historical and forecasted demand data."
+}
