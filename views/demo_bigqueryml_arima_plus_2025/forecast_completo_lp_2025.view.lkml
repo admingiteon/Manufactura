@@ -42,29 +42,65 @@ view: forecast_completo_lp_2025 {
     type: sum
     sql: ${TABLE}.Cantidad ;;
     value_format_name: decimal_0
-    description: "This logic ensures we only sum actual historical values"
+    filters: [tipo: "Real"]
+    description: "This measure only looks at rows where tipo is 'Real'"
   }
 
   measure: forecast_quantity {
     label: "Forecast Quantity"
-    type: sum #average
+    type: average
     sql: (${TABLE}.prediction_interval_lower_bound + ${TABLE}.prediction_interval_upper_bound) / 2 ;;
     value_format_name: decimal_2
-    description: "This creates the main forecast line by averaging the bounds"
+    filters: [tipo: "Forecast"]
+    description: "This measure only looks at rows where tipo is 'Forecast'"
   }
 
   measure: prediction_lower_bound {
     label: "Prediction Lower Bound"
-    type: sum #average
+    type: average
     sql: ${TABLE}.prediction_interval_lower_bound ;;
     value_format_name: decimal_2
+    filters: [tipo: "Forecast"]
+    description: "This measure only looks at rows where tipo is 'Forecast'"
   }
 
   measure: prediction_upper_bound {
     label: "Prediction Upper Bound"
-    type: sum #average
+    type: average
     sql: ${TABLE}.prediction_interval_upper_bound ;;
     value_format_name: decimal_2
+    filters: [tipo: "Forecast"]
+    description: "This measure only looks at rows where tipo is 'Forecast'"
   }
+
+  # measure: historical_quantity {
+  #   label: "Historical Quantity"
+  #   type: sum
+  #   sql: ${TABLE}.Cantidad ;;
+  #   value_format_name: decimal_0
+  #   description: "This logic ensures we only sum actual historical values"
+  # }
+
+  # measure: forecast_quantity {
+  #   label: "Forecast Quantity"
+  #   type: sum #average
+  #   sql: (${TABLE}.prediction_interval_lower_bound + ${TABLE}.prediction_interval_upper_bound) / 2 ;;
+  #   value_format_name: decimal_2
+  #   description: "This creates the main forecast line by averaging the bounds"
+  # }
+
+  # measure: prediction_lower_bound {
+  #   label: "Prediction Lower Bound"
+  #   type: sum #average
+  #   sql: ${TABLE}.prediction_interval_lower_bound ;;
+  #   value_format_name: decimal_2
+  # }
+
+  # measure: prediction_upper_bound {
+  #   label: "Prediction Upper Bound"
+  #   type: sum #average
+  #   sql: ${TABLE}.prediction_interval_upper_bound ;;
+  #   value_format_name: decimal_2
+  # }
 
 }
