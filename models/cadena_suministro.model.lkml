@@ -350,7 +350,7 @@ map_layer: mexico_cities {
   file: "mun_mx.json"
 }
 
-explore: forecast_completo_lp_2025 {
+explore: forecast_completo_lp_mensual_2025 {
   label: "Demand Forecast LP"
   description: "Explore historical and forecasted demand data."
 }
